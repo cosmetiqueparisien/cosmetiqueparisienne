@@ -624,11 +624,16 @@ function openForm(p, price){
   
   document.getElementById("productTitle").innerText = "Commande : " + p;
   const formElement = document.getElementById("orderForm");
+  
+  // Nraj3ou l'formulaire yban
   formElement.style.display = "block";
   
   calc();
   
-  formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Retard sghir bach yhabtek direct l'weste l'écran
+  setTimeout(() => {
+    formElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 100);
 }
 
 /* ====== CALCUL TOTAL ====== */
