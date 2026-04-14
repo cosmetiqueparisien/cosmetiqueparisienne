@@ -44,7 +44,7 @@
       overflow-x: hidden;
     }
 
-    /* ====== HERO SECTION (Bannière d'Accueil) ====== */
+    /* ====== HERO SECTION ====== */
     .hero {
       position: relative;
       height: 80vh; 
@@ -165,10 +165,12 @@
 
     .product img {
       width: 100%;
+      aspect-ratio: 1 / 1; /* HADI HIYA LA SOLUTION: Tkhalli blaset tsawira 9bel ma tchargi */
       border-radius: 12px;
       object-fit: cover;
       margin-bottom: 15px;
       transition: var(--transition);
+      background-color: #222; /* Couleur de fond en attendant le chargement */
     }
 
     .product:hover img {
@@ -625,15 +627,14 @@ function openForm(p, price){
   document.getElementById("productTitle").innerText = "Commande : " + p;
   const formElement = document.getElementById("orderForm");
   
-  // Nraj3ou l'formulaire yban
   formElement.style.display = "block";
   
   calc();
   
-  // Retard sghir bach yhabtek direct l'weste l'écran
+  // Zedt fiha le temps chwiya bach nzidou net2akdou (150ms)
   setTimeout(() => {
-    formElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 100);
+    formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 150);
 }
 
 /* ====== CALCUL TOTAL ====== */
