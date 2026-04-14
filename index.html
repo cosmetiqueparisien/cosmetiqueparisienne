@@ -41,35 +41,103 @@
       background-color: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    /* ====== HEADER ====== */
-    h1 {
+    /* ====== HERO SECTION (Bannière d'Accueil) ====== */
+    .hero {
+      position: relative;
+      height: 80vh; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      background: linear-gradient(to bottom, rgba(13, 13, 13, 0.3), rgba(13, 13, 13, 1)), url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
       font-family: "Playfair Display", serif;
-      font-size: 3rem;
+      font-size: 4.5rem;
       font-weight: 700;
       letter-spacing: 4px;
       font-style: italic;
       color: var(--gold-light);
-      margin-bottom: 50px;
+      margin-bottom: 20px;
       text-transform: capitalize;
-      text-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
       animation: elegantReveal 1.5s ease-out forwards;
     }
 
+    .hero p {
+      font-size: 1.3rem;
+      color: #eaeaea;
+      max-width: 600px;
+      margin-bottom: 40px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+      animation: fadeUp 1.5s ease-out 0.5s both;
+    }
+
+    .hero-btn {
+      background: var(--gold-primary);
+      color: var(--bg-color);
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: var(--transition);
+      animation: fadeUp 1.5s ease-out 1s both;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+    }
+
     @keyframes elegantReveal {
-      0% { opacity: 0; transform: translateY(-20px); letter-spacing: 10px; }
+      0% { opacity: 0; transform: translateY(-20px); letter-spacing: 15px; }
       100% { opacity: 1; transform: translateY(0); letter-spacing: 4px; }
     }
 
-    /* ====== PRODUCTS GRID ====== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero { height: 70vh; }
+      .hero h1 { font-size: 2.8rem; }
+      .hero p { font-size: 1.1rem; }
+    }
+
+
+    /* ====== CONTAINER & PRODUCTS ====== */
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: "Playfair Display", serif;
+      font-size: 2.5rem;
+      color: var(--gold-primary);
+      margin-bottom: 50px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
     .products {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -127,8 +195,7 @@
       margin-bottom: 20px;
     }
 
-    /* ====== BUTTONS ====== */
-    button {
+    .product button {
       background: transparent;
       border: 2px solid var(--gold-primary);
       padding: 12px 24px;
@@ -144,7 +211,7 @@
       transition: var(--transition);
     }
 
-    button:hover {
+    .product button:hover {
       background: var(--gold-primary);
       color: var(--bg-color);
       box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
@@ -153,7 +220,7 @@
     /* ====== ORDER FORM ====== */
     .form {
       max-width: 550px;
-      margin: 60px auto 20px;
+      margin: 80px auto 20px;
       padding: 40px;
       border-radius: 20px;
       background: var(--card-bg);
@@ -161,11 +228,6 @@
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
       display: none;
       animation: fadeUp 0.5s ease;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .form h2 {
@@ -176,7 +238,6 @@
       font-size: 1.8rem;
     }
 
-    /* ====== INPUTS & ICONS ====== */
     .input-icon {
       position: relative;
       margin-bottom: 20px;
@@ -244,6 +305,11 @@
       font-size: 1.1rem;
       padding: 15px;
       border-radius: 10px;
+      width: 100%;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      transition: var(--transition);
     }
 
     .form button:hover {
@@ -251,7 +317,7 @@
       transform: translateY(-2px);
     }
 
-    /* ====== WHATSAPP FLOTTANT ====== */
+    /* ====== WHATSAPP FLOTTANT & FOOTER ====== */
     .whatsapp-float {
       position: fixed;
       bottom: 25px;
@@ -284,13 +350,12 @@
       100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
 
-    /* ====== FOOTER ====== */
     footer {
       background-color: #080808;
       border-top: 1px solid rgba(212, 175, 55, 0.1);
       padding: 50px 20px 30px;
       text-align: center;
-      margin-top: 60px;
+      margin-top: 20px;
     }
 
     .social-icons {
@@ -326,9 +391,18 @@
 </head>
 
 <body>
+
+<section class="hero">
+  <h1>Cosmétique Parisienne</h1>
+  <p>Offrez l'élégance à la Parisienne - Les meilleures Box Cadeaux en Algérie.</p>
+  <button class="hero-btn" onclick="document.getElementById('productList').scrollIntoView({ behavior: 'smooth' });">
+    Découvrir nos Box <i class="fa-solid fa-arrow-down"></i>
+  </button>
+</section>
+
 <div class="container">
 
-  <h1>Cosmétique Parisienne</h1>
+  <h2 class="section-title">Notre Collection</h2>
 
   <div class="products" id="productList">
     <div class="product"><img src="./box1.jpg" alt="Box Cadeau 1" loading="lazy"><h3>Box Cadeau 1</h3><p class="price">6500 DA</p><button onclick="openForm('Box Cadeau 1',6500)">Commander</button></div>
@@ -519,27 +593,23 @@ wilayaSelect.addEventListener("change", () => {
     return;
   }
 
-  /* Correction du bug : Si la wilaya n'a pas de prix défini, on met un prix par défaut */
   const prix = livraisonMaystro[w] || { bureau: null, domicile: 1200 };
   
   let options = "";
   deliveryContainer.style.display = "block";
 
-  // Bureau
   if (prix.bureau !== null && prix.bureau !== 0 && prix.bureau !== undefined) {
     options += `<option value="${prix.bureau}">Point de relais / مكتب (${prix.bureau} DA)</option>`;
   } else {
     options += `<option disabled>Point de relais (Non disponible)</option>`;
   }
 
-  // Domicile
   if (prix.domicile !== null && prix.domicile !== undefined) {
     options += `<option value="${prix.domicile}">À Domicile / منزل (${prix.domicile} DA)</option>`;
   }
 
   deliverySelect.innerHTML = options;
 
-  // Sélectionner Domicile par défaut si Bureau n'existe pas
   if ((prix.bureau === null || prix.bureau === 0 || prix.bureau === undefined) && prix.domicile !== null) {
     deliverySelect.value = prix.domicile;
   }
@@ -558,7 +628,6 @@ function openForm(p, price){
   
   calc();
   
-  // Animation scroll douce vers le formulaire
   formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -566,7 +635,6 @@ function openForm(p, price){
 function calc(){
   let q = parseInt(document.getElementById("qty").value) || 1;
   
-  // Empêcher les quantités négatives ou zéro
   if (q < 1) {
     q = 1;
     document.getElementById("qty").value = 1;
