@@ -418,18 +418,14 @@
       font-weight: 600;
     }
 
-    /* 1. Cash on delivery (Vert) */
     .btn-cash { border-color: #25d366; color: #25d366; background: transparent; }
     .btn-cash:hover { background: #25d366; color: #000; box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);}
 
-    /* 2. BaridiMob (Doré/Jaune) */
     .btn-baridi { border-color: #fbd600; color: #fbd600; background: transparent; }
     .btn-baridi:hover { background: #fbd600; color: #000; box-shadow: 0 0 15px rgba(251, 214, 0, 0.4);}
 
-    /* 3. CCP (Doré/Orange) */
     .btn-ccp { border-color: #ffcc00; color: #ffcc00; background: transparent; }
     .btn-ccp:hover { background: #ffcc00; color: #000; box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);}
-
 
     /* ====== WHATSAPP FLOTTANT & FOOTER ====== */
     .whatsapp-float {
@@ -654,7 +650,7 @@ const livraisonMaystro = {
   "Tlemcen": { bureau: 500, domicile: 850 },
   "Tiaret": { bureau: 500, domicile: 850 },
   "Tizi Ouzou": { bureau: 500, domicile: 800 },
-  "Alger": { bureau:400, domicile: 500 },
+  "Alger": { bureau: 400, domicile: 500, rapide: 600 }, /* L'option Rapide zednaha hna */
   "Djelfa": { bureau: 650, domicile: 900 },
   "Jijel": { bureau: 500, domicile: 850 },
   "Sétif": { bureau: 500, domicile: 800 },
@@ -738,6 +734,11 @@ wilayaSelect.addEventListener("change", () => {
     options += `<option value="${prix.domicile}">À Domicile / منزل (${prix.domicile} DA)</option>`;
   }
 
+  /* Condition l'jdida: Tbayen livraison rapide ghir ida kayna f l'wilaya (Alger) */
+  if (prix.rapide !== null && prix.rapide !== undefined) {
+    options += `<option value="${prix.rapide}">Livraison Rapide (Express) / توصيل سريع (${prix.rapide} DA)</option>`;
+  }
+
   deliverySelect.innerHTML = options;
   if ((prix.bureau === null || prix.bureau === 0 || prix.bureau === undefined) && prix.domicile !== null) {
     deliverySelect.value = prix.domicile;
@@ -811,7 +812,7 @@ function closeModal(){
   modal.classList.remove("show");
 }
 
-function processOrder(paymentMethod){
+function processOrder(paymentChoice){
   const name = document.getElementById("name").value.trim();
   const phone = document.getElementById("phone").value.trim();
   const wilaya = document.getElementById("wilaya").value;
@@ -828,7 +829,7 @@ function processOrder(paymentMethod){
 🏠 *Commune :* ${commune}
 📦 *Quantité :* ${qty}
 🚚 *Livraison :* ${deliveryType}
-💳 *Paiement :* ${paymentMethod}
+💳 *Paiement :* ${paymentChoice}
 -------------------------
 💰 *${document.getElementById("total").innerText}*`;
 
