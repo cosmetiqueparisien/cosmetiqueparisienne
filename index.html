@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
 
   <style>
-    /* ====== VARIABLES CSS (NOIR & DORÉ) ====== */
+    /* ====== VARIABLES CSS ====== */
     :root {
       --bg-color: #0d0d0d;
       --card-bg: #1a1a1a;
@@ -226,7 +226,7 @@
       margin-bottom: 20px;
     }
 
-    /* ====== IMAGE SLIDER (NOUVEAU) ====== */
+    /* ====== IMAGE SLIDER ====== */
     .slider-wrapper {
       position: relative;
       width: 100%;
@@ -239,13 +239,13 @@
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none;  /* IE et Edge */
+      scrollbar-width: none; 
+      -ms-overflow-style: none;  
       scroll-behavior: smooth;
     }
     
     .image-slider::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
+      display: none; 
     }
     
     .image-slider img {
@@ -651,9 +651,9 @@
       <div class="slider-wrapper">
         <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
         <div class="image-slider">
-          <img src="./bouquet_chocolat_1.jpg" alt="Bouquet de Chocolat 1" loading="lazy">
-          <img src="./bouquet_chocolat_2.jpg" alt="Bouquet de Chocolat 2" loading="lazy">
-          <img src="./bouquet_chocolat_3.jpg" alt="Bouquet de Chocolat 3" loading="lazy">
+          <img src="./bouquet_chocolat_1.jpg.JPG" alt="Bouquet de Chocolat 1" loading="lazy">
+          <img src="./bouquet_chocolat_2.jpg.JPG" alt="Bouquet de Chocolat 2" loading="lazy">
+          <img src="./bouquet_chocolat_3.jpg.JPG" alt="Bouquet de Chocolat 3" loading="lazy">
         </div>
         <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
       </div>
@@ -901,7 +901,6 @@ function filterGender(gender, btnElement) {
 function slideImage(btn, direction) {
   const wrapper = btn.parentElement;
   const slider = wrapper.querySelector('.image-slider');
-  // Yet7arek b l'3ard ta3 slider (swip wa7da)
   const scrollAmount = slider.clientWidth;
   slider.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
 }
