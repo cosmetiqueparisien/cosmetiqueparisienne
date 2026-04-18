@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
 
   <style>
-    /* ====== VARIABLES CSS ====== */
+    /* ====== VARIABLES CSS (NOIR & DORÉ) ====== */
     :root {
       --bg-color: #0d0d0d;
       --card-bg: #1a1a1a;
@@ -640,7 +640,15 @@
   <div class="products">
     
     <div class="product">
-      <img src="./bombe_chocolat.jpg" alt="Bombe de Chocolat" loading="lazy">
+      <div class="slider-wrapper">
+        <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
+        <div class="image-slider">
+          <img src="./bombe_chocolat_1.jpg.JPG" alt="Bombe de Chocolat 1" loading="lazy">
+          <img src="./bombe_chocolat_2.jpg.JPG" alt="Bombe de Chocolat 2" loading="lazy">
+          <img src="./bombe_chocolat_3.jpg.JPG" alt="Bombe de Chocolat 3" loading="lazy">
+        </div>
+        <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
+      </div>
       <h3>Bombe de Chocolat</h3>
       <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 7000 دج):</label>
       <input type="number" id="price_bombe" class="custom-price-input" min="7000" value="7000" step="500">
@@ -664,7 +672,14 @@
     </div>
 
     <div class="product">
-      <img src="./boite_chocolat.jpg" alt="Boîte de Chocolat" loading="lazy">
+      <div class="slider-wrapper">
+        <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
+        <div class="image-slider">
+          <img src="./boite_chocolat_1.jpg.JPG" alt="Boîte de Chocolat 1" loading="lazy">
+          <img src="./boite_chocolat_2.jpg.JPG" alt="Boîte de Chocolat 2" loading="lazy">
+        </div>
+        <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
+      </div>
       <h3>Boîte de Chocolat</h3>
       <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 9000 دج):</label>
       <input type="number" id="price_boite" class="custom-price-input" min="9000" value="9000" step="500">
@@ -672,7 +687,14 @@
     </div>
 
     <div class="product">
-      <img src="./boite_chocolat_simple.jpg" alt="Boîte Chocolat Simple" loading="lazy">
+      <div class="slider-wrapper">
+        <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
+        <div class="image-slider">
+          <img src="./boite_chocolat_simple_1.jpg.JPG" alt="Boîte Chocolat Simple 1" loading="lazy">
+          <img src="./boite_chocolat_simple_2.jpg.JPG" alt="Boîte Chocolat Simple 2" loading="lazy">
+        </div>
+        <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
+      </div>
       <h3>Boîte Chocolat Simple</h3>
       <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 4500 دج):</label>
       <input type="number" id="price_boite_simple" class="custom-price-input" min="4500" value="4500" step="500">
