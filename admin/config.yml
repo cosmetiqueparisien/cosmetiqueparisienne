@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: qsgzaki-collab/cosmetiqueparisienne
+  repo: cosmetiqueparisien/
   branch: main
   use_pkce: true
   app_id: Ov23liQP4Wf5Jb9amCPZ
