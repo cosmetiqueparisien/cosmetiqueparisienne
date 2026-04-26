@@ -2,21 +2,19 @@ backend:
   name: github
   repo: cosmetiqueparisien/cosmetiqueparisienne
   branch: main
-  use_pkce: true
-  app_id: Ov23liQP4Wf5Jb9amCPZ
 
 media_folder: "images"
-public_folder: "./images"
+public_folder: "/images" # هنا نحينا النقطة وخلينا غير السلاش
 
 collections:
   - name: "produits"
-    label: "المنتجات"
+    label: "المنتجات (Les Box & Chocolat)"
     folder: "data/produits"
     create: true
     extension: "json"
     format: "json"
     fields:
-      - {label: "اسم المنتج", name: "title", widget: "string"}
-      - {label: "السعر", name: "price", widget: "number"}
+      - {label: "اسم المنتج (مثال: Box Cadeau 1)", name: "title", widget: "string"}
+      - {label: "السعر (DA)", name: "price", widget: "number"}
       - {label: "الصنف", name: "gender", widget: "select", options: ["homme", "femme", "chocolat"]}
-      - {label: "صورة", name: "image", widget: "image"}
+      - {label: "صورة المنتج", name: "image", widget: "image"}
