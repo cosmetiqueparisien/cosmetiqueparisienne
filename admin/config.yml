@@ -6,7 +6,7 @@ backend:
 
 # --- إعدادات المظهر واللغة ---
 locale: "fr"
-logo_url: "https://cosmetiqueparisien.github.io/cosmetiqueparisienne/loogo.png.PNG" 
+logo_url: "https://cosmetiqueparisien.github.io/cosmetiqueparisienne/loogo.png.JPG" 
 # ملاحظة: تقدر تبدل background.jpg باسم ملف اللوغو ديالك إذا طلعته في GitHub
 display_name: "Cosmétique Parisienne"
 media_folder: "images"
