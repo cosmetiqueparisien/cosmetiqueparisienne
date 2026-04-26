@@ -17,5 +17,5 @@ collections:
     fields:
       - {label: "اسم المنتج (مثال: Box Cadeau 1)", name: "title", widget: "string"}
       - {label: "السعر (DA)", name: "price", widget: "number"}
-      - {label: "الصنف", name: "gender", widget: "select", options: ["homme", "femme", "chocolat"]}
+      - {label: "الصنف", name: "gender", widget: "select", options: ["homme", "femme", "chocolat","دببة"]}
       - {label: "صورة المنتج", name: "image", widget: "image"}
