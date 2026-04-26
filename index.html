@@ -21,15 +21,9 @@
   <style>
     /* ====== VARIABLES CSS (NOIR & DORÉ) ====== */
     :root {
-      --bg-color: #0d0d0d;
-      --card-bg: #1a1a1a;
-      --text-color: #f5f5f5;
-      --gold-primary: #d4af37;
-      --gold-light: #f6e27a;
-      --gold-dark: #bfa233;
-      --blue-homme: #4A90E2; 
-      --pink-femme: #D291BC; 
-      --choco-color: #A0522D; 
+      --bg-color: #0d0d0d; --card-bg: #1a1a1a; --text-color: #f5f5f5;
+      --gold-primary: #d4af37; --gold-light: #f6e27a; --gold-dark: #bfa233;
+      --blue-homme: #4A90E2; --pink-femme: #D291BC; --choco-color: #A0522D; 
       --transition: 0.3s ease;
     }
 
@@ -465,7 +459,6 @@ function filterGender(gender, btnElement) {
   document.getElementById("orderForm").style.display = "none";
 }
 
-/* ====== JAVASCRIPT DU SLIDER D'IMAGES ====== */
 function slideImage(btn, direction) {
   const wrapper = btn.parentElement;
   const slider = wrapper.querySelector('.image-slider');
@@ -473,17 +466,14 @@ function slideImage(btn, direction) {
   slider.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
 }
 
-/* ====== Fonction spéciale pour la section Chocolat ====== */
 function openCustomForm(p, inputId, minPrice) {
   const inputEl = document.getElementById(inputId);
   let customPrice = parseInt(inputEl.value) || minPrice;
-  
   if(customPrice < minPrice) {
     alert(`عذراً، الميزانية لهذا الموديل لا يمكن أن تكون أقل من ${minPrice} دج !`);
     inputEl.value = minPrice;
     customPrice = minPrice;
   }
-  
   openForm(p + " - ميزانية مخصصة", customPrice);
 }
 
@@ -508,7 +498,6 @@ function calc(){
 document.getElementById("qty").addEventListener("input", calc);
 document.getElementById("delivery").addEventListener("change", calc);
 
-/* ====== LOGIQUE DU MODAL PAIEMENT ====== */
 function checkFormAndPay(){
   const name = document.getElementById("name").value.trim();
   const phone = document.getElementById("phone").value.trim();
@@ -570,9 +559,15 @@ async function loadCMSProducts() {
         const res = await fetch(file.download_url);
         const product = await res.json();
         
+        // هنا تصلح المسار تاع التصويرة لي هدرنا عليه
+        let imagePath = product.image || "";
+        if(imagePath.startsWith('/')) {
+            imagePath = '.' + imagePath;
+        }
+
         const productHTML = `
           <div class="product" data-gender="${product.gender}">
-            <img src="${product.image}" alt="${product.title}" loading="lazy">
+            <img src="${imagePath}" alt="${product.title}" loading="lazy">
             <h3>${product.title}</h3>
             <p class="price">${product.price} DA</p>
             <button onclick="openForm('${product.title}', ${product.price})">تقديم الطلبية</button>
