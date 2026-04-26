@@ -4,18 +4,23 @@ backend:
   branch: main
   app_id: Ov23liQP4Wf5Jb9amCPZ
 
+# --- إعدادات المظهر واللغة ---
+locale: "fr"
+logo_url: "https://cosmetiqueparisien.github.io/cosmetiqueparisienne/background.jpg" 
+# ملاحظة: تقدر تبدل background.jpg باسم ملف اللوغو ديالك إذا طلعته في GitHub
+
 media_folder: "images"
 public_folder: "/images"
 
 collections:
   - name: "produits"
-    label: "المنتجات (Les Box & Chocolat)"
+    label: "Produits (Les Box & Chocolat)"
     folder: "data/produits"
     create: true
     extension: "json"
     format: "json"
     fields:
-      - {label: "اسم المنتج (مثال: Box Cadeau 1)", name: "title", widget: "string"}
-      - {label: "السعر (DA)", name: "price", widget: "number"}
-      - {label: "الصنف", name: "gender", widget: "select", options: ["homme", "femme", "chocolat","دببة"]}
-      - {label: "صورة المنتج", name: "image", widget: "image"}
+      - {label: "Nom du produit", name: "title", widget: "string"}
+      - {label: "Prix (DA)", name: "price", widget: "number"}
+      - {label: "Catégorie", name: "gender", widget: "select", options: ["homme", "femme", "chocolat", "دببة"]}
+      - {label: "Image du produit", name: "image", widget: "image"}
