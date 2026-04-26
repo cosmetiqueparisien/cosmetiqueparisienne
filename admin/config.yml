@@ -2,9 +2,10 @@ backend:
   name: github
   repo: cosmetiqueparisien/cosmetiqueparisienne
   branch: main
+  app_id: Ov23liQP4Wf5Jb9amCPZ
 
 media_folder: "images"
-public_folder: "/images" # هنا نحينا النقطة وخلينا غير السلاش
+public_folder: "/images"
 
 collections:
   - name: "produits"
