@@ -1,16 +1,17 @@
 backend:
   name: github
-  repo: qsgzaki-collab/cosmetiqueparisienne # اسم الريپو ديالك
-  branch: main # تأكد بلي راك تخدم في فرع main
-  use_pkce: true # هذي العفسة السحرية لي تخلينا ندخلو بلا سيرفر
+  repo: qsgzaki-collab/cosmetiqueparisienne
+  branch: main
+  use_pkce: true
+  app_id: Ov23liQP4Wf5Jb9amCPZ
 
-media_folder: "images" # الدوسي وين يتخباو التصاور الجدد
-public_folder: "./images" # الرابط تاع التصاور باش يبانو في السيت
+media_folder: "images"
+public_folder: "./images"
 
 collections:
   - name: "produits"
     label: "المنتجات (Les Box & Chocolat)"
-    folder: "data/produits" # هنا رح يتكرياو المنتجات الجدد
+    folder: "data/produits"
     create: true
     extension: "json"
     format: "json"
