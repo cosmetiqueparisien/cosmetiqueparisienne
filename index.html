@@ -69,6 +69,7 @@
     .btn-chocolat:hover, .btn-chocolat.active { background: var(--choco-color); color: white; box-shadow: 0 4px 15px rgba(160, 82, 45, 0.4); }
     .btn-dibaba { border: 1px solid #d2691e; color: #d2691e; }
     .btn-dibaba:hover, .btn-dibaba.active { background: #d2691e; color: white; box-shadow: 0 4px 15px rgba(210, 105, 30, 0.4); }
+    
     /* ====== PRODUCT GRID ====== */
     .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
     .product { background: var(--card-bg); border-radius: 16px; padding: 20px; border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: all 0.4s ease; display: flex; flex-direction: column; align-items: center; text-align: center; }
@@ -78,6 +79,7 @@
     .product h3 { font-family: "Playfair Display", serif; font-size: 1.4rem; font-weight: 600; color: var(--text-color); margin-bottom: 10px; }
     .product:hover h3 { color: var(--gold-light); }
     .product p.price { font-size: 1.25rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 20px; }
+    
     .slider-wrapper { position: relative; width: 100%; margin-bottom: 15px; border-radius: 12px; overflow: hidden; }
     .image-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
     .image-slider::-webkit-scrollbar { display: none; }
@@ -85,6 +87,7 @@
     .slide-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.6) !important; color: white !important; border: 1px solid var(--gold-primary) !important; width: 35px !important; height: 35px !important; padding: 0 !important; border-radius: 50% !important; font-size: 1rem !important; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
     .slide-btn.left { left: 5px; } .slide-btn.right { right: 5px; }
     .slide-btn:hover { background: var(--gold-primary) !important; color: var(--bg-color) !important; }
+    
     .custom-price-input { width: 80%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--gold-primary); background: #111; color: var(--gold-light); text-align: center; font-weight: bold; font-size: 1.1rem; appearance: none; }
     .custom-price-input:focus { outline: none; box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); background: #000; }
     .product button { background: transparent; border: 2px solid var(--gold-primary); padding: 12px 24px; border-radius: 30px; color: var(--gold-primary); font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; width: 100%; transition: var(--transition); }
@@ -129,204 +132,310 @@
     .social-icons a:hover { color: var(--gold-light); transform: translateY(-5px) scale(1.1); }
     footer p { color: #888; font-size: 0.95rem; margin-bottom: 15px; }
     footer .dev-text { font-size: 0.85rem; color: #555; font-weight: 300; }
+
+    /* ====== ADMIN PANEL ====== */
+    #admin-panel { display: none; max-width: 1200px; margin: auto; padding: 40px 20px; }
+    .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--card-bg); border-radius: 10px; overflow: hidden; }
+    .admin-table th, .admin-table td { padding: 15px; text-align: left; border-bottom: 1px solid #333; }
+    .admin-table th { background: var(--gold-primary); color: #000; font-family: 'Montserrat', sans-serif; font-weight: 600; }
+    .admin-form-container { background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--gold-primary); margin-bottom: 40px; }
+    
+    /* Bouton supprimer rouge */
+    .btn-delete { background: #ff4c4c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: 0.3s; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; }
+    .btn-delete:hover { background: #e60000; box-shadow: 0 0 10px rgba(255, 76, 76, 0.5); }
   </style>
 </head>
 
 <body>
 
-<section class="hero">
-  <h1>Cosmétique Parisienne</h1>
-  <p>Offrez l'élégance à la Parisienne - Les meilleures Box Cadeaux en Algérie.</p>
-  <button class="hero-btn" onclick="document.getElementById('filtres').scrollIntoView({ behavior: 'smooth' });">
-    Découvrir nos Box <i class="fa-solid fa-arrow-down"></i>
-  </button>
-</section>
-
-<div class="container">
-
-  <h2 class="section-title">Notre Collection</h2>
-
-    <div class="filters" id="filtres">
-    <button class="filter-btn btn-tous active" onclick="filterGender('all', this)">
-      <i class="fa-solid fa-border-all"></i> Tous
+<!-- DIV QUI ENGLOBE LE SITE NORMAL -->
+<div id="main-site">
+  <section class="hero">
+    <h1>Cosmétique Parisienne</h1>
+    <p>Offrez l'élégance à la Parisienne - Les meilleures Box Cadeaux en Algérie.</p>
+    <button class="hero-btn" onclick="document.getElementById('filtres').scrollIntoView({ behavior: 'smooth' });">
+      Découvrir nos Box <i class="fa-solid fa-arrow-down"></i>
     </button>
-    <button class="filter-btn btn-homme" onclick="filterGender('homme', this)">
-      <i class="fa-solid fa-mars"></i> Homme
-    </button>
-    <button class="filter-btn btn-femme" onclick="filterGender('femme', this)">
-      <i class="fa-solid fa-venus"></i> Femme
-    </button>
-    <button class="filter-btn btn-chocolat" onclick="filterGender('chocolat', this)">
-      🍫 Chocolat
-    </button>
-    <button class="filter-btn btn-dibaba" onclick="filterGender('دببة', this)">
-      🧸 دببة
-    </button>
-  </div>
+  </section>
 
-  <div class="products" id="productList">
-    <div class="product" data-gender="homme"><img src="./box1.jpg" alt="Box Cadeau 1" loading="lazy"><h3>Box Cadeau 1</h3><p class="price">7000 DA</p><button onclick="openForm('Box Cadeau 1',7000)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box2.jpg" alt="Box Cadeau 2" loading="lazy"><h3>Box Cadeau 2</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 2',8500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box3.jpg" alt="Box Cadeau 3" loading="lazy"><h3>Box Cadeau 3</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 3',4500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box4.jpg" alt="Box Cadeau 4" loading="lazy"><h3>Box Cadeau 4</h3><p class="price">7500 DA</p><button onclick="openForm('Box Cadeau 4',7500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box5.jpg" alt="Box Cadeau 5" loading="lazy"><h3>Box Cadeau 5</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 5',9500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box6.jpg" alt="Box Cadeau 6" loading="lazy"><h3>Box Cadeau 6</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 6',4500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box7.jpg" alt="Box Cadeau 7" loading="lazy"><h3>Box Cadeau 7</h3><p class="price">10000 DA</p><button onclick="openForm('Box Cadeau 7',10000)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box8.jpg" alt="Box Cadeau 8" loading="lazy"><h3>Box Cadeau 8</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 8',9500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box9.jpg" alt="Box Cadeau 9" loading="lazy"><h3>Box Cadeau 9</h3><p class="price">12500 DA</p><button onclick="openForm('Box Cadeau 9',12500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box10.jpg" alt="Box Cadeau 10" loading="lazy"><h3>Box Cadeau 10</h3><p class="price">11000 DA</p><button onclick="openForm('Box Cadeau 10',11000)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box11.jpg" alt="Box Cadeau 11" loading="lazy"><h3>Box Cadeau 11</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 11',9500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box12.jpg" alt="Box Cadeau 12" loading="lazy"><h3>Box Cadeau 12</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 12',8500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box13.jpg" alt="Box Cadeau 13" loading="lazy"><h3>Box Cadeau 13</h3><p class="price">9000 DA</p><button onclick="openForm('Box Cadeau 13',9000)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box14.jpg" alt="Box Cadeau 14" loading="lazy"><h3>Box Cadeau 14</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 14',8500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box15.jpg" alt="Box Cadeau 15" loading="lazy"><h3>Box Cadeau 15</h3><p class="price">3250 DA</p><button onclick="openForm('Box Cadeau 15',3250)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box16.jpg" alt="Box Cadeau 16" loading="lazy"><h3>Box Cadeau 16</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 16',4500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box17.jpg" alt="Box Cadeau 17" loading="lazy"><h3>Box Cadeau 17</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 17',5500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box18.jpg" alt="Box Cadeau 18" loading="lazy"><h3>Box Cadeau 18</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 18',5500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box19.jpg" alt="Box Cadeau 19" loading="lazy"><h3>Box Cadeau 19</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 19',5000)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box20.jpg" alt="Box Cadeau 20" loading="lazy"><h3>Box Cadeau 20</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 20',5000)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box21.jpg" alt="Box Cadeau 21" loading="lazy"><h3>Box Cadeau 21</h3><p class="price">7500 DA</p><button onclick="openForm('Box Cadeau 21',7500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box22.jpg" alt="Box Cadeau 22" loading="lazy"><h3>Box Cadeau 22</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 22',8500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box23.jpg" alt="Box Cadeau 23" loading="lazy"><h3>Box Cadeau 23</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 23',5000)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box24.jpg" alt="Box Cadeau 24" loading="lazy"><h3>Box Cadeau 24</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 24',4500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box25.jpg" alt="Box Cadeau 25" loading="lazy"><h3>Box Cadeau 25</h3><p class="price">3500 DA</p><button onclick="openForm('Box Cadeau 25',3500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box26.jpg" alt="Box Cadeau 26" loading="lazy"><h3>Box Cadeau 26</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 26',8500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box27.jpg" alt="Box Cadeau 27" loading="lazy"><h3>Box Cadeau 27</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 27',9500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box28.jpg" alt="Box Cadeau 28" loading="lazy"><h3>Box Cadeau 28</h3><p class="price">11200 DA</p><button onclick="openForm('Box Cadeau 28',11200)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box29.jpg" alt="Box Cadeau 29" loading="lazy"><h3>Box Cadeau 29</h3><p class="price">7000 DA</p><button onclick="openForm('Box Cadeau 29',7000)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box30.jpg" alt="Box Cadeau 30" loading="lazy"><h3>Box Cadeau 30</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 30',8500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box31.jpg" alt="Box Cadeau 31" loading="lazy"><h3>Box Cadeau 31</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 31',5500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box32.jpg" alt="Box Cadeau 32" loading="lazy"><h3>Box Cadeau 32</h3><p class="price">12500 DA</p><button onclick="openForm('Box Cadeau 32',12500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box33.jpg" alt="Box Cadeau 33" loading="lazy"><h3>Box Cadeau 33</h3><p class="price">4750 DA</p><button onclick="openForm('Box Cadeau 33',4750)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="femme"><img src="./box34.jpg" alt="Box Cadeau 34" loading="lazy"><h3>Box Cadeau 34</h3><p class="price">6500 DA</p><button onclick="openForm('Box Cadeau 34',6500)">تقديم الطلبية</button></div>
-    <div class="product" data-gender="homme"><img src="./box35.jpg" alt="Box Cadeau 35" loading="lazy"><h3>Box Cadeau 35</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 35',9500)">تقديم الطلبية</button></div>
-  </div>
+  <div class="container">
 
-  <h2 id="chocoTitle" class="section-title" style="margin-top: 80px; font-size: 2rem;">تشكيلات الشوكولاطة 🍫</h2>
+    <h2 class="section-title">Notre Collection</h2>
 
-  <div class="products">
+      <div class="filters" id="filtres">
+      <button class="filter-btn btn-tous active" onclick="filterGender('all', this)">
+        <i class="fa-solid fa-border-all"></i> Tous
+      </button>
+      <button class="filter-btn btn-homme" onclick="filterGender('homme', this)">
+        <i class="fa-solid fa-mars"></i> Homme
+      </button>
+      <button class="filter-btn btn-femme" onclick="filterGender('femme', this)">
+        <i class="fa-solid fa-venus"></i> Femme
+      </button>
+      <button class="filter-btn btn-chocolat" onclick="filterGender('chocolat', this)">
+        ?? Chocolat
+      </button>
+      <button class="filter-btn btn-dibaba" onclick="filterGender('????', this)">
+        ?? ????
+      </button>
+    </div>
+
+    <div class="products" id="productList">
+      <div class="product" data-gender="homme"><img src="./box1.jpg" alt="Box Cadeau 1" loading="lazy"><h3>Box Cadeau 1</h3><p class="price">7000 DA</p><button onclick="openForm('Box Cadeau 1',7000)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box2.jpg" alt="Box Cadeau 2" loading="lazy"><h3>Box Cadeau 2</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 2',8500)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box3.jpg" alt="Box Cadeau 3" loading="lazy"><h3>Box Cadeau 3</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 3',4500)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box4.jpg" alt="Box Cadeau 4" loading="lazy"><h3>Box Cadeau 4</h3><p class="price">7500 DA</p><button onclick="openForm('Box Cadeau 4',7500)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box5.jpg" alt="Box Cadeau 5" loading="lazy"><h3>Box Cadeau 5</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 5',9500)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box6.jpg" alt="Box Cadeau 6" loading="lazy"><h3>Box Cadeau 6</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 6',4500)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box7.jpg" alt="Box Cadeau 7" loading="lazy"><h3>Box Cadeau 7</h3><p class="price">10000 DA</p><button onclick="openForm('Box Cadeau 7',10000)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box8.jpg" alt="Box Cadeau 8" loading="lazy"><h3>Box Cadeau 8</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 8',9500)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box9.jpg" alt="Box Cadeau 9" loading="lazy"><h3>Box Cadeau 9</h3><p class="price">12500 DA</p><button onclick="openForm('Box Cadeau 9',12500)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box10.jpg" alt="Box Cadeau 10" loading="lazy"><h3>Box Cadeau 10</h3><p class="price">11000 DA</p><button onclick="openForm('Box Cadeau 10',11000)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box11.jpg" alt="Box Cadeau 11" loading="lazy"><h3>Box Cadeau 11</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 11',9500)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box12.jpg" alt="Box Cadeau 12" loading="lazy"><h3>Box Cadeau 12</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 12',8500)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box13.jpg" alt="Box Cadeau 13" loading="lazy"><h3>Box Cadeau 13</h3><p class="price">9000 DA</p><button onclick="openForm('Box Cadeau 13',9000)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box14.jpg" alt="Box Cadeau 14" loading="lazy"><h3>Box Cadeau 14</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 14',8500)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box15.jpg" alt="Box Cadeau 15" loading="lazy"><h3>Box Cadeau 15</h3><p class="price">3250 DA</p><button onclick="openForm('Box Cadeau 15',3250)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box16.jpg" alt="Box Cadeau 16" loading="lazy"><h3>Box Cadeau 16</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 16',4500)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box17.jpg" alt="Box Cadeau 17" loading="lazy"><h3>Box Cadeau 17</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 17',5500)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box18.jpg" alt="Box Cadeau 18" loading="lazy"><h3>Box Cadeau 18</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 18',5500)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box19.jpg" alt="Box Cadeau 19" loading="lazy"><h3>Box Cadeau 19</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 19',5000)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box20.jpg" alt="Box Cadeau 20" loading="lazy"><h3>Box Cadeau 20</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 20',5000)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box21.jpg" alt="Box Cadeau 21" loading="lazy"><h3>Box Cadeau 21</h3><p class="price">7500 DA</p><button onclick="openForm('Box Cadeau 21',7500)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box22.jpg" alt="Box Cadeau 22" loading="lazy"><h3>Box Cadeau 22</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 22',8500)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box23.jpg" alt="Box Cadeau 23" loading="lazy"><h3>Box Cadeau 23</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 23',5000)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box24.jpg" alt="Box Cadeau 24" loading="lazy"><h3>Box Cadeau 24</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 24',4500)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box25.jpg" alt="Box Cadeau 25" loading="lazy"><h3>Box Cadeau 25</h3><p class="price">3500 DA</p><button onclick="openForm('Box Cadeau 25',3500)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box26.jpg" alt="Box Cadeau 26" loading="lazy"><h3>Box Cadeau 26</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 26',8500)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box27.jpg" alt="Box Cadeau 27" loading="lazy"><h3>Box Cadeau 27</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 27',9500)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box28.jpg" alt="Box Cadeau 28" loading="lazy"><h3>Box Cadeau 28</h3><p class="price">11200 DA</p><button onclick="openForm('Box Cadeau 28',11200)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box29.jpg" alt="Box Cadeau 29" loading="lazy"><h3>Box Cadeau 29</h3><p class="price">7000 DA</p><button onclick="openForm('Box Cadeau 29',7000)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box30.jpg" alt="Box Cadeau 30" loading="lazy"><h3>Box Cadeau 30</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 30',8500)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box31.jpg" alt="Box Cadeau 31" loading="lazy"><h3>Box Cadeau 31</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 31',5500)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box32.jpg" alt="Box Cadeau 32" loading="lazy"><h3>Box Cadeau 32</h3><p class="price">12500 DA</p><button onclick="openForm('Box Cadeau 32',12500)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box33.jpg" alt="Box Cadeau 33" loading="lazy"><h3>Box Cadeau 33</h3><p class="price">4750 DA</p><button onclick="openForm('Box Cadeau 33',4750)">????? ???????</button></div>
+      <div class="product" data-gender="femme"><img src="./box34.jpg" alt="Box Cadeau 34" loading="lazy"><h3>Box Cadeau 34</h3><p class="price">6500 DA</p><button onclick="openForm('Box Cadeau 34',6500)">????? ???????</button></div>
+      <div class="product" data-gender="homme"><img src="./box35.jpg" alt="Box Cadeau 35" loading="lazy"><h3>Box Cadeau 35</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 35',9500)">????? ???????</button></div>
+    </div>
+
+    <h2 id="chocoTitle" class="section-title" style="margin-top: 80px; font-size: 2rem;">??????? ?????????? ??</h2>
+
+    <div class="products">
+      
+      <div class="product" data-gender="chocolat">
+        <div class="slider-wrapper">
+          <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
+          <div class="image-slider">
+            <img src="./bombe_chocolat_1.jpg.JPG" alt="Bombe de Chocolat 1" loading="lazy">
+            <img src="./bombe_chocolat_2.jpg.JPG" alt="Bombe de Chocolat 2" loading="lazy">
+            <img src="./bombe_chocolat_3.jpg.JPG" alt="Bombe de Chocolat 3" loading="lazy">
+          </div>
+          <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
+        </div>
+        <h3>Bombe de Chocolat</h3>
+        <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">????????? (??????? ?? 7000 ??):</label>
+        <input type="number" id="price_bombe" class="custom-price-input" min="7000" value="7000" step="500">
+        <button onclick="openCustomForm('Bombe de Chocolat', 'price_bombe', 7000)">????? ???????</button>
+      </div>
+
+      <div class="product" data-gender="chocolat">
+        <div class="slider-wrapper">
+          <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
+          <div class="image-slider">
+            <img src="./bouquet_chocolat_1.jpg.JPG" alt="Bouquet de Chocolat 1" loading="lazy">
+            <img src="./bouquet_chocolat_2.jpg.JPG" alt="Bouquet de Chocolat 2" loading="lazy">
+            <img src="./bouquet_chocolat_3.jpg.JPG" alt="Bouquet de Chocolat 3" loading="lazy">
+          </div>
+          <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
+        </div>
+        <h3>Bouquet de Chocolat</h3>
+        <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">????????? (??????? ?? 4000 ??):</label>
+        <input type="number" id="price_bouquet" class="custom-price-input" min="4000" value="4000" step="500">
+        <button onclick="openCustomForm('Bouquet de Chocolat', 'price_bouquet', 4000)">????? ???????</button>
+      </div>
+
+      <div class="product" data-gender="chocolat">
+        <div class="slider-wrapper">
+          <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
+          <div class="image-slider">
+            <img src="./boite_chocolat_1.jpg.JPG" alt="Boîte de Chocolat 1" loading="lazy">
+            <img src="./boite_chocolat_2.jpg.JPG" alt="Boîte de Chocolat 2" loading="lazy">
+          </div>
+          <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
+        </div>
+        <h3>Boîte de Chocolat</h3>
+        <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">????????? (??????? ?? 9000 ??):</label>
+        <input type="number" id="price_boite" class="custom-price-input" min="9000" value="9000" step="500">
+        <button onclick="openCustomForm('Boîte de Chocolat', 'price_boite', 9000)">????? ???????</button>
+      </div>
+
+      <div class="product" data-gender="chocolat">
+        <div class="slider-wrapper">
+          <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
+          <div class="image-slider">
+            <img src="./boite_chocolat_simple_1.jpg.JPG" alt="Boîte Chocolat Simple 1" loading="lazy">
+            <img src="./boite_chocolat_simple_2.jpg.JPG" alt="Boîte Chocolat Simple 2" loading="lazy">
+            <img src="./boite_chocolat_simple_3.jpg.JPG" alt="Boîte Chocolat Simple 3" loading="lazy">
+            <img src="./boite_chocolat_simple_4.jpg.JPG" alt="Boîte Chocolat Simple 4" loading="lazy">
+          </div>
+          <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
+        </div>
+        <h3>Boîte Chocolat Simple</h3>
+        <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">????????? (??????? ?? 4500 ??):</label>
+        <input type="number" id="price_boite_simple" class="custom-price-input" min="4500" value="4500" step="500">
+        <button onclick="openCustomForm('Boîte Chocolat Simple', 'price_boite_simple', 4500)">????? ???????</button>
+      </div>
+
+    </div>
     
-    <div class="product" data-gender="chocolat">
-      <div class="slider-wrapper">
-        <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
-        <div class="image-slider">
-          <img src="./bombe_chocolat_1.jpg.JPG" alt="Bombe de Chocolat 1" loading="lazy">
-          <img src="./bombe_chocolat_2.jpg.JPG" alt="Bombe de Chocolat 2" loading="lazy">
-          <img src="./bombe_chocolat_3.jpg.JPG" alt="Bombe de Chocolat 3" loading="lazy">
-        </div>
-        <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
-      </div>
-      <h3>Bombe de Chocolat</h3>
-      <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 7000 دج):</label>
-      <input type="number" id="price_bombe" class="custom-price-input" min="7000" value="7000" step="500">
-      <button onclick="openCustomForm('Bombe de Chocolat', 'price_bombe', 7000)">تقديم الطلبية</button>
-    </div>
+    <div class="form" id="orderForm">
+      <h2 id="productTitle"></h2>
 
-    <div class="product" data-gender="chocolat">
-      <div class="slider-wrapper">
-        <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
-        <div class="image-slider">
-          <img src="./bouquet_chocolat_1.jpg.JPG" alt="Bouquet de Chocolat 1" loading="lazy">
-          <img src="./bouquet_chocolat_2.jpg.JPG" alt="Bouquet de Chocolat 2" loading="lazy">
-          <img src="./bouquet_chocolat_3.jpg.JPG" alt="Bouquet de Chocolat 3" loading="lazy">
-        </div>
-        <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
+      <div class="input-icon">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" id="name" placeholder="Nom et Prénom" required>
       </div>
-      <h3>Bouquet de Chocolat</h3>
-      <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 4000 دج):</label>
-      <input type="number" id="price_bouquet" class="custom-price-input" min="4000" value="4000" step="500">
-      <button onclick="openCustomForm('Bouquet de Chocolat', 'price_bouquet', 4000)">تقديم الطلبية</button>
-    </div>
 
-    <div class="product" data-gender="chocolat">
-      <div class="slider-wrapper">
-        <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
-        <div class="image-slider">
-          <img src="./boite_chocolat_1.jpg.JPG" alt="Boîte de Chocolat 1" loading="lazy">
-          <img src="./boite_chocolat_2.jpg.JPG" alt="Boîte de Chocolat 2" loading="lazy">
-        </div>
-        <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
+      <div class="input-icon">
+        <i class="fa-solid fa-phone"></i>
+        <input type="tel" id="phone" placeholder="Numéro de Téléphone" required>
       </div>
-      <h3>Boîte de Chocolat</h3>
-      <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 9000 دج):</label>
-      <input type="number" id="price_boite" class="custom-price-input" min="9000" value="9000" step="500">
-      <button onclick="openCustomForm('Boîte de Chocolat', 'price_boite', 9000)">تقديم الطلبية</button>
-    </div>
 
-    <div class="product" data-gender="chocolat">
-      <div class="slider-wrapper">
-        <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
-        <div class="image-slider">
-          <img src="./boite_chocolat_simple_1.jpg.JPG" alt="Boîte Chocolat Simple 1" loading="lazy">
-          <img src="./boite_chocolat_simple_2.jpg.JPG" alt="Boîte Chocolat Simple 2" loading="lazy">
-          <img src="./boite_chocolat_simple_3.jpg.JPG" alt="Boîte Chocolat Simple 3" loading="lazy">
-          <img src="./boite_chocolat_simple_4.jpg.JPG" alt="Boîte Chocolat Simple 4" loading="lazy">
-        </div>
-        <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
+      <div class="input-icon">
+        <i class="fa-solid fa-location-dot"></i>
+        <select id="wilaya" required>
+          <option value="">-- Choisir la wilaya --</option>
+        </select>
       </div>
-      <h3>Boîte Chocolat Simple</h3>
-      <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 4500 دج):</label>
-      <input type="number" id="price_boite_simple" class="custom-price-input" min="4500" value="4500" step="500">
-      <button onclick="openCustomForm('Boîte Chocolat Simple', 'price_boite_simple', 4500)">تقديم الطلبية</button>
+
+      <div class="input-icon">
+        <i class="fa-solid fa-house"></i>
+        <input type="text" id="commune" placeholder="Commune / Adresse exacte" required>
+      </div>
+
+      <label style="color: var(--text-color); font-size: 0.9rem; margin-left: 5px;">Quantité :</label>
+      <input type="number" id="qty" value="1" min="1" required>
+
+      <div class="input-icon" id="deliveryContainer" style="display:none;">
+        <i class="fa-solid fa-truck"></i>
+        <select id="delivery" required>
+          <option value="">-- Mode de livraison --</option>
+        </select>
+      </div>
+
+      <p id="total">Total: 0 DA</p>
+
+      <button type="button" onclick="checkFormAndPay()">????? ??????? <i class="fa-solid fa-check" style="margin-right: 8px;"></i></button>
     </div>
 
   </div>
-  <div class="form" id="orderForm">
-    <h2 id="productTitle"></h2>
 
-    <div class="input-icon">
-      <i class="fa-solid fa-user"></i>
-      <input type="text" id="name" placeholder="Nom et Prénom" required>
+  <footer>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/cosmetique_parisienne?igsh=MXJzaHdjMjA0ZGRrZw%3D%3D&utm_source=qr" target="_blank" title="Instagram" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/18LQvKwDmu/?mibextid=wwXIfr" target="_blank" title="Facebook" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.tiktok.com/@cosmetique_parisienne?_r=1&_t=ZS-95XOFJu80Yv" target="_blank" title="TikTok" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i></a>
     </div>
+    
+    <p>&copy; 2026 Cosmétique Parisienne - Tous droits réservés.</p>
+    <p class="dev-text">Développé avec passion pour l'élégance. <span onclick="toggleAdmin()" style="cursor:pointer; color:var(--gold-dark); margin-left:10px;">| Admin</span></p>
+  </footer>
+</div> <!-- FIN DU DIV MAIN SITE -->
 
-    <div class="input-icon">
-      <i class="fa-solid fa-phone"></i>
-      <input type="tel" id="phone" placeholder="Numéro de Téléphone" required>
-    </div>
 
-    <div class="input-icon">
-      <i class="fa-solid fa-location-dot"></i>
-      <select id="wilaya" required>
-        <option value="">-- Choisir la wilaya --</option>
-      </select>
-    </div>
-
-    <div class="input-icon">
-      <i class="fa-solid fa-house"></i>
-      <input type="text" id="commune" placeholder="Commune / Adresse exacte" required>
-    </div>
-
-    <label style="color: var(--text-color); font-size: 0.9rem; margin-left: 5px;">Quantité :</label>
-    <input type="number" id="qty" value="1" min="1" required>
-
-    <div class="input-icon" id="deliveryContainer" style="display:none;">
-      <i class="fa-solid fa-truck"></i>
-      <select id="delivery" required>
-        <option value="">-- Mode de livraison --</option>
-      </select>
-    </div>
-
-    <p id="total">Total: 0 DA</p>
-
-    <button type="button" onclick="checkFormAndPay()">تأكيد الطلبية <i class="fa-solid fa-check" style="margin-right: 8px;"></i></button>
+<!-- ============================================== -->
+<!-- AJOUT : SECTION ADMIN CACHÉE                   -->
+<!-- ============================================== -->
+<div id="admin-panel">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+    <h2 class="section-title" style="margin: 0;">Panel Administrateur</h2>
+    <button class="hero-btn" onclick="toggleAdmin()" style="padding: 10px 20px; font-size: 0.9rem;">
+      <i class="fa-solid fa-arrow-left"></i> Retour au Site
+    </button>
   </div>
 
+  <div class="admin-form-container form" style="display: block; box-shadow: none; max-width: 100%;">
+    <h2 style="font-size: 1.5rem; text-align: left; margin-bottom: 20px;">Ajouter un Nouveau Produit</h2>
+    <form id="admin-add-product" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="input-icon">
+        <i class="fa-solid fa-box"></i>
+        <input type="text" id="admin-name" placeholder="Nom du Produit" required>
+      </div>
+      <div class="input-icon">
+        <i class="fa-solid fa-money-bill"></i>
+        <input type="number" id="admin-price" placeholder="Prix en DA" required>
+      </div>
+      <div class="input-icon">
+        <i class="fa-solid fa-venus-mars"></i>
+        <select id="admin-gender" required>
+          <option value="homme">Homme</option>
+          <option value="femme">Femme</option>
+          <option value="chocolat">Chocolat</option>
+          <option value="????">????</option>
+        </select>
+      </div>
+      <div>
+        <input type="file" id="admin-image" accept="image/*" required style="padding-left: 15px;">
+      </div>
+      <button type="submit" style="grid-column: span 2;">Ajouter au Magasin</button>
+    </form>
+  </div>
+
+  <!-- TABLEAU : SUPPRIMER LES PRODUITS -->
+  <h2 style="color: var(--gold-light); font-family: 'Playfair Display', serif; margin-bottom: 15px; margin-top: 40px;">Mes Produits Ajoutés</h2>
+  <div style="overflow-x: auto; margin-bottom: 40px;">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Nom</th>
+          <th>Prix</th>
+          <th>Catégorie</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="admin-products-list">
+        <!-- Rempli par JS -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TABLEAU : COMMANDES -->
+  <h2 style="color: var(--gold-light); font-family: 'Playfair Display', serif; margin-bottom: 15px;">Dernières Commandes</h2>
+  <div style="overflow-x: auto;">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Client & Tél</th>
+          <th>Wilaya & Commune</th>
+          <th>Produit & Qté</th>
+          <th>Total & Paiement</th>
+        </tr>
+      </thead>
+      <tbody id="admin-orders-list">
+        <!-- Rempli par JS -->
+      </tbody>
+    </table>
+  </div>
 </div>
+<!-- ============================================== -->
+
 
 <div id="paymentModal" class="modal">
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal()">&times;</span>
     <h3>Méthode de paiement</h3>
-    <p style="color: #ccc; margin-bottom: 25px; font-size: 1.05rem; font-family: 'Montserrat', sans-serif;">كيف تفضل تسديد مبلغ طلبيتك؟</p>
+    <p style="color: #ccc; margin-bottom: 25px; font-size: 1.05rem; font-family: 'Montserrat', sans-serif;">??? ???? ????? ???? ???????</p>
     
-    <button class="pay-btn btn-cash" onclick="processOrder('الدفع عند التوصيل 🚚')">
-      الدفع عند التوصيل 🚚
+    <button class="pay-btn btn-cash" onclick="processOrder('????? ??? ??????? ??')">
+      ????? ??? ??????? ??
     </button>
-    <button class="pay-btn btn-baridi" onclick="processOrder('الدفع عن طريق باريدي موب')">
-      <i class="fa-solid fa-mobile-screen"></i> الدفع عن طريق باريدي موب
+    <button class="pay-btn btn-baridi" onclick="processOrder('????? ?? ???? ?????? ???')">
+      <i class="fa-solid fa-mobile-screen"></i> ????? ?? ???? ?????? ???
     </button>
-    <button class="pay-btn btn-ccp" onclick="processOrder('الدفع عن طريق CCP')">
-      <i class="fa-solid fa-money-check-dollar"></i> الدفع عن طريق CCP
+    <button class="pay-btn btn-ccp" onclick="processOrder('????? ?? ???? CCP')">
+      <i class="fa-solid fa-money-check-dollar"></i> ????? ?? ???? CCP
     </button>
   </div>
 </div>
@@ -335,16 +444,6 @@
   <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-<footer>
-  <div class="social-icons">
-    <a href="https://www.instagram.com/cosmetique_parisienne?igsh=MXJzaHdjMjA0ZGRrZw%3D%3D&utm_source=qr" target="_blank" title="Instagram" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
-    <a href="https://www.facebook.com/share/18LQvKwDmu/?mibextid=wwXIfr" target="_blank" title="Facebook" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
-    <a href="https://www.tiktok.com/@cosmetique_parisienne?_r=1&_t=ZS-95XOFJu80Yv" target="_blank" title="TikTok" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i></a>
-  </div>
-  
-  <p>&copy; 2026 Cosmétique Parisienne - Tous droits réservés.</p>
-  <p class="dev-text">Développé avec passion pour l'élégance.</p>
-</footer>
 
 <script defer>
 /* ====== VARIABLES ====== */
@@ -407,17 +506,17 @@ wilayaSelect.addEventListener("change", () => {
   deliveryContainer.style.display = "block";
 
   if (prix.bureau !== null && prix.bureau !== 0 && prix.bureau !== undefined) {
-    options += `<option value="${prix.bureau}">Point de relais / مكتب (${prix.bureau} DA)</option>`;
+    options += `<option value="${prix.bureau}">Point de relais / ???? (${prix.bureau} DA)</option>`;
   } else {
     options += `<option disabled>Point de relais (Non disponible)</option>`;
   }
 
   if (prix.domicile !== null && prix.domicile !== undefined) {
-    options += `<option value="${prix.domicile}">À Domicile / منزل (${prix.domicile} DA)</option>`;
+    options += `<option value="${prix.domicile}">À Domicile / ???? (${prix.domicile} DA)</option>`;
   }
 
   if (prix.rapide !== null && prix.rapide !== undefined) {
-    options += `<option value="${prix.rapide}">Livraison Rapide (Express) / توصيل سريع (${prix.rapide} DA)</option>`;
+    options += `<option value="${prix.rapide}">Livraison Rapide (Express) / ????? ???? (${prix.rapide} DA)</option>`;
   }
 
   deliverySelect.innerHTML = options;
@@ -474,17 +573,17 @@ function openCustomForm(p, inputId, minPrice) {
   const inputEl = document.getElementById(inputId);
   let customPrice = parseInt(inputEl.value) || minPrice;
   if(customPrice < minPrice) {
-    alert(`عذراً، الميزانية لهذا الموديل لا يمكن أن تكون أقل من ${minPrice} دج !`);
+    alert(`?????? ????????? ???? ??????? ?? ???? ?? ???? ??? ?? ${minPrice} ?? !`);
     inputEl.value = minPrice;
     customPrice = minPrice;
   }
-  openForm(p + " - ميزانية مخصصة", customPrice);
+  openForm(p + " - ??????? ?????", customPrice);
 }
 
 function openForm(p, price){
   product = p;
   basePrice = price;
-  document.getElementById("productTitle").innerText = "الطلبية : " + p;
+  document.getElementById("productTitle").innerText = "??????? : " + p;
   const formElement = document.getElementById("orderForm");
   formElement.style.display = "block";
   calc();
@@ -510,7 +609,7 @@ function checkFormAndPay(){
   const qty = document.getElementById("qty").value;
 
   if(!name || !phone || !wilaya || !commune || qty < 1){
-    alert("Veuillez remplir جميع المعلومات من فضلك !");
+    alert("Veuillez remplir ???? ????????? ?? ???? !");
     return;
   }
 
@@ -530,26 +629,37 @@ function processOrder(paymentChoice){
   const commune = document.getElementById("commune").value.trim();
   const qty = document.getElementById("qty").value;
   const deliveryType = document.getElementById("delivery").options[document.getElementById("delivery").selectedIndex]?.text || "Non précisé";
+  const finalTotal = document.getElementById("total").innerText;
 
-  const text = `🌟 *Nouvelle Commande* 🌟
+  /* --- AJOUT ADMIN : SAUVEGARDE LA COMMANDE --- */
+  let localOrders = JSON.parse(localStorage.getItem('cosmo_orders')) || [];
+  localOrders.unshift({
+      date: new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }),
+      name, phone, wilaya, commune, qty, product, deliveryType, paymentChoice, total: finalTotal
+  });
+  localStorage.setItem('cosmo_orders', JSON.stringify(localOrders));
+  /* -------------------------------------------- */
+
+  const text = `?? *Nouvelle Commande* ??
 -------------------------
-🛍️ *Produit :* ${product}
-👤 *Nom :* ${name}
-📞 *Tél :* ${phone}
-📍 *Wilaya :* ${wilaya}
-🏠 *Commune :* ${commune}
-📦 *Quantité :* ${qty}
-🚚 *Livraison :* ${deliveryType}
-💳 *Paiement :* ${paymentChoice}
+??? *Produit :* ${product}
+?? *Nom :* ${name}
+?? *Tél :* ${phone}
+?? *Wilaya :* ${wilaya}
+?? *Commune :* ${commune}
+?? *Quantité :* ${qty}
+?? *Livraison :* ${deliveryType}
+?? *Paiement :* ${paymentChoice}
 -------------------------
-💰 *${document.getElementById("total").innerText}*`;
+?? *${finalTotal}*`;
 
   closeModal();
   const url = "https://wa.me/213792822978?text=" + encodeURIComponent(text);
   window.open(url, '_blank');
 }
 
-/* ====== جلب المنتجات أوتوماتيكياً من لوحة التحكم ====== *//* ====== جلب المنتجات أوتوماتيكياً من لوحة التحكم ====== */
+
+/* ====== ??? ???????? ???????????? ?? ???? ?????? ====== */
 async function loadCMSProducts() {
   try {
     const response = await fetch('https://api.github.com/repos/cosmetiqueparisien/cosmetiqueparisienne/contents/data/produits');
@@ -561,24 +671,21 @@ async function loadCMSProducts() {
     for (const file of files) {
       if (file.name.endsWith('.json')) {
         const res = await fetch(file.download_url);
-        const product = await res.json();
+        const prod = await res.json();
         
-        // هنا تصلح المسار تاع التصويرة 
-        let imagePath = product.image || "";
+        let imagePath = prod.image || "";
         if(imagePath.startsWith('/')) {
             imagePath = '.' + imagePath;
         }
 
         const productHTML = `
-          <div class="product" data-gender="${product.gender}">
-            <img src="${imagePath}" alt="${product.title}" loading="lazy">
-            <h3>${product.title}</h3>
-            <p class="price">${product.price} DA</p>
-            <button onclick="openForm('${product.title}', ${product.price})">تقديم الطلبية</button>
+          <div class="product" data-gender="${prod.gender}">
+            <img src="${imagePath}" alt="${prod.title}" loading="lazy">
+            <h3>${prod.title}</h3>
+            <p class="price">${prod.price} DA</p>
+            <button onclick="openForm('${prod.title}', ${prod.price})">????? ???????</button>
           </div>
         `;
-        
-        // بدّلناها لـ beforeend باش المنتج يجي مع اللخر مور Box 35
         productList.insertAdjacentHTML('beforeend', productHTML); 
       }
     }
@@ -587,8 +694,133 @@ async function loadCMSProducts() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", loadCMSProducts);
+document.addEventListener("DOMContentLoaded", () => {
+    loadCMSProducts();
+    loadLocalProductsAdmin();
+});
 
+
+/* =================================================================== */
+/* AJOUT : LOGIQUE DE L'ADMINISTRATEUR (Mkhabya)                       */
+/* =================================================================== */
+
+function toggleAdmin() {
+    const mainSite = document.getElementById('main-site');
+    const adminPanel = document.getElementById('admin-panel');
+    
+    if (adminPanel.style.display === 'none' || adminPanel.style.display === '') {
+        mainSite.style.display = 'none';
+        adminPanel.style.display = 'block';
+        window.scrollTo(0,0);
+        renderOrdersAdmin();
+        renderAddedProductsAdmin(); // Affiche la liste des produits pour pouvoir les supprimer
+    } else {
+        mainSite.style.display = 'block';
+        adminPanel.style.display = 'none';
+        window.scrollTo(0,0);
+    }
+}
+
+// Ajouter produit via Admin
+document.getElementById('admin-add-product').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('admin-name').value;
+    const price = document.getElementById('admin-price').value;
+    const gender = document.getElementById('admin-gender').value;
+    const file = document.getElementById('admin-image').files[0];
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        const imgBase64 = event.target.result;
+        
+        let localProducts = JSON.parse(localStorage.getItem('cosmo_products')) || [];
+        localProducts.push({ name, price, gender, image: imgBase64 });
+        localStorage.setItem('cosmo_products', JSON.stringify(localProducts));
+        
+        alert("Produit ajouté avec succès !");
+        e.target.reset();
+        
+        // Rafraichir la page pour voir les changements partout
+        window.location.reload(); 
+    };
+    reader.readAsDataURL(file);
+});
+
+// Charger produits de l'admin dans le site
+function loadLocalProductsAdmin() {
+    let localProducts = JSON.parse(localStorage.getItem('cosmo_products')) || [];
+    const productList = document.getElementById('productList');
+    
+    localProducts.forEach(prod => {
+        const productHTML = `
+          <div class="product" data-gender="${prod.gender}">
+            <img src="${prod.image}" alt="${prod.name}" loading="lazy">
+            <h3>${prod.name}</h3>
+            <p class="price">${prod.price} DA</p>
+            <button onclick="openForm('${prod.name}', ${prod.price})">????? ???????</button>
+          </div>
+        `;
+        productList.insertAdjacentHTML('beforeend', productHTML);
+    });
+}
+
+// Afficher les produits dans l'Admin pour pouvoir les supprimer
+function renderAddedProductsAdmin() {
+    let localProducts = JSON.parse(localStorage.getItem('cosmo_products')) || [];
+    const list = document.getElementById('admin-products-list');
+    
+    if (localProducts.length === 0) {
+        list.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:#aaa;">Vous n'avez ajouté aucun produit.</td></tr>`;
+        return;
+    }
+    
+    list.innerHTML = localProducts.map((p, index) => `
+        <tr>
+          <td><img src="${p.image}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 1px solid var(--gold-primary);"></td>
+          <td><strong style="color:#fff;">${p.name}</strong></td>
+          <td>${p.price} DA</td>
+          <td>${p.gender}</td>
+          <td>
+            <button class="btn-delete" onclick="deleteProduct(${index})">
+              <i class="fa-solid fa-trash"></i> Supprimer
+            </button>
+          </td>
+        </tr>
+    `).join('');
+}
+
+// Fonction pour SUPPRIMER un produit
+function deleteProduct(index) {
+    if(confirm("Êtes-vous sûr de vouloir supprimer ce produit ?")) {
+        let localProducts = JSON.parse(localStorage.getItem('cosmo_products')) || [];
+        localProducts.splice(index, 1); // Supprime l'élément du tableau
+        localStorage.setItem('cosmo_products', JSON.stringify(localProducts)); // Sauvegarde
+        
+        alert("Produit supprimé !");
+        window.location.reload(); // Actualise la page pour retirer le produit du site
+    }
+}
+
+// Afficher les commandes dans l'Admin
+function renderOrdersAdmin() {
+    let localOrders = JSON.parse(localStorage.getItem('cosmo_orders')) || [];
+    const list = document.getElementById('admin-orders-list');
+    
+    if (localOrders.length === 0) {
+        list.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:#aaa;">Aucune commande pour le moment.</td></tr>`;
+        return;
+    }
+    
+    list.innerHTML = localOrders.map(o => `
+        <tr>
+          <td style="color:#aaa;">${o.date}</td>
+          <td><strong style="color:#fff;">${o.name}</strong><br><a href="tel:${o.phone}" style="color:var(--gold-primary); text-decoration:none;">${o.phone}</a></td>
+          <td>${o.wilaya}<br><span style="font-size:0.85rem; color:#aaa;">${o.commune}</span></td>
+          <td>${o.product}<br><span style="font-size:0.85rem; color:#aaa;">Qté: ${o.qty}</span></td>
+          <td><strong style="color:var(--gold-light);">${o.total}</strong><br><span style="font-size:0.85rem; color:#aaa;">${o.paymentChoice}</span></td>
+        </tr>
+    `).join('');
+}
 </script>
 
 </body>
