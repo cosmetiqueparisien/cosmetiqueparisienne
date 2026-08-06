@@ -187,7 +187,7 @@
     </div>
 
     <div class="products" id="productList">
-      <!-- Les produits (Khelithom kima kanou) -->
+      <!-- Les produits -->
       <div class="product" data-gender="homme"><img src="./box1.jpg" alt="Box Cadeau 1" loading="lazy"><h3>Box Cadeau 1</h3><p class="price">7000 DA</p><button onclick="openForm('Box Cadeau 1',7000)">تقديم الطلبية</button></div>
       <div class="product" data-gender="homme"><img src="./box2.jpg" alt="Box Cadeau 2" loading="lazy"><h3>Box Cadeau 2</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 2',8500)">تقديم الطلبية</button></div>
       <div class="product" data-gender="homme"><img src="./box3.jpg" alt="Box Cadeau 3" loading="lazy"><h3>Box Cadeau 3</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 3',4500)">تقديم الطلبية</button></div>
@@ -351,7 +351,7 @@
 
 
 <!-- ============================================== -->
-<!-- AJOUT : SECTION ADMIN CACHÉE                   -->
+<!-- AJOUT : SECTION ADMIN CACHÉE AVEC MOT DE PASSE -->
 <!-- ============================================== -->
 <div id="admin-panel">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
@@ -713,20 +713,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =================================================================== */
-/* LOGIQUE DE L'ADMINISTRATEUR (PRODUITS & CATÉGORIES)                 */
+/* LOGIQUE DE L'ADMINISTRATEUR AVEC MOT DE PASSE                       */
 /* =================================================================== */
 
 function toggleAdmin() {
     const mainSite = document.getElementById('main-site');
     const adminPanel = document.getElementById('admin-panel');
     
+    // Si on veut OUVIR l'admin
     if (adminPanel.style.display === 'none' || adminPanel.style.display === '') {
-        mainSite.style.display = 'none';
-        adminPanel.style.display = 'block';
-        window.scrollTo(0,0);
-        renderAdminCategories(); // Affiche la liste des catégories
-        renderAddedProductsAdmin(); // Affiche la liste des produits
-    } else {
+        const mdp = prompt("Veuillez entrer le mot de passe administrateur :");
+        
+        if (mdp === "@Zakiusma123") {
+            mainSite.style.display = 'none';
+            adminPanel.style.display = 'block';
+            window.scrollTo(0,0);
+            renderAdminCategories(); 
+            renderAddedProductsAdmin(); 
+        } else if (mdp !== null) {
+            alert("Mot de passe incorrect ! ❌");
+        }
+    } 
+    // Si on veut QUITTER l'admin
+    else {
         mainSite.style.display = 'block';
         adminPanel.style.display = 'none';
         window.scrollTo(0,0);
