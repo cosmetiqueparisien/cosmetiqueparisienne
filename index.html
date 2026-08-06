@@ -438,7 +438,10 @@
       </tbody>
     </table>
   </div>
-  
+</div>
+<!-- ============================================== -->
+
+
 <div id="paymentModal" class="modal">
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -648,14 +651,6 @@ function processOrder(paymentChoice){
   const deliveryType = document.getElementById("delivery").options[document.getElementById("delivery").selectedIndex]?.text || "Non précisé";
   const finalTotal = document.getElementById("total").innerText;
 
-  /* SAUVEGARDE LA COMMANDE DANS L'ADMIN */
-  let localOrders = JSON.parse(localStorage.getItem('cosmo_orders')) || [];
-  localOrders.unshift({
-      date: new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }),
-      name, phone, wilaya, commune, qty, product, deliveryType, paymentChoice, total: finalTotal
-  });
-  localStorage.setItem('cosmo_orders', JSON.stringify(localOrders));
-
   const text = `🌟 *Nouvelle Commande* 🌟
 -------------------------
 🛍️ *Produit :* ${product}
@@ -731,7 +726,6 @@ function toggleAdmin() {
         window.scrollTo(0,0);
         renderAdminCategories(); // Affiche la liste des catégories
         renderAddedProductsAdmin(); // Affiche la liste des produits
-        renderOrdersAdmin(); // Affiche les commandes
     } else {
         mainSite.style.display = 'block';
         adminPanel.style.display = 'none';
@@ -739,9 +733,8 @@ function toggleAdmin() {
     }
 }
 
-/* === NOUVEAU : LOGIQUE DES CATÉGORIES === */
+/* === LOGIQUE DES CATÉGORIES === */
 
-// Ajouter une catégorie
 document.getElementById('admin-add-category').addEventListener('submit', function(e) {
     e.preventDefault();
     const name = document.getElementById('admin-cat-name').value.trim();
@@ -753,10 +746,9 @@ document.getElementById('admin-add-category').addEventListener('submit', functio
     
     alert("Filtre ajouté avec succès !");
     e.target.reset();
-    window.location.reload(); // Recharger pour afficher partout
+    window.location.reload(); 
 });
 
-// Afficher les catégories dans l'Admin pour suppression
 function renderAdminCategories() {
     let localCats = JSON.parse(localStorage.getItem('cosmo_categories')) || [];
     const list = document.getElementById('admin-categories-list');
@@ -778,7 +770,6 @@ function renderAdminCategories() {
     `).join('');
 }
 
-// Supprimer une catégorie
 function deleteCategory(index) {
     if(confirm("Êtes-vous sûr de vouloir supprimer ce filtre ?")) {
         let localCats = JSON.parse(localStorage.getItem('cosmo_categories')) || [];
@@ -789,21 +780,18 @@ function deleteCategory(index) {
     }
 }
 
-// Charger les catégories dynamiques dans le Site (Filtres) et le Formulaire Admin (Select)
 function loadDynamicCategories() {
     let localCats = JSON.parse(localStorage.getItem('cosmo_categories')) || [];
     const filtresContainer = document.getElementById('filtres');
     const adminGenderSelect = document.getElementById('admin-gender');
     
     localCats.forEach((cat) => {
-        // 1. Ajouter le bouton de filtre sur le site
         const btn = document.createElement('button');
         btn.className = 'filter-btn btn-custom-cat';
         btn.innerHTML = `${cat.emoji ? cat.emoji + ' ' : ''}${cat.name}`;
         btn.onclick = function() { filterGender(cat.name, this); };
         filtresContainer.appendChild(btn);
         
-        // 2. Ajouter l'option dans le menu déroulant "Catégorie" de l'Admin
         const opt = document.createElement('option');
         opt.value = cat.name;
         opt.textContent = cat.name;
@@ -885,27 +873,7 @@ function deleteProduct(index) {
         window.location.reload();
     }
 }
-
-function renderOrdersAdmin() {
-    let localOrders = JSON.parse(localStorage.getItem('cosmo_orders')) || [];
-    const list = document.getElementById('admin-orders-list');
-    
-    if (localOrders.length === 0) {
-        list.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:#aaa;">Aucune commande pour le moment.</td></tr>`;
-        return;
-    }
-    
-    list.innerHTML = localOrders.map(o => `
-        <tr>
-          <td style="color:#aaa;">${o.date}</td>
-          <td><strong style="color:#fff;">${o.name}</strong><br><a href="tel:${o.phone}" style="color:var(--gold-primary); text-decoration:none;">${o.phone}</a></td>
-          <td>${o.wilaya}<br><span style="font-size:0.85rem; color:#aaa;">${o.commune}</span></td>
-          <td>${o.product}<br><span style="font-size:0.85rem; color:#aaa;">Qté: ${o.qty}</span></td>
-          <td><strong style="color:var(--gold-light);">${o.total}</strong><br><span style="font-size:0.85rem; color:#aaa;">${o.paymentChoice}</span></td>
-        </tr>
-    `).join('');
-}
 </script>
 
 </body>
-</html
+</html>
