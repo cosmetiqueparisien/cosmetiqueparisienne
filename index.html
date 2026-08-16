@@ -842,38 +842,75 @@ function loadDynamicCategories() {
     });
 }
 
-/* === LOGIQUE DES PRODUITS (AVEC MULTIPLES PHOTOS) === */
+/* === LOGIQUE DES PRODUITS (SAUVEGARDE DIRECTE DANS GITHUB) === */
+const GITHUB_TOKEN = "Ghp_1zg1fyW8W9Lvb5gWQjgkeTxur4vDqb3CSfXZ"; 
+const REPO = "cosmetiqueparisien/cosmetiqueparisienne";
+
+async function uploadFileToGitHub(path, contentBase64) {
+    const cleanBase64 = contentBase64.split(',')[1] || contentBase64;
+    
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+        method: 'PUT',
+        headers: { 
+            'Authorization': `token ${GITHUB_TOKEN}`, 
+            'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify({ 
+            message: "Nouveau produit ajouté via Admin", 
+            content: cleanBase64 
+        })
+    });
+    return res.json();
+}
 
 document.getElementById('admin-add-product').addEventListener('submit', async function(e) {
     e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.innerText = "Patientez, ajout en cours... ⏳";
+    btn.disabled = true;
+
     const name = document.getElementById('admin-name').value;
     const price = document.getElementById('admin-price').value;
     const gender = document.getElementById('admin-gender').value;
     const files = document.getElementById('admin-image').files;
 
-    let base64Images = [];
-    
-    const readAsDataURL = (file) => {
-        return new Promise((resolve) => {
+    try {
+        let imageUrls = [];
+        let id = Date.now(); 
+
+        for (let i = 0; i < files.length; i++) {
             const reader = new FileReader();
-            reader.onload = (event) => resolve(event.target.result);
-            reader.readAsDataURL(file);
-        });
-    };
+            const base64 = await new Promise(resolve => {
+                reader.onload = e => resolve(e.target.result);
+                reader.readAsDataURL(files[i]);
+            });
+            const imgPath = `data/produits/images/prod_${id}_${i}.jpg`;
+            await uploadFileToGitHub(imgPath, base64);
+            imageUrls.push(`./data/produits/images/prod_${id}_${i}.jpg`);
+        }
 
-    for (let i = 0; i < files.length; i++) {
-        const base64 = await readAsDataURL(files[i]);
-        base64Images.push(base64);
+        const productData = { 
+            title: name, 
+            price: price, 
+            gender: gender, 
+            image: imageUrls.length > 1 ? imageUrls : imageUrls[0] 
+        };
+        const jsonStr = JSON.stringify(productData, null, 2);
+        const jsonBase64 = btoa(unescape(encodeURIComponent(jsonStr)));
+        
+        await uploadFileToGitHub(`data/produits/prod_${id}.json`, jsonBase64);
+
+        alert("Produit ajouté f GitHub avec succès ! ✅");
+        e.target.reset();
+        window.location.reload();
+    } catch (error) {
+        alert("Erreur f l'ajout. Vérifiez le Token wela l'espace.");
+        console.log(error);
     }
-
-    let localProducts = JSON.parse(localStorage.getItem('cosmo_products')) || [];
-    localProducts.push({ name, price, gender, image: base64Images });
-    localStorage.setItem('cosmo_products', JSON.stringify(localProducts));
-    
-    alert("Produit ajouté avec succès !");
-    e.target.reset();
-    window.location.reload(); 
+    btn.innerText = "Ajouter au Magasin";
+    btn.disabled = false;
 });
+
 
 function loadLocalProductsAdmin() {
     let localProducts = JSON.parse(localStorage.getItem('cosmo_products')) || [];
