@@ -440,8 +440,7 @@
   </div>
 </div>
 <!-- ============================================== -->
-
-
+<!-- ====== PAYMENT MODAL ====== -->
 <div id="paymentModal" class="modal">
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -705,11 +704,9 @@ function processOrder(paymentChoice){
   window.open(url, '_blank');
 }
 
-
-/* ====== جلب المنتجات أوتوماتيكياً من لوحة التحكم ====== *//* ====== جلب المنتجات أوتوماتيكياً من لوحة التحكم (AVEC ANTICACHE) ====== */
+/* ====== جلب المنتجات أوتوماتيكياً من لوحة التحكم (AVEC ANTICACHE) ====== */
 async function loadCMSProducts() {
   try {
-    // Zedna ?t= + Date.now() bach nforciw l'actualisation
     const url = 'https://api.github.com/repos/cosmetiqueparisien/cosmetiqueparisienne/contents/data/produits?t=' + Date.now();
     const response = await fetch(url);
     if (!response.ok) return; 
@@ -748,11 +745,9 @@ async function loadCMSProducts() {
   }
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
     loadDynamicCategories(); 
     loadCMSProducts();
-    loadLocalProductsAdmin();
 });
 
 
@@ -850,24 +845,21 @@ function loadDynamicCategories() {
     });
 }
 
-/* === LOGIQUE DES PRODUITS (SAUVEGARDE DIRECTE DANS GITHUB) === */
-const GITHUB_TOKEN = "Ghp_1zg1fyW8W9Lvb5gWQjgkeTxur4vDqb3CSfXZ"; 
+/* === LOGIQUE DES PRODUITS (SAUVEGARDE DIRECTE DANS GITHUB - HD SANS COMPRESSION) === */
+const GITHUB_TOKEN = "VOTRE_TOKEN_ICI"; // Dir l'Token jdida dyalek hna
 const REPO = "cosmetiqueparisien/cosmetiqueparisienne";
 
 async function uploadFileToGitHub(path, contentBase64) {
     const cleanBase64 = contentBase64.split(',')[1] || contentBase64;
-    
     const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
         method: 'PUT',
         headers: { 
             'Authorization': `token ${GITHUB_TOKEN}`, 
             'Content-Type': 'application/json' 
         },
-        body: JSON.stringify({ 
-            message: "Nouveau produit ajouté via Admin", 
-            content: cleanBase64 
-        })
+        body: JSON.stringify({ message: "Produit HD ajouté via Admin", content: cleanBase64 })
     });
+    if (!res.ok) throw new Error("Erreur GitHub");
     return res.json();
 }
 
@@ -887,73 +879,31 @@ document.getElementById('admin-add-product').addEventListener('submit', async fu
         let id = Date.now(); 
 
         for (let i = 0; i < files.length; i++) {
-            const reader = new FileReader();
             const base64 = await new Promise(resolve => {
-                reader.onload = e => resolve(e.target.result);
+                const reader = new FileReader();
+                reader.onload = event => resolve(event.target.result);
                 reader.readAsDataURL(files[i]);
             });
-            const imgPath = `data/produits/prod_${id}_${i}.jpg`;
+            const imgPath = `data/produits/images/prod_${id}_${i}.jpg`;
             await uploadFileToGitHub(imgPath, base64);
             imageUrls.push(`./data/produits/images/prod_${id}_${i}.jpg`);
         }
 
-        const productData = { 
-            title: name, 
-            price: price, 
-            gender: gender, 
-            image: imageUrls.length > 1 ? imageUrls : imageUrls[0] 
-        };
-        const jsonStr = JSON.stringify(productData, null, 2);
-        const jsonBase64 = btoa(unescape(encodeURIComponent(jsonStr)));
+        const productData = { title: name, price: price, gender: gender, image: imageUrls.length > 1 ? imageUrls : imageUrls[0] };
+        const jsonBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(productData, null, 2))));
         
         await uploadFileToGitHub(`data/produits/prod_${id}.json`, jsonBase64);
 
-        alert("Produit ajouté f GitHub avec succès ! ✅");
+        alert("Produit ajouté en HD avec succès ! ✅");
         e.target.reset();
         window.location.reload();
     } catch (error) {
-        alert("Erreur f l'ajout. Vérifiez le Token wela l'espace.");
-        console.log(error);
+        alert("Erreur f l'ajout! Vérifiez le Token.");
+        console.error(error);
     }
     btn.innerText = "Ajouter au Magasin";
     btn.disabled = false;
 });
-
-
-function loadLocalProductsAdmin() {
-    let localProducts = JSON.parse(localStorage.getItem('cosmo_products')) || [];
-    const productList = document.getElementById('productList');
-    
-    localProducts.forEach(prod => {
-        let imagesHTML = '';
-        
-        if (Array.isArray(prod.image) && prod.image.length > 1) {
-            let slides = prod.image.map(img => `<img src="${img}" alt="${prod.name}" loading="lazy">`).join('');
-            imagesHTML = `
-              <div class="slider-wrapper">
-                <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
-                <div class="image-slider">
-                  ${slides}
-                </div>
-                <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
-              </div>
-            `;
-        } else {
-            let imgSrc = Array.isArray(prod.image) ? prod.image[0] : prod.image;
-            imagesHTML = `<img src="${imgSrc}" alt="${prod.name}" loading="lazy">`;
-        }
-
-        const productHTML = `
-          <div class="product" data-gender="${prod.gender}">
-            ${imagesHTML}
-            <h3>${prod.name}</h3>
-            <p class="price">${prod.price} DA</p>
-            <button onclick="openForm('${prod.name}', ${prod.price})">تقديم الطلبية</button>
-          </div>
-        `;
-        productList.insertAdjacentHTML('beforeend', productHTML);
-    });
-}
 
 /* === AFFICHER LES PRODUITS DANS LE TABLEAU ADMIN DEPUIS GITHUB (AVEC ANTICACHE) === */
 async function renderAddedProductsAdmin() {
@@ -961,7 +911,6 @@ async function renderAddedProductsAdmin() {
     list.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--gold-light);">Chargement des produits depuis GitHub... ⏳</td></tr>`;
     
     try {
-        // Zedna ?t= + Date.now() hna tani
         const urlAdmin = `https://api.github.com/repos/${REPO}/contents/data/produits?t=` + Date.now();
         const response = await fetch(urlAdmin);
         
@@ -1001,7 +950,6 @@ async function renderAddedProductsAdmin() {
     }
 }
 
-
 /* === SUPPRIMER UN PRODUIT DEPUIS GITHUB === */
 async function deleteProductFromGitHub(path, sha, btnElement) {
     if(confirm("Êtes-vous sûr de vouloir supprimer ce produit définitivement de la boutique ?")) {
@@ -1027,7 +975,6 @@ async function deleteProductFromGitHub(path, sha, btnElement) {
         }
     }
 }
-
 
 </script>
 
