@@ -892,7 +892,7 @@ document.getElementById('admin-add-product').addEventListener('submit', async fu
                 reader.onload = e => resolve(e.target.result);
                 reader.readAsDataURL(files[i]);
             });
-            const imgPath = `data/produits/images/prod_${id}_${i}.jpg`;
+            const imgPath = `data/produits/prod_${id}_${i}.jpg`;
             await uploadFileToGitHub(imgPath, base64);
             imageUrls.push(`./data/produits/images/prod_${id}_${i}.jpg`);
         }
