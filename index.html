@@ -183,7 +183,6 @@
       <button class="filter-btn btn-dibaba" onclick="filterGender('دببة', this)">
         🧸 دببة
       </button>
-      <!-- Les catégories ajoutées dans l'admin vont s'afficher ici automatiquement -->
     </div>
 
     <div class="products" id="productList">
@@ -414,7 +413,8 @@
         </select>
       </div>
       <div>
-        <input type="file" id="admin-image" accept="image/*" required style="padding-left: 15px;">
+        <input type="file" id="admin-image" accept="image/*" multiple required style="padding-left: 15px;">
+        <small style="color:var(--gold-dark); padding-left:15px; display:block; margin-top:5px;">* Vous pouvez sélectionner plusieurs photos pour créer un slider</small>
       </div>
       <button type="submit" style="grid-column: span 2;">Ajouter au Magasin</button>
     </form>
@@ -472,24 +472,60 @@ let product = "";
 
 /* ====== LIVRAISON MAYSTRO ====== */
 const livraisonMaystro = {
-  "Adrar": { bureau: 850, domicile: 1200 }, "Chlef": { bureau: 500, domicile: 800 }, "Laghouat": { bureau: 650, domicile: 900 },
-  "Oum El Bouaghi": { bureau: 500, domicile: 850 }, "Batna": { bureau: 500, domicile: 800 }, "Béjaïa": { bureau: 500, domicile: 800 },
-  "Biskra": { bureau: 650, domicile: 900 }, "Béchar": { bureau: 750, domicile: 1000 }, "Blida": { bureau: 500, domicile: 650 },
-  "Bouira": { bureau: 500, domicile: 700 }, "Tamanrasset": { bureau: 1100, domicile: 1700 }, "Tébessa": { bureau: 500, domicile: 900 },
-  "Tlemcen": { bureau: 500, domicile: 850 }, "Tiaret": { bureau: 500, domicile: 850 }, "Tizi Ouzou": { bureau: 500, domicile: 800 },
-  "Alger": { bureau: 400, domicile: 500, rapide: 600 }, "Djelfa": { bureau: 650, domicile: 900 }, "Jijel": { bureau: 500, domicile: 850 },
-  "Sétif": { bureau: 500, domicile: 800 }, "Saïda": { bureau: null, domicile: 850 }, "Skikda": { bureau: 500, domicile: 800 },
-  "Sidi Bel Abbès": { bureau: 500, domicile: 850 }, "Annaba": { bureau: 500, domicile: 850 }, "Guelma": { bureau: 500, domicile: 850 },
-  "Constantine": { bureau: 500, domicile: 800 }, "Médéa": { bureau: 500, domicile: 800 }, "Mostaganem": { bureau: 500, domicile: 850 },
-  "M’Sila": { bureau: 650, domicile: 900 }, "Mascara": { bureau: 500, domicile: 850 }, "Ouargla": { bureau: 650, domicile: 950 },
-  "Oran": { bureau: 500, domicile: 800 }, "El Bayadh": { bureau: null, domicile: 1000 }, "Bordj Bou Arreridj": { bureau: 500, domicile: 800 },
-  "Boumerdès": { bureau: 500, domicile: 650 }, "El Tarf": { bureau: null, domicile: 850 }, "Tindouf": { bureau: 1250, domicile: 1700 },
-  "Tissemsilt": { bureau: 550, domicile: 850 }, "El Oued": { bureau: 650, domicile: 950 }, "Khenchela": { bureau: null, domicile: 950 },
-  "Souk Ahras": { bureau: 500, domicile: 850 }, "Tipaza": { bureau: 500, domicile: 650 }, "Mila": { bureau: 500, domicile: 800 },
-  "Aïn Defla": { bureau: 500, domicile: 850 }, "Naâma": { bureau: 650, domicile: 1000 }, "Aïn Témouchent": { bureau: 0, domicile: 850 }, 
-  "Ghardaïa": { bureau: 650, domicile: 900 }, "Relizane": { bureau: 500, domicile: 850 }, "Timimoun": { bureau: null, domicile: 1200 },
-  "Ouled Djellal": { bureau: null, domicile: 950 }, "Béni Abbès": { bureau: null, domicile: 1100 }, "In Salah": { bureau: null, domicile: 1500 },
-  "Touggourt": { bureau: null, domicile: 950 }, "El M'Ghair": { bureau: null, domicile: 950 }, "El Meniaa": { bureau: null, domicile: 1000 }
+  "Adrar": { bureau: 850, domicile: 1200 }, 
+  "Chlef": { bureau: 500, domicile: 800 }, 
+  "Laghouat": { bureau: 650, domicile: 900 },
+  "Oum El Bouaghi": { bureau: 500, domicile: 850 }, 
+  "Batna": { bureau: 500, domicile: 800 }, 
+  "Béjaïa": { bureau: 500, domicile: 800 },
+  "Biskra": { bureau: 650, domicile: 900 }, 
+  "Béchar": { bureau: 750, domicile: 1000 }, 
+  "Blida": { bureau: 500, domicile: 650 },
+  "Bouira": { bureau: 500, domicile: 700 }, 
+  "Tamanrasset": { bureau: 1100, domicile: 1700 }, 
+  "Tébessa": { bureau: 500, domicile: 900 },
+  "Tlemcen": { bureau: 500, domicile: 850 }, 
+  "Tiaret": { bureau: 500, domicile: 850 }, 
+  "Tizi Ouzou": { bureau: 500, domicile: 800 },
+  "Alger": { bureau: 400, domicile: 500, rapide: 600 }, 
+  "Djelfa": { bureau: 650, domicile: 900 }, 
+  "Jijel": { bureau: 500, domicile: 850 },
+  "Sétif": { bureau: 500, domicile: 800 }, 
+  "Saïda": { bureau: null, domicile: 850 }, 
+  "Skikda": { bureau: 500, domicile: 800 },
+  "Sidi Bel Abbès": { bureau: 500, domicile: 850 }, 
+  "Annaba": { bureau: 500, domicile: 850 }, 
+  "Guelma": { bureau: 500, domicile: 850 },
+  "Constantine": { bureau: 500, domicile: 800 }, 
+  "Médéa": { bureau: 500, domicile: 800 }, 
+  "Mostaganem": { bureau: 500, domicile: 850 },
+  "M’Sila": { bureau: 650, domicile: 900 }, 
+  "Mascara": { bureau: 500, domicile: 850 }, 
+  "Ouargla": { bureau: 650, domicile: 950 },
+  "Oran": { bureau: 500, domicile: 800 }, 
+  "El Bayadh": { bureau: null, domicile: 1000 }, 
+  "Bordj Bou Arreridj": { bureau: 500, domicile: 800 },
+  "Boumerdès": { bureau: 500, domicile: 650 }, 
+  "El Tarf": { bureau: null, domicile: 850 }, 
+  "Tindouf": { bureau: 1250, domicile: 1700 },
+  "Tissemsilt": { bureau: 550, domicile: 850 }, 
+  "El Oued": { bureau: 650, domicile: 950 }, 
+  "Khenchela": { bureau: null, domicile: 950 },
+  "Souk Ahras": { bureau: 500, domicile: 850 }, 
+  "Tipaza": { bureau: 500, domicile: 650 }, 
+  "Mila": { bureau: 500, domicile: 800 },
+  "Aïn Defla": { bureau: 500, domicile: 850 }, 
+  "Naâma": { bureau: 650, domicile: 1000 }, 
+  "Aïn Témouchent": { bureau: 0, domicile: 850 }, 
+  "Ghardaïa": { bureau: 650, domicile: 900 }, 
+  "Relizane": { bureau: 500, domicile: 850 }, 
+  "Timimoun": { bureau: null, domicile: 1200 },
+  "Ouled Djellal": { bureau: null, domicile: 950 }, 
+  "Béni Abbès": { bureau: null, domicile: 1100 }, 
+  "In Salah": { bureau: null, domicile: 1500 },
+  "Touggourt": { bureau: null, domicile: 950 }, 
+  "El M'Ghair": { bureau: null, domicile: 950 }, 
+  "El Meniaa": { bureau: null, domicile: 1000 }
 };
 
 const wilayas = [
@@ -706,7 +742,7 @@ async function loadCMSProducts() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadDynamicCategories(); // Charge les catégories personnalisées
+    loadDynamicCategories(); 
     loadCMSProducts();
     loadLocalProductsAdmin();
 });
@@ -720,7 +756,6 @@ function toggleAdmin() {
     const mainSite = document.getElementById('main-site');
     const adminPanel = document.getElementById('admin-panel');
     
-    // Si on veut OUVIR l'admin
     if (adminPanel.style.display === 'none' || adminPanel.style.display === '') {
         const mdp = prompt("Veuillez entrer le mot de passe administrateur :");
         
@@ -734,7 +769,6 @@ function toggleAdmin() {
             alert("Mot de passe incorrect ! ❌");
         }
     } 
-    // Si on veut QUITTER l'admin
     else {
         mainSite.style.display = 'block';
         adminPanel.style.display = 'none';
@@ -808,27 +842,37 @@ function loadDynamicCategories() {
     });
 }
 
-/* === LOGIQUE DES PRODUITS === */
+/* === LOGIQUE DES PRODUITS (AVEC MULTIPLES PHOTOS) === */
 
-document.getElementById('admin-add-product').addEventListener('submit', function(e) {
+document.getElementById('admin-add-product').addEventListener('submit', async function(e) {
     e.preventDefault();
     const name = document.getElementById('admin-name').value;
     const price = document.getElementById('admin-price').value;
     const gender = document.getElementById('admin-gender').value;
-    const file = document.getElementById('admin-image').files[0];
+    const files = document.getElementById('admin-image').files;
 
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        const imgBase64 = event.target.result;
-        let localProducts = JSON.parse(localStorage.getItem('cosmo_products')) || [];
-        localProducts.push({ name, price, gender, image: imgBase64 });
-        localStorage.setItem('cosmo_products', JSON.stringify(localProducts));
-        
-        alert("Produit ajouté avec succès !");
-        e.target.reset();
-        window.location.reload(); 
+    let base64Images = [];
+    
+    const readAsDataURL = (file) => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = (event) => resolve(event.target.result);
+            reader.readAsDataURL(file);
+        });
     };
-    reader.readAsDataURL(file);
+
+    for (let i = 0; i < files.length; i++) {
+        const base64 = await readAsDataURL(files[i]);
+        base64Images.push(base64);
+    }
+
+    let localProducts = JSON.parse(localStorage.getItem('cosmo_products')) || [];
+    localProducts.push({ name, price, gender, image: base64Images });
+    localStorage.setItem('cosmo_products', JSON.stringify(localProducts));
+    
+    alert("Produit ajouté avec succès !");
+    e.target.reset();
+    window.location.reload(); 
 });
 
 function loadLocalProductsAdmin() {
@@ -836,9 +880,27 @@ function loadLocalProductsAdmin() {
     const productList = document.getElementById('productList');
     
     localProducts.forEach(prod => {
+        let imagesHTML = '';
+        
+        if (Array.isArray(prod.image) && prod.image.length > 1) {
+            let slides = prod.image.map(img => `<img src="${img}" alt="${prod.name}" loading="lazy">`).join('');
+            imagesHTML = `
+              <div class="slider-wrapper">
+                <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
+                <div class="image-slider">
+                  ${slides}
+                </div>
+                <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
+              </div>
+            `;
+        } else {
+            let imgSrc = Array.isArray(prod.image) ? prod.image[0] : prod.image;
+            imagesHTML = `<img src="${imgSrc}" alt="${prod.name}" loading="lazy">`;
+        }
+
         const productHTML = `
           <div class="product" data-gender="${prod.gender}">
-            <img src="${prod.image}" alt="${prod.name}" loading="lazy">
+            ${imagesHTML}
             <h3>${prod.name}</h3>
             <p class="price">${prod.price} DA</p>
             <button onclick="openForm('${prod.name}', ${prod.price})">تقديم الطلبية</button>
@@ -857,9 +919,11 @@ function renderAddedProductsAdmin() {
         return;
     }
     
-    list.innerHTML = localProducts.map((p, index) => `
+    list.innerHTML = localProducts.map((p, index) => {
+        let imgSrc = Array.isArray(p.image) ? p.image[0] : p.image;
+        return `
         <tr>
-          <td><img src="${p.image}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 1px solid var(--gold-primary);"></td>
+          <td><img src="${imgSrc}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 1px solid var(--gold-primary);"></td>
           <td><strong style="color:#fff;">${p.name}</strong></td>
           <td>${p.price} DA</td>
           <td>${p.gender}</td>
@@ -869,7 +933,7 @@ function renderAddedProductsAdmin() {
             </button>
           </td>
         </tr>
-    `).join('');
+    `}).join('');
 }
 
 function deleteProduct(index) {
@@ -882,6 +946,11 @@ function deleteProduct(index) {
         window.location.reload();
     }
 }
+
 </script>
+
+<!-- IA TIDIO WIDGET -->
+<script src="//code.tidio.co/sindbwfkqgwvuv4eujvdebxv68pkdgs8.js" async></script>
+
 </body>
 </html>
