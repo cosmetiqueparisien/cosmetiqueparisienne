@@ -706,10 +706,12 @@ function processOrder(paymentChoice){
 }
 
 
-/* ====== جلب المنتجات أوتوماتيكياً من لوحة التحكم ====== */
+/* ====== جلب المنتجات أوتوماتيكياً من لوحة التحكم ====== *//* ====== جلب المنتجات أوتوماتيكياً من لوحة التحكم (AVEC ANTICACHE) ====== */
 async function loadCMSProducts() {
   try {
-    const response = await fetch('https://api.github.com/repos/cosmetiqueparisien/cosmetiqueparisienne/contents/data/produits');
+    // Zedna ?t= + Date.now() bach nforciw l'actualisation
+    const url = 'https://api.github.com/repos/cosmetiqueparisien/cosmetiqueparisienne/contents/data/produits?t=' + Date.now();
+    const response = await fetch(url);
     if (!response.ok) return; 
     
     const files = await response.json();
@@ -717,17 +719,22 @@ async function loadCMSProducts() {
     
     for (const file of files) {
       if (file.name.endsWith('.json')) {
-        const res = await fetch(file.download_url);
+        const res = await fetch(file.download_url + '?t=' + Date.now());
         const prod = await res.json();
         
-        let imagePath = prod.image || "";
-        if(imagePath.startsWith('/')) {
-            imagePath = '.' + imagePath;
+        let imagesHTML = '';
+        if (Array.isArray(prod.image) && prod.image.length > 1) {
+            let slides = prod.image.map(img => `<img src="${img}" alt="${prod.title}" loading="lazy">`).join('');
+            imagesHTML = `<div class="slider-wrapper"><button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button><div class="image-slider">${slides}</div><button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button></div>`;
+        } else {
+            let imgSrc = Array.isArray(prod.image) ? prod.image[0] : prod.image;
+            if(imgSrc && imgSrc.startsWith('/')) imgSrc = '.' + imgSrc;
+            imagesHTML = `<img src="${imgSrc}" alt="${prod.title}" loading="lazy">`;
         }
 
         const productHTML = `
           <div class="product" data-gender="${prod.gender}">
-            <img src="${imagePath}" alt="${prod.title}" loading="lazy">
+            ${imagesHTML}
             <h3>${prod.title}</h3>
             <p class="price">${prod.price} DA</p>
             <button onclick="openForm('${prod.title}', ${prod.price})">تقديم الطلبية</button>
@@ -740,6 +747,7 @@ async function loadCMSProducts() {
     console.log("Erreur chargement CMS:", error);
   }
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
     loadDynamicCategories(); 
@@ -947,13 +955,16 @@ function loadLocalProductsAdmin() {
     });
 }
 
-/* === AFFICHER LES PRODUITS DANS LE TABLEAU ADMIN DEPUIS GITHUB === */
+/* === AFFICHER LES PRODUITS DANS LE TABLEAU ADMIN DEPUIS GITHUB (AVEC ANTICACHE) === */
 async function renderAddedProductsAdmin() {
     const list = document.getElementById('admin-products-list');
     list.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--gold-light);">Chargement des produits depuis GitHub... ⏳</td></tr>`;
     
     try {
-        const response = await fetch(`https://api.github.com/repos/${REPO}/contents/data/produits`);
+        // Zedna ?t= + Date.now() hna tani
+        const urlAdmin = `https://api.github.com/repos/${REPO}/contents/data/produits?t=` + Date.now();
+        const response = await fetch(urlAdmin);
+        
         if (!response.ok) {
             list.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:#aaa;">Aucun produit trouvé.</td></tr>`;
             return;
@@ -964,7 +975,7 @@ async function renderAddedProductsAdmin() {
         
         for (const file of files) {
             if (file.name.endsWith('.json')) {
-                const res = await fetch(file.download_url);
+                const res = await fetch(file.download_url + '?t=' + Date.now());
                 const p = await res.json();
                 
                 let imgSrc = Array.isArray(p.image) ? p.image[0] : p.image;
@@ -989,6 +1000,7 @@ async function renderAddedProductsAdmin() {
         list.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:#ff4c4c;">Erreur de connexion avec GitHub.</td></tr>`;
     }
 }
+
 
 /* === SUPPRIMER UN PRODUIT DEPUIS GITHUB === */
 async function deleteProductFromGitHub(path, sha, btnElement) {
