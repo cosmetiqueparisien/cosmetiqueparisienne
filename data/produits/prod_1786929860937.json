@@ -1,0 +1,10 @@
+{
+  "title": "Portefeuille LOUIS VUITTON ",
+  "price": "2450",
+  "gender": "Portefeuilles",
+  "image": [
+    "./data/produits/images/prod_1786929860937_0.jpg",
+    "./data/produits/images/prod_1786929860937_1.jpg",
+    "./data/produits/images/prod_1786929860937_2.jpg"
+  ]
+}
