@@ -1,0 +1,9 @@
+{
+  "title": "Portefeuille BURBERRY ",
+  "price": "2450",
+  "gender": "Portefeuilles",
+  "image": [
+    "./data/produits/images/prod_1786929787535_0.jpg",
+    "./data/produits/images/prod_1786929787535_1.jpg"
+  ]
+}
