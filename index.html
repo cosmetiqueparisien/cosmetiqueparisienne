@@ -861,20 +861,27 @@ function loadDynamicCategories() {
 const GITHUB_TOKEN = "ghp_"+"7Q07jLq8iS6N7RCvGoWlufNNhHpyT32t4jxB"; // Dir l'Token jdida dyalek hna
 const REPO = "cosmetiqueparisien/cosmetiqueparisienne";
 
-async function uploadFileToGitHub(path, contentBase64) {
+let editMode = null;
+
+async function uploadFileToGitHub(path, contentBase64, sha = null) {
     const cleanBase64 = contentBase64.split(',')[1] || contentBase64;
+    const bodyData = { message: "Mise à jour Produit", content: cleanBase64 };
+    if (sha) bodyData.sha = sha;
     const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
-        method: 'PUT',
-        headers: { 
-            'Authorization': `token ${GITHUB_TOKEN}`, 
-            'Content-Type': 'application/json' 
-        },
-        body: JSON.stringify({ message: "Produit HD ajouté via Admin", content: cleanBase64 })
-    });
+        method: 'PUT', headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' }, body: JSON.stringify(bodyData)
+    }); 
     if (!res.ok) throw new Error("Erreur GitHub");
     return res.json();
 }
 
+function editProduct(title, price, gender, path, sha) {
+    document.getElementById('admin-name').value = title; 
+    document.getElementById('admin-price').value = price;
+    document.getElementById('admin-gender').value = gender; 
+    document.querySelector('#admin-add-product button').innerText = "Modifier ✏️";
+    editMode = { path, sha }; 
+    window.scrollTo(0, document.getElementById('admin-add-product').offsetTop - 20);
+}
 document.getElementById('admin-add-product').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button');
