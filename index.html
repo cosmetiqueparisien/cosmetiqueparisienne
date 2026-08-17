@@ -581,42 +581,53 @@ wilayaSelect.addEventListener("change", () => {
   calc();
 });
 
+/* ====== FILTRAGE CORRIGÉ (ANTI-BUG) ====== */
 function filterGender(gender, btnElement) {
   const buttons = document.querySelectorAll('.filter-btn');
   buttons.forEach(btn => btn.classList.remove('active'));
   btnElement.classList.add('active');
 
   const products = document.querySelectorAll('.product');
+  
+  // N'we7dou l'ktiba (Minuscule + nne7iw l'espace zayed)
+  const targetGender = gender.trim().toLowerCase();
+
   products.forEach(product => {
     if(!product.hasAttribute('data-gender')) return; 
 
-    const productGender = product.getAttribute('data-gender');
+    const productGender = product.getAttribute('data-gender').trim().toLowerCase();
     let show = false;
-    if (gender === 'all' || gender === productGender) { show = true; }
+    if (targetGender === 'all' || targetGender === productGender) { show = true; }
+
+    // N'nettoyiw l'animation l9dima bach ma ytkhaltouch tsawer
+    if (product.hideTimeout) clearTimeout(product.hideTimeout);
+    if (product.showTimeout) clearTimeout(product.showTimeout);
 
     if (show) {
       product.style.display = 'flex';
-      setTimeout(() => { product.style.opacity = '1'; product.style.transform = 'scale(1)'; }, 50);
+      product.showTimeout = setTimeout(() => { 
+          product.style.opacity = '1'; 
+          product.style.transform = 'scale(1)'; 
+      }, 50);
     } else {
       product.style.opacity = '0'; 
       product.style.transform = 'scale(0.8)';
-      setTimeout(() => { product.style.display = 'none'; }, 300);
+      product.hideTimeout = setTimeout(() => { 
+          product.style.display = 'none'; 
+      }, 300);
     }
   });
-
   const chocoTitle = document.getElementById('chocoTitle');
   const chocoDesc = document.getElementById('chocoDesc');
-  if (gender === 'all' || gender === 'chocolat') {
+  if (targetGender === 'all' || targetGender === 'chocolat') {
      if(chocoTitle) chocoTitle.style.display = 'block';
      if(chocoDesc) chocoDesc.style.display = 'block';
   } else {
      if(chocoTitle) chocoTitle.style.display = 'none';
      if(chocoDesc) chocoDesc.style.display = 'none';
   }
-
   document.getElementById("orderForm").style.display = "none";
 }
-
 function slideImage(btn, direction) {
   const wrapper = btn.parentElement;
   const slider = wrapper.querySelector('.image-slider');
