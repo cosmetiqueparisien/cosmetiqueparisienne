@@ -145,7 +145,7 @@
     .admin-table th { background: var(--gold-primary); color: #000; font-family: 'Montserrat', sans-serif; font-weight: 600; }
     .admin-form-container { background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--gold-primary); margin-bottom: 40px; }
     
-    /* Bouton supprimer rouge */
+    /* Boutons de gestion */
     .btn-delete { background: #ff4c4c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: 0.3s; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; }
     .btn-delete:hover { background: #e60000; box-shadow: 0 0 10px rgba(255, 76, 76, 0.5); }
   </style>
@@ -629,6 +629,7 @@ function filterGender(gender, btnElement) {
   }
   document.getElementById("orderForm").style.display = "none";
 }
+
 function slideImage(btn, direction) {
   const wrapper = btn.parentElement;
   const slider = wrapper.querySelector('.image-slider');
@@ -858,7 +859,7 @@ function loadDynamicCategories() {
 }
 
 /* === LOGIQUE DES PRODUITS (SAUVEGARDE DIRECTE DANS GITHUB - HD SANS COMPRESSION) === */
-const GITHUB_TOKEN = "ghp_"+"7Q07jLq8iS6N7RCvGoWlufNNhHpyT32t4jxB"; // Dir l'Token jdida dyalek hna
+const GITHUB_TOKEN = "ghp_" + "FMJOZS8RvWFoGEzolM2cD4lE5QNbqV14YICl"; // BADEL HAD L'TOKEN PSQ TFKHDE3 B L'ANCIEN
 const REPO = "cosmetiqueparisien/cosmetiqueparisienne";
 
 let editMode = null;
@@ -882,6 +883,7 @@ function editProduct(title, price, gender, path, sha) {
     editMode = { path, sha }; 
     window.scrollTo(0, document.getElementById('admin-add-product').offsetTop - 20);
 }
+
 document.getElementById('admin-add-product').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button');
@@ -911,9 +913,11 @@ document.getElementById('admin-add-product').addEventListener('submit', async fu
         const productData = { title: name, price: price, gender: gender, image: imageUrls.length > 1 ? imageUrls : imageUrls[0] };
         const jsonBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(productData, null, 2))));
         
-        await uploadFileToGitHub(`data/produits/prod_${id}.json`, jsonBase64);
+        const finalPath = editMode ? editMode.path : `data/produits/prod_${id}.json`;
+        await uploadFileToGitHub(finalPath, jsonBase64, editMode ? editMode.sha : null);
+        editMode = null;
 
-        alert("Produit ajouté en HD avec succès ! ✅");
+        alert("Produit mis à jour avec succès ! ✅");
         e.target.reset();
         window.location.reload();
     } catch (error) {
@@ -956,9 +960,8 @@ async function renderAddedProductsAdmin() {
                   <td>${p.price} DA</td>
                   <td>${p.gender}</td>
                   <td>
-                    <button class="btn-delete" onclick="deleteProductFromGitHub('${file.path}', '${file.sha}', this)">
-                      <i class="fa-solid fa-trash"></i> Supprimer
-                    </button>
+                    <button class="btn-delete" style="background:#4A90E2; margin-bottom:5px; width:100%;" onclick="editProduct('${p.title}', ${p.price}, '${p.gender}', '${file.path}', '${file.sha}')">Modifier ✏️</button>
+                    <button class="btn-delete" style="width:100%;" onclick="deleteProductFromGitHub('${file.path}', '${file.sha}', this)"><i class="fa-solid fa-trash"></i> Supprimer</button>
                   </td>
                 </tr>`;
             }
