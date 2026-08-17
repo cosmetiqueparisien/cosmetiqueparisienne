@@ -1,0 +1,12 @@
+{
+  "title": "Portefeuille CAPAZZI 🇫🇷",
+  "price": "2450",
+  "gender": "Portefeuilles",
+  "image": [
+    "./data/produits/images/prod_1786930406269_0.jpg",
+    "./data/produits/images/prod_1786930406269_1.jpg",
+    "./data/produits/images/prod_1786930406269_2.jpg",
+    "./data/produits/images/prod_1786930406269_3.jpg",
+    "./data/produits/images/prod_1786930406269_4.jpg"
+  ]
+}
