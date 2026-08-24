@@ -348,8 +348,6 @@
     <p class="dev-text">Développé avec passion pour l'élégance. <span onclick="toggleAdmin()" style="cursor:pointer; color:var(--gold-dark); margin-left:10px;">| Admin</span></p>
   </footer>
 </div> <!-- FIN DU DIV MAIN SITE -->
-
-
 <!-- ============================================== -->
 <!-- AJOUT : SECTION ADMIN CACHÉE AVEC MOT DE PASSE -->
 <!-- ============================================== -->
@@ -763,7 +761,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadCMSProducts();
 });
 
-
 /* =================================================================== */
 /* LOGIQUE DE L'ADMINISTRATEUR AVEC MOT DE PASSE                       */
 /* =================================================================== */
@@ -875,12 +872,15 @@ async function uploadFileToGitHub(path, contentBase64, sha = null) {
     return res.json();
 }
 
-function editProduct(title, price, gender, path, sha) {
+function editProduct(title, price, gender, path, sha, oldImgData) {
     document.getElementById('admin-name').value = title; 
     document.getElementById('admin-price').value = price;
     document.getElementById('admin-gender').value = gender; 
+    document.getElementById('admin-image').removeAttribute('required'); // Nnahiw required hna
     document.querySelector('#admin-add-product button').innerText = "Modifier ✏️";
-    editMode = { path, sha }; 
+    
+    let oldImg = oldImgData ? JSON.parse(decodeURIComponent(oldImgData)) : '';
+    editMode = { path, sha, image: oldImg }; 
     window.scrollTo(0, document.getElementById('admin-add-product').offsetTop - 20);
 }
 
@@ -896,28 +896,36 @@ document.getElementById('admin-add-product').addEventListener('submit', async fu
     const files = document.getElementById('admin-image').files;
 
     try {
-        let imageUrls = [];
+        let finalImage = "";
         let id = Date.now(); 
 
-        for (let i = 0; i < files.length; i++) {
-            const base64 = await new Promise(resolve => {
-                const reader = new FileReader();
-                reader.onload = event => resolve(event.target.result);
-                reader.readAsDataURL(files[i]);
-            });
-            const imgPath = `data/produits/images/prod_${id}_${i}.jpg`;
-            await uploadFileToGitHub(imgPath, base64);
-            imageUrls.push(`./data/produits/images/prod_${id}_${i}.jpg`);
+        if (files.length > 0) {
+            let imageUrls = [];
+            for (let i = 0; i < files.length; i++) {
+                const base64 = await new Promise(resolve => {
+                    const reader = new FileReader();
+                    reader.onload = event => resolve(event.target.result);
+                    reader.readAsDataURL(files[i]);
+                });
+                const imgPath = `data/produits/images/prod_${id}_${i}.jpg`;
+                await uploadFileToGitHub(imgPath, base64);
+                imageUrls.push(`./data/produits/images/prod_${id}_${i}.jpg`);
+            }
+            finalImage = imageUrls.length > 1 ? imageUrls : imageUrls[0];
+        } else if (editMode && editMode.image) {
+            finalImage = editMode.image; // Nkhabou ts'wira l9dima
         }
 
-        const productData = { title: name, price: price, gender: gender, image: imageUrls.length > 1 ? imageUrls : imageUrls[0] };
+        const productData = { title: name, price: price, gender: gender, image: finalImage };
         const jsonBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(productData, null, 2))));
         
         const finalPath = editMode ? editMode.path : `data/produits/prod_${id}.json`;
         await uploadFileToGitHub(finalPath, jsonBase64, editMode ? editMode.sha : null);
+        
         editMode = null;
+        document.getElementById('admin-image').setAttribute('required', 'true');
 
-        alert("Produit mis à jour avec succès ! ✅");
+        alert("Opération réussie ! ✅");
         e.target.reset();
         window.location.reload();
     } catch (error) {
@@ -953,6 +961,7 @@ async function renderAddedProductsAdmin() {
                 let imgSrc = Array.isArray(p.image) ? p.image[0] : p.image;
                 if(imgSrc && imgSrc.startsWith('/')) imgSrc = '.' + imgSrc;
                 
+                // Zedna encodeURIComponent hna bch yssagb l'ktiba
                 html += `
                 <tr>
                   <td><img src="${imgSrc}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 1px solid var(--gold-primary);"></td>
@@ -960,7 +969,7 @@ async function renderAddedProductsAdmin() {
                   <td>${p.price} DA</td>
                   <td>${p.gender}</td>
                   <td>
-                    <button class="btn-delete" style="background:#4A90E2; margin-bottom:5px; width:100%;" onclick="editProduct('${p.title}', ${p.price}, '${p.gender}', '${file.path}', '${file.sha}')">Modifier ✏️</button>
+                    <button class="btn-delete" style="background:#4A90E2; margin-bottom:5px; width:100%;" onclick="editProduct('${p.title}', ${p.price}, '${p.gender}', '${file.path}', '${file.sha}', '${encodeURIComponent(JSON.stringify(p.image || ''))}')">Modifier ✏️</button>
                     <button class="btn-delete" style="width:100%;" onclick="deleteProductFromGitHub('${file.path}', '${file.sha}', this)"><i class="fa-solid fa-trash"></i> Supprimer</button>
                   </td>
                 </tr>`;
