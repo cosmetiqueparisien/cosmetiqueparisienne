@@ -5,6 +5,7 @@
   <title>Cosmétique Parisienne</title>
   <meta property="og:title" content="Cosmétique Parisienne">
   <meta property="og:description" content="Box cadeaux cosmétiques élégantes – Livraison 58 wilayas">
+  
   <meta property="og:image" content="https://cosmetiqueparisien.github.io/cosmetiqueparisienne/background.jpg">
   <meta property="og:url" content="https://cosmetiqueparisien.github.io/cosmetiqueparisienne/">
   <meta property="og:type" content="website">
@@ -15,139 +16,272 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ====== VARIABLES CSS (NOIR & DORÉ) ====== */
+    /* ====== VARIABLES CSS (THÈME CLAIR) ====== */
     :root {
-      --bg-color: #0d0d0d; --card-bg: #1a1a1a; --text-color: #f5f5f5;
-      --gold-primary: #d4af37; --gold-light: #f6e27a; --gold-dark: #bfa233;
-      --blue-homme: #4A90E2; --pink-femme: #D291BC; --choco-color: #A0522D; 
+      --bg-color: #f4f5f7; 
+      --card-bg: #ffffff; 
+      --text-color: #111111;
+      --primary-color: #000000; 
+      --primary-light: #333333; 
+      
+      --blue-homme: #4A90E2; 
+      --pink-femme: #D291BC; 
+      --choco-color: #A0522D; 
       --transition: 0.3s ease;
     }
 
     /* ====== RESET & BASE ====== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
+    
+    body { 
+      font-family: 'Montserrat', sans-serif; 
+      background-color: var(--bg-color); 
+      color: var(--text-color); 
+      line-height: 1.6; 
+      overflow-x: hidden; 
+    }
 
     /* ====== HERO SECTION ====== */
     .hero {
-      position: relative; height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
-      background: linear-gradient(to bottom, rgba(13, 13, 13, 0.3), rgba(13, 13, 13, 1)), url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+      position: relative; height: 60vh; display: flex; flex-direction: column; 
+      align-items: center; justify-content: center; text-align: center;
+      
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(244, 245, 247, 1)), 
+                  url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
       padding: 0 20px;
     }
+    
     .hero h1 {
-      font-family: 'Great Vibes', cursive; font-size: 5.5rem; font-weight: 400; color: #ffffff; margin-bottom: 20px;
-      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9); animation: elegantReveal 1.5s ease-out forwards;
+      font-family: 'Montserrat', sans-serif; font-size: 3.5rem; font-weight: 700; 
+      color: var(--primary-color); margin-bottom: 20px;
+      animation: elegantReveal 1.5s ease-out forwards;
     }
-    .hero p { font-size: 1.3rem; color: #eaeaea; max-width: 600px; margin-bottom: 40px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); animation: fadeUp 1.5s ease-out 0.5s both; }
+    
+    .hero p { 
+      font-size: 1.1rem; color: #444; max-width: 600px; margin-bottom: 40px; 
+      animation: fadeUp 1.5s ease-out 0.5s both; 
+    }
+    
     .hero-btn {
-      background: var(--gold-primary); color: var(--bg-color); border: none; padding: 15px 40px; font-size: 1.1rem; border-radius: 30px;
-      font-family: 'Montserrat', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
-      transition: var(--transition); animation: fadeUp 1.5s ease-out 1s both; display: inline-flex; align-items: center; gap: 10px;
+      background: var(--primary-color); color: #fff; border: none; padding: 15px 40px; 
+      font-size: 1rem; border-radius: 8px; font-weight: 600; text-transform: uppercase; 
+      cursor: pointer; transition: var(--transition); animation: fadeUp 1.5s ease-out 1s both; 
+      display: inline-flex; align-items: center; gap: 10px;
     }
-    .hero-btn:hover { background: var(--gold-light); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4); }
+    
+    .hero-btn:hover { 
+      background: var(--primary-light); transform: translateY(-3px); 
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+    }
+
     @keyframes elegantReveal { 0% { opacity: 0; transform: translateY(-20px); } 100% { opacity: 1; transform: translateY(0); } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @media (max-width: 768px) { .hero { height: 70vh; } .hero h1 { font-size: 4rem; } .hero p { font-size: 1.1rem; } }
+    
+    @media (max-width: 768px) { .hero { height: 50vh; } .hero h1 { font-size: 2.5rem; } }
 
     /* ====== CONTAINER & PRODUCTS ====== */
     .container { max-width: 1200px; margin: auto; padding: 60px 20px; }
-    .section-title { text-align: center; font-family: "Playfair Display", serif; font-size: 2.5rem; color: var(--gold-primary); margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; }
+    
+    .section-title { 
+      text-align: center; font-size: 2rem; color: var(--primary-color); 
+      margin-bottom: 30px; font-weight: 700; text-transform: uppercase; 
+    }
 
     /* ====== FILTERS ====== */
-    .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 50px; }
-    .filter-btn { background: transparent; padding: 12px 25px; border-radius: 30px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1rem; transition: var(--transition); display: flex; align-items: center; gap: 8px; }
-    .btn-tous { border: 1px solid var(--gold-primary); color: var(--text-color); }
-    .btn-tous.active { background: var(--gold-primary); color: var(--bg-color); }
-    .btn-homme { border: 1px solid var(--blue-homme); color: var(--blue-homme); }
-    .btn-homme:hover, .btn-homme.active { background: var(--blue-homme); color: white; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4); }
-    .btn-femme { border: 1px solid var(--pink-femme); color: var(--pink-femme); }
-    .btn-femme:hover, .btn-femme.active { background: var(--pink-femme); color: white; box-shadow: 0 4px 15px rgba(210, 145, 188, 0.4); }
-    .btn-chocolat { border: 1px solid var(--choco-color); color: var(--choco-color); }
-    .btn-chocolat:hover, .btn-chocolat.active { background: var(--choco-color); color: white; box-shadow: 0 4px 15px rgba(160, 82, 45, 0.4); }
-    .btn-dibaba { border: 1px solid #d2691e; color: #d2691e; }
-    .btn-dibaba:hover, .btn-dibaba.active { background: #d2691e; color: white; box-shadow: 0 4px 15px rgba(210, 105, 30, 0.4); }
+    .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 50px; }
     
-    /* STYLE POUR LES BOUTONS AJOUTÉS DEPUIS L'ADMIN */
-    .btn-custom-cat { border: 1px solid var(--gold-light); color: var(--gold-light); }
-    .btn-custom-cat:hover, .btn-custom-cat.active { background: var(--gold-light); color: #000; box-shadow: 0 4px 15px rgba(246, 226, 122, 0.4); }
+    .filter-btn { 
+      background: #fff; padding: 10px 20px; border-radius: 8px; cursor: pointer; 
+      font-weight: 600; font-size: 0.95rem; transition: var(--transition); 
+      border: 1px solid #ddd; color: #555; display: flex; align-items: center; gap: 8px; 
+    }
+    
+    .btn-tous.active { background: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+    .btn-homme:hover, .btn-homme.active { background: var(--blue-homme); color: white; border-color: var(--blue-homme); }
+    .btn-femme:hover, .btn-femme.active { background: var(--pink-femme); color: white; border-color: var(--pink-femme); }
+    .btn-chocolat:hover, .btn-chocolat.active { background: var(--choco-color); color: white; border-color: var(--choco-color); }
+    .btn-dibaba:hover, .btn-dibaba.active { background: #d2691e; color: white; border-color: #d2691e; }
+    .btn-custom-cat:hover, .btn-custom-cat.active { background: #888; color: #fff; border-color: #888; }
 
     /* ====== PRODUCT GRID ====== */
-    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
-    .product { background: var(--card-bg); border-radius: 16px; padding: 20px; border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: all 0.4s ease; display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .product:hover { transform: translateY(-8px); border-color: var(--gold-primary); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15); }
-    .product img { width: 100%; aspect-ratio: 1 / 1; border-radius: 12px; object-fit: cover; margin-bottom: 15px; transition: var(--transition); background-color: #222; -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; user-select: none; }
-    .product:hover img { transform: scale(1.02); }
-    .product h3 { font-family: "Playfair Display", serif; font-size: 1.4rem; font-weight: 600; color: var(--text-color); margin-bottom: 10px; }
-    .product:hover h3 { color: var(--gold-light); }
-    .product p.price { font-size: 1.25rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 20px; }
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
     
-    .slider-wrapper { position: relative; width: 100%; margin-bottom: 15px; border-radius: 12px; overflow: hidden; }
-    .image-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
+    .product { 
+      background: var(--card-bg); border-radius: 12px; padding: 15px; 
+      border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); 
+      transition: all 0.3s ease; display: flex; flex-direction: column; 
+      align-items: center; text-align: center; 
+    }
+    
+    .product:hover { 
+      transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); 
+    }
+    
+    .product img { 
+      width: 100%; aspect-ratio: 1 / 1; border-radius: 8px; object-fit: cover; 
+      margin-bottom: 15px; transition: var(--transition); background-color: #f9f9f9; 
+    }
+    
+    .product:hover img { transform: scale(1.03); }
+    
+    .product h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary-color); margin-bottom: 8px; }
+    .product p.price { font-size: 1.2rem; font-weight: 700; color: #d32f2f; margin-bottom: 15px; }
+    
+    .slider-wrapper { position: relative; width: 100%; margin-bottom: 15px; border-radius: 8px; overflow: hidden; }
+    .image-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
     .image-slider::-webkit-scrollbar { display: none; }
-    .image-slider img { flex: 0 0 100%; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; scroll-snap-align: center; margin-bottom: 0; border-radius: 0; -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; user-select: none; }
-
-    .slide-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.6) !important; color: white !important; border: 1px solid var(--gold-primary) !important; width: 35px !important; height: 35px !important; padding: 0 !important; border-radius: 50% !important; font-size: 1rem !important; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
-    .slide-btn.left { left: 5px; } .slide-btn.right { right: 5px; }
-    .slide-btn:hover { background: var(--gold-primary) !important; color: var(--bg-color) !important; }
     
-    .custom-price-input { width: 80%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--gold-primary); background: #111; color: var(--gold-light); text-align: center; font-weight: bold; font-size: 1.1rem; appearance: none; }
-    .custom-price-input:focus { outline: none; box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); background: #000; }
-    .product button { background: transparent; border: 2px solid var(--gold-primary); padding: 12px 24px; border-radius: 30px; color: var(--gold-primary); font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; width: 100%; transition: var(--transition); }
-    .product button:hover { background: var(--gold-primary); color: var(--bg-color); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
+    .image-slider img { 
+      flex: 0 0 100%; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; 
+      scroll-snap-align: center; margin-bottom: 0; border-radius: 0; 
+    }
+
+    .slide-btn { 
+      position: absolute; top: 50%; transform: translateY(-50%); 
+      background: rgba(255, 255, 255, 0.8) !important; color: #000 !important; 
+      border: 1px solid #ddd !important; width: 30px !important; height: 30px !important; 
+      border-radius: 50% !important; font-size: 1rem !important; cursor: pointer; z-index: 10; 
+    }
+    
+    .slide-btn.left { left: 5px; } .slide-btn.right { right: 5px; }
+    .slide-btn:hover { background: #fff !important; }
+    
+    .custom-price-input { 
+      width: 80%; padding: 10px; margin-bottom: 15px; border-radius: 8px; 
+      border: 1px solid #ccc; background: #fafafa; color: #333; text-align: center; 
+      font-weight: bold; font-size: 1rem; 
+    }
+    
+    .product button { 
+      background: var(--primary-color); border: none; padding: 10px 20px; 
+      border-radius: 8px; color: #fff; font-weight: 600; font-size: 0.95rem; 
+      cursor: pointer; width: 100%; transition: var(--transition); 
+    }
+    
+    .product button:hover { background: var(--primary-light); }
 
     /* ====== ORDER FORM ====== */
-    .form { max-width: 550px; margin: 80px auto 20px; padding: 40px; border-radius: 20px; background: var(--card-bg); border: 1px solid var(--gold-primary); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); display: none; animation: fadeUp 0.5s ease; }
-    .form h2 { text-align: center; font-family: "Playfair Display", serif; color: var(--gold-primary); margin-bottom: 25px; font-size: 1.8rem; }
-    .input-icon { position: relative; margin-bottom: 20px; width: 100%; }
-    .input-icon i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--gold-primary); font-size: 1.1rem; z-index: 2; pointer-events: none; }
-    .form input, .form select { width: 100%; padding: 14px 14px 14px 45px; border-radius: 10px; border: 1px solid #333; background-color: #111; color: var(--text-color); font-family: 'Montserrat', sans-serif; font-size: 1rem; transition: var(--transition); appearance: none; }
-    .form select { background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23d4af37%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 15px top 50%; background-size: 12px auto; }
-    .form input[type="number"] { padding-left: 15px; margin-bottom: 20px; }
-    .form input:focus, .form select:focus { outline: none; border-color: var(--gold-primary); box-shadow: 0 0 8px rgba(212, 175, 55, 0.4); background-color: #1a1a1a; }
-    #total { text-align: center; font-size: 1.4rem; font-weight: 700; color: var(--gold-light); margin: 25px 0; padding: 15px; border-top: 1px solid #333; border-bottom: 1px solid #333; }
-    .form button { background: var(--gold-primary); color: var(--bg-color); border: none; font-size: 1.1rem; padding: 15px; border-radius: 10px; width: 100%; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 600; transition: var(--transition); }
-    .form button:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .form { 
+      max-width: 550px; margin: 60px auto 20px; padding: 30px; border-radius: 12px; 
+      background: var(--card-bg); border: 1px solid #eee; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); 
+      display: none; animation: fadeUp 0.5s ease; 
+    }
+    
+    .form h2 { text-align: center; color: var(--primary-color); margin-bottom: 25px; font-size: 1.5rem; font-weight: 700; }
+    .input-icon { position: relative; margin-bottom: 15px; width: 100%; }
+    
+    .input-icon i { 
+      position: absolute; left: 15px; top: 50%; transform: translateY(-50%); 
+      color: #888; font-size: 1rem; z-index: 2; 
+    }
+    
+    .form input, .form select { 
+      width: 100%; padding: 12px 12px 12px 40px; border-radius: 8px; border: 1px solid #ddd; 
+      background-color: #fafafa; color: var(--text-color); font-size: 0.95rem; 
+      transition: var(--transition); 
+    }
+    
+    .form input:focus, .form select:focus { 
+      outline: none; border-color: var(--primary-color); background-color: #fff; 
+    }
+    
+    #total { 
+      text-align: center; font-size: 1.3rem; font-weight: 700; color: #d32f2f; 
+      margin: 20px 0; padding: 15px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; 
+    }
+    
+    .form button { 
+      background: var(--primary-color); color: #fff; border: none; font-size: 1rem; 
+      padding: 15px; border-radius: 8px; width: 100%; cursor: pointer; font-weight: 600; 
+    }
+    
+    .form button:hover { background: var(--primary-light); }
 
     /* ====== PAYMENT MODAL ====== */
-    .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); align-items: center; justify-content: center; backdrop-filter: blur(5px); opacity: 0; transition: opacity 0.3s ease; }
+    .modal { 
+      display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; 
+      background-color: rgba(0, 0, 0, 0.6); align-items: center; justify-content: center; 
+      opacity: 0; transition: opacity 0.3s ease; 
+    }
+    
     .modal.show { display: flex; opacity: 1; }
-    .modal-content { background: var(--card-bg); padding: 40px 30px; border-radius: 20px; border: 1px solid var(--gold-primary); text-align: center; max-width: 400px; width: 90%; position: relative; transform: translateY(30px); transition: transform 0.3s ease; box-shadow: 0 15px 50px rgba(0,0,0,0.8); }
+    
+    .modal-content { 
+      background: var(--card-bg); padding: 30px; border-radius: 12px; 
+      text-align: center; max-width: 400px; width: 90%; position: relative; 
+      transform: translateY(30px); transition: transform 0.3s ease; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+    }
+    
     .modal.show .modal-content { transform: translateY(0); }
-    .modal-content h3 { color: var(--gold-light); margin-bottom: 10px; font-family: "Playfair Display", serif; font-size: 1.5rem; }
-    .close-modal { position: absolute; top: 15px; right: 20px; color: #888; font-size: 28px; font-weight: bold; cursor: pointer; transition: var(--transition); }
-    .close-modal:hover { color: var(--gold-primary); }
-    .pay-btn { width: 100%; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 15px; font-size: 1rem; font-family: 'Montserrat', sans-serif; font-weight: 600; }
-    .btn-cash { border: 1px solid #25d366; color: #25d366; background: transparent; }
-    .btn-cash:hover { background: #25d366; color: #000; box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);}
-    .btn-baridi { border: 1px solid #fbd600; color: #fbd600; background: transparent; }
-    .btn-baridi:hover { background: #fbd600; color: #000; box-shadow: 0 0 15px rgba(251, 214, 0, 0.4);}
-    .btn-ccp { border: 1px solid #ffcc00; color: #ffcc00; background: transparent; }
-    .btn-ccp:hover { background: #ffcc00; color: #000; box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);}
+    .modal-content h3 { color: var(--primary-color); margin-bottom: 10px; font-size: 1.3rem; font-weight: 700; }
+    
+    .close-modal { 
+      position: absolute; top: 10px; right: 15px; color: #888; font-size: 24px; cursor: pointer; 
+    }
+    
+    .pay-btn { 
+      width: 100%; margin-bottom: 10px; display: flex; align-items: center; 
+      justify-content: center; gap: 10px; padding: 12px; font-size: 0.95rem; font-weight: 600; 
+      border-radius: 8px; cursor: pointer; transition: var(--transition);
+    }
+    
+    .btn-cash { border: 1px solid #25d366; color: #25d366; background: #fff; }
+    .btn-cash:hover { background: #25d366; color: #fff; }
+    
+    .btn-baridi { border: 1px solid #fbd600; color: #d4b500; background: #fff; }
+    .btn-baridi:hover { background: #fbd600; color: #000; }
+    
+    .btn-ccp { border: 1px solid #ffcc00; color: #ccaa00; background: #fff; }
+    .btn-ccp:hover { background: #ffcc00; color: #000; }
 
     /* ====== WHATSAPP FLOTTANT & FOOTER ====== */
-    .whatsapp-float { position: fixed; bottom: 25px; right: 25px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2.2rem; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); z-index: 1000; transition: var(--transition); animation: pulse 2s infinite; text-decoration: none; }
-    .whatsapp-float:hover { background-color: #1ebe57; transform: scale(1.1); color: white; }
-    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
-    footer { background-color: #080808; border-top: 1px solid rgba(212, 175, 55, 0.1); padding: 50px 20px 30px; text-align: center; margin-top: 20px; }
-    .social-icons { margin-bottom: 25px; }
-    .social-icons a { color: var(--gold-primary); font-size: 1.8rem; margin: 0 15px; text-decoration: none; transition: var(--transition); display: inline-block; }
-    .social-icons a:hover { color: var(--gold-light); transform: translateY(-5px) scale(1.1); }
-    footer p { color: #888; font-size: 0.95rem; margin-bottom: 15px; }
-    footer .dev-text { font-size: 0.85rem; color: #555; font-weight: 300; }
-
+    .whatsapp-float { 
+      position: fixed; bottom: 25px; right: 25px; background-color: #25d366; color: white; 
+      width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; 
+      align-items: center; font-size: 2rem; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+      z-index: 1000; transition: var(--transition); text-decoration: none; 
+    }
+    
+    .whatsapp-float:hover { transform: scale(1.1); }
+    
+    footer { 
+      background-color: #fff; border-top: 1px solid #eee; 
+      padding: 40px 20px 20px; text-align: center; margin-top: 40px; 
+    }
+    
+    .social-icons a { 
+      color: var(--primary-light); font-size: 1.5rem; margin: 0 10px; 
+      text-decoration: none; transition: var(--transition); 
+    }
+    
+    .social-icons a:hover { color: var(--primary-color); transform: translateY(-3px); }
+    footer p { color: #888; font-size: 0.9rem; margin-bottom: 10px; }
+    
     /* ====== ADMIN PANEL ====== */
     #admin-panel { display: none; max-width: 1200px; margin: auto; padding: 40px 20px; }
-    .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--card-bg); border-radius: 10px; overflow: hidden; }
-    .admin-table th, .admin-table td { padding: 15px; text-align: left; border-bottom: 1px solid #333; }
-    .admin-table th { background: var(--gold-primary); color: #000; font-family: 'Montserrat', sans-serif; font-weight: 600; }
-    .admin-form-container { background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--gold-primary); margin-bottom: 40px; }
     
-    /* Boutons de gestion */
-    .btn-delete { background: #ff4c4c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: 0.3s; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; }
-    .btn-delete:hover { background: #e60000; box-shadow: 0 0 10px rgba(255, 76, 76, 0.5); }
+    .admin-table { 
+      width: 100%; border-collapse: collapse; margin-top: 20px; 
+      background: var(--card-bg); border-radius: 8px; overflow: hidden; 
+      border: 1px solid #eee;
+    }
+    
+    .admin-table th, .admin-table td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+    .admin-table th { background: #f9f9f9; color: var(--primary-color); font-weight: 700; }
+    
+    .admin-form-container { 
+      background: var(--card-bg); padding: 25px; border-radius: 12px; 
+      border: 1px solid #eee; margin-bottom: 30px; 
+    }
+    
+    .btn-delete { 
+      background: #ff4c4c; color: white; border: none; padding: 8px 12px; 
+      border-radius: 5px; cursor: pointer; font-size: 0.85rem; 
+    }
   </style>
 </head>
 
@@ -188,41 +322,181 @@
 
     <div class="products" id="productList">
       <!-- Les produits -->
-      <div class="product" data-gender="homme"><img src="./box1.jpg" alt="Box Cadeau 1" loading="lazy"><h3>Box Cadeau 1</h3><p class="price">7000 DA</p><button onclick="openForm('Box Cadeau 1',7000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box2.jpg" alt="Box Cadeau 2" loading="lazy"><h3>Box Cadeau 2</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 2',8500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box3.jpg" alt="Box Cadeau 3" loading="lazy"><h3>Box Cadeau 3</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 3',4500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box4.jpg" alt="Box Cadeau 4" loading="lazy"><h3>Box Cadeau 4</h3><p class="price">7500 DA</p><button onclick="openForm('Box Cadeau 4',7500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box5.jpg" alt="Box Cadeau 5" loading="lazy"><h3>Box Cadeau 5</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 5',9500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box6.jpg" alt="Box Cadeau 6" loading="lazy"><h3>Box Cadeau 6</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 6',4500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box7.jpg" alt="Box Cadeau 7" loading="lazy"><h3>Box Cadeau 7</h3><p class="price">10000 DA</p><button onclick="openForm('Box Cadeau 7',10000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box8.jpg" alt="Box Cadeau 8" loading="lazy"><h3>Box Cadeau 8</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 8',9500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box9.jpg" alt="Box Cadeau 9" loading="lazy"><h3>Box Cadeau 9</h3><p class="price">12500 DA</p><button onclick="openForm('Box Cadeau 9',12500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box10.jpg" alt="Box Cadeau 10" loading="lazy"><h3>Box Cadeau 10</h3><p class="price">11000 DA</p><button onclick="openForm('Box Cadeau 10',11000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box11.jpg" alt="Box Cadeau 11" loading="lazy"><h3>Box Cadeau 11</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 11',9500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box12.jpg" alt="Box Cadeau 12" loading="lazy"><h3>Box Cadeau 12</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 12',8500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box13.jpg" alt="Box Cadeau 13" loading="lazy"><h3>Box Cadeau 13</h3><p class="price">9000 DA</p><button onclick="openForm('Box Cadeau 13',9000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box14.jpg" alt="Box Cadeau 14" loading="lazy"><h3>Box Cadeau 14</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 14',8500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box15.jpg" alt="Box Cadeau 15" loading="lazy"><h3>Box Cadeau 15</h3><p class="price">3250 DA</p><button onclick="openForm('Box Cadeau 15',3250)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box16.jpg" alt="Box Cadeau 16" loading="lazy"><h3>Box Cadeau 16</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 16',4500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box17.jpg" alt="Box Cadeau 17" loading="lazy"><h3>Box Cadeau 17</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 17',5500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box18.jpg" alt="Box Cadeau 18" loading="lazy"><h3>Box Cadeau 18</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 18',5500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box19.jpg" alt="Box Cadeau 19" loading="lazy"><h3>Box Cadeau 19</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 19',5000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box20.jpg" alt="Box Cadeau 20" loading="lazy"><h3>Box Cadeau 20</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 20',5000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box21.jpg" alt="Box Cadeau 21" loading="lazy"><h3>Box Cadeau 21</h3><p class="price">7500 DA</p><button onclick="openForm('Box Cadeau 21',7500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box22.jpg" alt="Box Cadeau 22" loading="lazy"><h3>Box Cadeau 22</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 22',8500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box23.jpg" alt="Box Cadeau 23" loading="lazy"><h3>Box Cadeau 23</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 23',5000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box24.jpg" alt="Box Cadeau 24" loading="lazy"><h3>Box Cadeau 24</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 24',4500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box25.jpg" alt="Box Cadeau 25" loading="lazy"><h3>Box Cadeau 25</h3><p class="price">3500 DA</p><button onclick="openForm('Box Cadeau 25',3500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box26.jpg" alt="Box Cadeau 26" loading="lazy"><h3>Box Cadeau 26</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 26',8500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box27.jpg" alt="Box Cadeau 27" loading="lazy"><h3>Box Cadeau 27</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 27',9500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box28.jpg" alt="Box Cadeau 28" loading="lazy"><h3>Box Cadeau 28</h3><p class="price">11200 DA</p><button onclick="openForm('Box Cadeau 28',11200)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box29.jpg" alt="Box Cadeau 29" loading="lazy"><h3>Box Cadeau 29</h3><p class="price">7000 DA</p><button onclick="openForm('Box Cadeau 29',7000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box30.jpg" alt="Box Cadeau 30" loading="lazy"><h3>Box Cadeau 30</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 30',8500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box31.jpg" alt="Box Cadeau 31" loading="lazy"><h3>Box Cadeau 31</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 31',5500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box32.jpg" alt="Box Cadeau 32" loading="lazy"><h3>Box Cadeau 32</h3><p class="price">12500 DA</p><button onclick="openForm('Box Cadeau 32',12500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box33.jpg" alt="Box Cadeau 33" loading="lazy"><h3>Box Cadeau 33</h3><p class="price">4750 DA</p><button onclick="openForm('Box Cadeau 33',4750)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box34.jpg" alt="Box Cadeau 34" loading="lazy"><h3>Box Cadeau 34</h3><p class="price">6500 DA</p><button onclick="openForm('Box Cadeau 34',6500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box35.jpg" alt="Box Cadeau 35" loading="lazy"><h3>Box Cadeau 35</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 35',9500)">تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme">
+        <img src="./box1.jpg" alt="Box Cadeau 1" loading="lazy">
+        <h3>Box Cadeau 1</h3><p class="price">7000 DA</p>
+        <button onclick="openForm('Box Cadeau 1',7000)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box2.jpg" alt="Box Cadeau 2" loading="lazy">
+        <h3>Box Cadeau 2</h3><p class="price">8500 DA</p>
+        <button onclick="openForm('Box Cadeau 2',8500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box3.jpg" alt="Box Cadeau 3" loading="lazy">
+        <h3>Box Cadeau 3</h3><p class="price">4500 DA</p>
+        <button onclick="openForm('Box Cadeau 3',4500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box4.jpg" alt="Box Cadeau 4" loading="lazy">
+        <h3>Box Cadeau 4</h3><p class="price">7500 DA</p>
+        <button onclick="openForm('Box Cadeau 4',7500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box5.jpg" alt="Box Cadeau 5" loading="lazy">
+        <h3>Box Cadeau 5</h3><p class="price">9500 DA</p>
+        <button onclick="openForm('Box Cadeau 5',9500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box6.jpg" alt="Box Cadeau 6" loading="lazy">
+        <h3>Box Cadeau 6</h3><p class="price">4500 DA</p>
+        <button onclick="openForm('Box Cadeau 6',4500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box7.jpg" alt="Box Cadeau 7" loading="lazy">
+        <h3>Box Cadeau 7</h3><p class="price">10000 DA</p>
+        <button onclick="openForm('Box Cadeau 7',10000)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box8.jpg" alt="Box Cadeau 8" loading="lazy">
+        <h3>Box Cadeau 8</h3><p class="price">9500 DA</p>
+        <button onclick="openForm('Box Cadeau 8',9500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box9.jpg" alt="Box Cadeau 9" loading="lazy">
+        <h3>Box Cadeau 9</h3><p class="price">12500 DA</p>
+        <button onclick="openForm('Box Cadeau 9',12500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box10.jpg" alt="Box Cadeau 10" loading="lazy">
+        <h3>Box Cadeau 10</h3><p class="price">11000 DA</p>
+        <button onclick="openForm('Box Cadeau 10',11000)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box11.jpg" alt="Box Cadeau 11" loading="lazy">
+        <h3>Box Cadeau 11</h3><p class="price">9500 DA</p>
+        <button onclick="openForm('Box Cadeau 11',9500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box12.jpg" alt="Box Cadeau 12" loading="lazy">
+        <h3>Box Cadeau 12</h3><p class="price">8500 DA</p>
+        <button onclick="openForm('Box Cadeau 12',8500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box13.jpg" alt="Box Cadeau 13" loading="lazy">
+        <h3>Box Cadeau 13</h3><p class="price">9000 DA</p>
+        <button onclick="openForm('Box Cadeau 13',9000)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box14.jpg" alt="Box Cadeau 14" loading="lazy">
+        <h3>Box Cadeau 14</h3><p class="price">8500 DA</p>
+        <button onclick="openForm('Box Cadeau 14',8500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box15.jpg" alt="Box Cadeau 15" loading="lazy">
+        <h3>Box Cadeau 15</h3><p class="price">3250 DA</p>
+        <button onclick="openForm('Box Cadeau 15',3250)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box16.jpg" alt="Box Cadeau 16" loading="lazy">
+        <h3>Box Cadeau 16</h3><p class="price">4500 DA</p>
+        <button onclick="openForm('Box Cadeau 16',4500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box17.jpg" alt="Box Cadeau 17" loading="lazy">
+        <h3>Box Cadeau 17</h3><p class="price">5500 DA</p>
+        <button onclick="openForm('Box Cadeau 17',5500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box18.jpg" alt="Box Cadeau 18" loading="lazy">
+        <h3>Box Cadeau 18</h3><p class="price">5500 DA</p>
+        <button onclick="openForm('Box Cadeau 18',5500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box19.jpg" alt="Box Cadeau 19" loading="lazy">
+        <h3>Box Cadeau 19</h3><p class="price">5000 DA</p>
+        <button onclick="openForm('Box Cadeau 19',5000)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box20.jpg" alt="Box Cadeau 20" loading="lazy">
+        <h3>Box Cadeau 20</h3><p class="price">5000 DA</p>
+        <button onclick="openForm('Box Cadeau 20',5000)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box21.jpg" alt="Box Cadeau 21" loading="lazy">
+        <h3>Box Cadeau 21</h3><p class="price">7500 DA</p>
+        <button onclick="openForm('Box Cadeau 21',7500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box22.jpg" alt="Box Cadeau 22" loading="lazy">
+        <h3>Box Cadeau 22</h3><p class="price">8500 DA</p>
+        <button onclick="openForm('Box Cadeau 22',8500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box23.jpg" alt="Box Cadeau 23" loading="lazy">
+        <h3>Box Cadeau 23</h3><p class="price">5000 DA</p>
+        <button onclick="openForm('Box Cadeau 23',5000)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box24.jpg" alt="Box Cadeau 24" loading="lazy">
+        <h3>Box Cadeau 24</h3><p class="price">4500 DA</p>
+        <button onclick="openForm('Box Cadeau 24',4500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box25.jpg" alt="Box Cadeau 25" loading="lazy">
+        <h3>Box Cadeau 25</h3><p class="price">3500 DA</p>
+        <button onclick="openForm('Box Cadeau 25',3500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box26.jpg" alt="Box Cadeau 26" loading="lazy">
+        <h3>Box Cadeau 26</h3><p class="price">8500 DA</p>
+        <button onclick="openForm('Box Cadeau 26',8500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box27.jpg" alt="Box Cadeau 27" loading="lazy">
+        <h3>Box Cadeau 27</h3><p class="price">9500 DA</p>
+        <button onclick="openForm('Box Cadeau 27',9500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box28.jpg" alt="Box Cadeau 28" loading="lazy">
+        <h3>Box Cadeau 28</h3><p class="price">11200 DA</p>
+        <button onclick="openForm('Box Cadeau 28',11200)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box29.jpg" alt="Box Cadeau 29" loading="lazy">
+        <h3>Box Cadeau 29</h3><p class="price">7000 DA</p>
+        <button onclick="openForm('Box Cadeau 29',7000)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box30.jpg" alt="Box Cadeau 30" loading="lazy">
+        <h3>Box Cadeau 30</h3><p class="price">8500 DA</p>
+        <button onclick="openForm('Box Cadeau 30',8500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box31.jpg" alt="Box Cadeau 31" loading="lazy">
+        <h3>Box Cadeau 31</h3><p class="price">5500 DA</p>
+        <button onclick="openForm('Box Cadeau 31',5500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box32.jpg" alt="Box Cadeau 32" loading="lazy">
+        <h3>Box Cadeau 32</h3><p class="price">12500 DA</p>
+        <button onclick="openForm('Box Cadeau 32',12500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box33.jpg" alt="Box Cadeau 33" loading="lazy">
+        <h3>Box Cadeau 33</h3><p class="price">4750 DA</p>
+        <button onclick="openForm('Box Cadeau 33',4750)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="femme">
+        <img src="./box34.jpg" alt="Box Cadeau 34" loading="lazy">
+        <h3>Box Cadeau 34</h3><p class="price">6500 DA</p>
+        <button onclick="openForm('Box Cadeau 34',6500)">تقديم الطلبية</button>
+      </div>
+      <div class="product" data-gender="homme">
+        <img src="./box35.jpg" alt="Box Cadeau 35" loading="lazy">
+        <h3>Box Cadeau 35</h3><p class="price">9500 DA</p>
+        <button onclick="openForm('Box Cadeau 35',9500)">تقديم الطلبية</button>
+      </div>
     </div>
 
     <h2 id="chocoTitle" class="section-title" style="margin-top: 80px; font-size: 2rem;">تشكيلات الشوكولاطة 🍫</h2>
@@ -240,7 +514,7 @@
           <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
         </div>
         <h3>Bombe de Chocolat</h3>
-        <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 7000 دج):</label>
+        <label style="color: #666; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 7000 دج):</label>
         <input type="number" id="price_bombe" class="custom-price-input" min="7000" value="7000" step="500">
         <button onclick="openCustomForm('Bombe de Chocolat', 'price_bombe', 7000)">تقديم الطلبية</button>
       </div>
@@ -256,7 +530,7 @@
           <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
         </div>
         <h3>Bouquet de Chocolat</h3>
-        <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 4000 دج):</label>
+        <label style="color: #666; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 4000 دج):</label>
         <input type="number" id="price_bouquet" class="custom-price-input" min="4000" value="4000" step="500">
         <button onclick="openCustomForm('Bouquet de Chocolat', 'price_bouquet', 4000)">تقديم الطلبية</button>
       </div>
@@ -271,7 +545,7 @@
           <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
         </div>
         <h3>Boîte de Chocolat</h3>
-        <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 9000 دج):</label>
+        <label style="color: #666; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 9000 دج):</label>
         <input type="number" id="price_boite" class="custom-price-input" min="9000" value="9000" step="500">
         <button onclick="openCustomForm('Boîte de Chocolat', 'price_boite', 9000)">تقديم الطلبية</button>
       </div>
@@ -288,7 +562,7 @@
           <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
         </div>
         <h3>Boîte Chocolat Simple</h3>
-        <label style="color: #aaa; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 4500 دج):</label>
+        <label style="color: #666; font-size: 0.9rem; margin-bottom: 8px;">الميزانية (ابتداءً من 4500 دج):</label>
         <input type="number" id="price_boite_simple" class="custom-price-input" min="4500" value="4500" step="500">
         <button onclick="openCustomForm('Boîte Chocolat Simple', 'price_boite_simple', 4500)">تقديم الطلبية</button>
       </div>
@@ -345,9 +619,10 @@
     </div>
     
     <p>&copy; 2026 Cosmétique Parisienne - Tous droits réservés.</p>
-    <p class="dev-text">Développé avec passion pour l'élégance. <span onclick="toggleAdmin()" style="cursor:pointer; color:var(--gold-dark); margin-left:10px;">| Admin</span></p>
+    <p class="dev-text">Développé avec passion pour l'élégance. <span onclick="toggleAdmin()" style="cursor:pointer; color:#666; margin-left:10px;">| Admin</span></p>
   </footer>
 </div> <!-- FIN DU DIV MAIN SITE -->
+
 <!-- ============================================== -->
 <!-- AJOUT : SECTION ADMIN CACHÉE AVEC MOT DE PASSE -->
 <!-- ============================================== -->
@@ -408,19 +683,18 @@
           <option value="femme">Femme</option>
           <option value="chocolat">Chocolat</option>
           <option value="دببة">دببة</option>
-          <!-- Les catégories ajoutées vont s'afficher ici automatiquement pour pouvoir les sélectionner -->
         </select>
       </div>
       <div>
         <input type="file" id="admin-image" accept="image/*" multiple required style="padding-left: 15px;">
-        <small style="color:var(--gold-dark); padding-left:15px; display:block; margin-top:5px;">* Vous pouvez sélectionner plusieurs photos pour créer un slider</small>
+        <small style="color:#666; padding-left:15px; display:block; margin-top:5px;">* Vous pouvez sélectionner plusieurs photos pour créer un slider</small>
       </div>
       <button type="submit" style="grid-column: span 2;">Ajouter au Magasin</button>
     </form>
   </div>
 
   <!-- TABLEAU : SUPPRIMER LES PRODUITS -->
-  <h2 style="color: var(--gold-light); font-family: 'Playfair Display', serif; margin-bottom: 15px; margin-top: 40px;">Mes Produits Ajoutés</h2>
+  <h2 style="color: var(--primary-color); font-family: 'Playfair Display', serif; margin-bottom: 15px; margin-top: 40px;">Mes Produits Ajoutés</h2>
   <div style="overflow-x: auto; margin-bottom: 40px;">
     <table class="admin-table">
       <thead>
@@ -444,7 +718,7 @@
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal()">&times;</span>
     <h3>Méthode de paiement</h3>
-    <p style="color: #ccc; margin-bottom: 25px; font-size: 1.05rem; font-family: 'Montserrat', sans-serif;">كيف تفضل تسديد مبلغ طلبيتك؟</p>
+    <p style="color: #666; margin-bottom: 25px; font-size: 1.05rem; font-family: 'Montserrat', sans-serif;">كيف تفضل تسديد مبلغ طلبيتك؟</p>
     
     <button class="pay-btn btn-cash" onclick="processOrder('الدفع عند التوصيل 🚚')">
       الدفع عند التوصيل 🚚
@@ -462,7 +736,6 @@
   <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-
 <script defer>
 /* ====== VARIABLES ====== */
 let basePrice = 0;
@@ -470,60 +743,33 @@ let product = "";
 
 /* ====== LIVRAISON MAYSTRO ====== */
 const livraisonMaystro = {
-  "Adrar": { bureau: 850, domicile: 1200 }, 
-  "Chlef": { bureau: 500, domicile: 800 }, 
-  "Laghouat": { bureau: 650, domicile: 900 },
-  "Oum El Bouaghi": { bureau: 500, domicile: 850 }, 
-  "Batna": { bureau: 500, domicile: 800 }, 
-  "Béjaïa": { bureau: 500, domicile: 800 },
-  "Biskra": { bureau: 650, domicile: 900 }, 
-  "Béchar": { bureau: 750, domicile: 1000 }, 
-  "Blida": { bureau: 500, domicile: 650 },
-  "Bouira": { bureau: 500, domicile: 700 }, 
-  "Tamanrasset": { bureau: 1100, domicile: 1700 }, 
-  "Tébessa": { bureau: 500, domicile: 900 },
-  "Tlemcen": { bureau: 500, domicile: 850 }, 
-  "Tiaret": { bureau: 500, domicile: 850 }, 
-  "Tizi Ouzou": { bureau: 500, domicile: 800 },
-  "Alger": { bureau: 400, domicile: 500, rapide: 600 }, 
-  "Djelfa": { bureau: 650, domicile: 900 }, 
-  "Jijel": { bureau: 500, domicile: 850 },
-  "Sétif": { bureau: 500, domicile: 800 }, 
-  "Saïda": { bureau: null, domicile: 850 }, 
-  "Skikda": { bureau: 500, domicile: 800 },
-  "Sidi Bel Abbès": { bureau: 500, domicile: 850 }, 
-  "Annaba": { bureau: 500, domicile: 850 }, 
-  "Guelma": { bureau: 500, domicile: 850 },
-  "Constantine": { bureau: 500, domicile: 800 }, 
-  "Médéa": { bureau: 500, domicile: 800 }, 
-  "Mostaganem": { bureau: 500, domicile: 850 },
-  "M’Sila": { bureau: 650, domicile: 900 }, 
-  "Mascara": { bureau: 500, domicile: 850 }, 
-  "Ouargla": { bureau: 650, domicile: 950 },
-  "Oran": { bureau: 500, domicile: 800 }, 
-  "El Bayadh": { bureau: null, domicile: 1000 }, 
-  "Bordj Bou Arreridj": { bureau: 500, domicile: 800 },
-  "Boumerdès": { bureau: 500, domicile: 650 }, 
-  "El Tarf": { bureau: null, domicile: 850 }, 
-  "Tindouf": { bureau: 1250, domicile: 1700 },
-  "Tissemsilt": { bureau: 550, domicile: 850 }, 
-  "El Oued": { bureau: 650, domicile: 950 }, 
-  "Khenchela": { bureau: null, domicile: 950 },
-  "Souk Ahras": { bureau: 500, domicile: 850 }, 
-  "Tipaza": { bureau: 500, domicile: 650 }, 
-  "Mila": { bureau: 500, domicile: 800 },
-  "Aïn Defla": { bureau: 500, domicile: 850 }, 
-  "Naâma": { bureau: 650, domicile: 1000 }, 
-  "Aïn Témouchent": { bureau: 0, domicile: 850 }, 
-  "Ghardaïa": { bureau: 650, domicile: 900 }, 
-  "Relizane": { bureau: 500, domicile: 850 }, 
-  "Timimoun": { bureau: null, domicile: 1200 },
-  "Ouled Djellal": { bureau: null, domicile: 950 }, 
-  "Béni Abbès": { bureau: null, domicile: 1100 }, 
-  "In Salah": { bureau: null, domicile: 1500 },
-  "Touggourt": { bureau: null, domicile: 950 }, 
-  "El M'Ghair": { bureau: null, domicile: 950 }, 
-  "El Meniaa": { bureau: null, domicile: 1000 }
+  "Adrar": { bureau: 850, domicile: 1200 }, "Chlef": { bureau: 500, domicile: 800 }, 
+  "Laghouat": { bureau: 650, domicile: 900 }, "Oum El Bouaghi": { bureau: 500, domicile: 850 }, 
+  "Batna": { bureau: 500, domicile: 800 }, "Béjaïa": { bureau: 500, domicile: 800 },
+  "Biskra": { bureau: 650, domicile: 900 }, "Béchar": { bureau: 750, domicile: 1000 }, 
+  "Blida": { bureau: 500, domicile: 650 }, "Bouira": { bureau: 500, domicile: 700 }, 
+  "Tamanrasset": { bureau: 1100, domicile: 1700 }, "Tébessa": { bureau: 500, domicile: 900 },
+  "Tlemcen": { bureau: 500, domicile: 850 }, "Tiaret": { bureau: 500, domicile: 850 }, 
+  "Tizi Ouzou": { bureau: 500, domicile: 800 }, "Alger": { bureau: 400, domicile: 500, rapide: 600 }, 
+  "Djelfa": { bureau: 650, domicile: 900 }, "Jijel": { bureau: 500, domicile: 850 },
+  "Sétif": { bureau: 500, domicile: 800 }, "Saïda": { bureau: null, domicile: 850 }, 
+  "Skikda": { bureau: 500, domicile: 800 }, "Sidi Bel Abbès": { bureau: 500, domicile: 850 }, 
+  "Annaba": { bureau: 500, domicile: 850 }, "Guelma": { bureau: 500, domicile: 850 },
+  "Constantine": { bureau: 500, domicile: 800 }, "Médéa": { bureau: 500, domicile: 800 }, 
+  "Mostaganem": { bureau: 500, domicile: 850 }, "M’Sila": { bureau: 650, domicile: 900 }, 
+  "Mascara": { bureau: 500, domicile: 850 }, "Ouargla": { bureau: 650, domicile: 950 },
+  "Oran": { bureau: 500, domicile: 800 }, "El Bayadh": { bureau: null, domicile: 1000 }, 
+  "Bordj Bou Arreridj": { bureau: 500, domicile: 800 }, "Boumerdès": { bureau: 500, domicile: 650 }, 
+  "El Tarf": { bureau: null, domicile: 850 }, "Tindouf": { bureau: 1250, domicile: 1700 },
+  "Tissemsilt": { bureau: 550, domicile: 850 }, "El Oued": { bureau: 650, domicile: 950 }, 
+  "Khenchela": { bureau: null, domicile: 950 }, "Souk Ahras": { bureau: 500, domicile: 850 }, 
+  "Tipaza": { bureau: 500, domicile: 650 }, "Mila": { bureau: 500, domicile: 800 },
+  "Aïn Defla": { bureau: 500, domicile: 850 }, "Naâma": { bureau: 650, domicile: 1000 }, 
+  "Aïn Témouchent": { bureau: 0, domicile: 850 }, "Ghardaïa": { bureau: 650, domicile: 900 }, 
+  "Relizane": { bureau: 500, domicile: 850 }, "Timimoun": { bureau: null, domicile: 1200 },
+  "Ouled Djellal": { bureau: null, domicile: 950 }, "Béni Abbès": { bureau: null, domicile: 1100 }, 
+  "In Salah": { bureau: null, domicile: 1500 }, "Touggourt": { bureau: null, domicile: 950 }, 
+  "El M'Ghair": { bureau: null, domicile: 950 }, "El Meniaa": { bureau: null, domicile: 1000 }
 };
 
 const wilayas = [
@@ -587,8 +833,6 @@ function filterGender(gender, btnElement) {
   btnElement.classList.add('active');
 
   const products = document.querySelectorAll('.product');
-  
-  // N'we7dou l'ktiba (Minuscule + nne7iw l'espace zayed)
   const targetGender = gender.trim().toLowerCase();
 
   products.forEach(product => {
@@ -598,7 +842,6 @@ function filterGender(gender, btnElement) {
     let show = false;
     if (targetGender === 'all' || targetGender === productGender) { show = true; }
 
-    // N'nettoyiw l'animation l9dima bach ma ytkhaltouch tsawer
     if (product.hideTimeout) clearTimeout(product.hideTimeout);
     if (product.showTimeout) clearTimeout(product.showTimeout);
 
@@ -616,6 +859,7 @@ function filterGender(gender, btnElement) {
       }, 300);
     }
   });
+  
   const chocoTitle = document.getElementById('chocoTitle');
   const chocoDesc = document.getElementById('chocoDesc');
   if (targetGender === 'all' || targetGender === 'chocolat') {
@@ -733,7 +977,11 @@ async function loadCMSProducts() {
         let imagesHTML = '';
         if (Array.isArray(prod.image) && prod.image.length > 1) {
             let slides = prod.image.map(img => `<img src="${img}" alt="${prod.title}" loading="lazy">`).join('');
-            imagesHTML = `<div class="slider-wrapper"><button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button><div class="image-slider">${slides}</div><button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button></div>`;
+            imagesHTML = `<div class="slider-wrapper">
+                            <button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>
+                            <div class="image-slider">${slides}</div>
+                            <button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button>
+                          </div>`;
         } else {
             let imgSrc = Array.isArray(prod.image) ? prod.image[0] : prod.image;
             if(imgSrc && imgSrc.startsWith('/')) imgSrc = '.' + imgSrc;
@@ -816,7 +1064,7 @@ function renderAdminCategories() {
     
     list.innerHTML = localCats.map((cat, index) => `
         <tr>
-          <td><strong style="color:#fff;">${cat.emoji ? cat.emoji + ' ' : ''}${cat.name}</strong></td>
+          <td><strong>${cat.emoji ? cat.emoji + ' ' : ''}${cat.name}</strong></td>
           <td>
             <button class="btn-delete" onclick="deleteCategory(${index})">
               <i class="fa-solid fa-trash"></i> Supprimer
@@ -855,8 +1103,8 @@ function loadDynamicCategories() {
     });
 }
 
-/* === LOGIQUE DES PRODUITS (SAUVEGARDE DIRECTE DANS GITHUB - HD SANS COMPRESSION) === */
-const GITHUB_TOKEN = "ghp_" + "FMJOZS8RvWFoGEzolM2cD4lE5QNbqV14YICl"; // BADEL HAD L'TOKEN PSQ TFKHDE3 B L'ANCIEN
+/* === LOGIQUE DES PRODUITS (SAUVEGARDE DIRECTE DANS GITHUB) === */
+const GITHUB_TOKEN = "ghp_" + "FMJOZS8RvWFoGEzolM2cD4lE5QNbqV14YICl"; 
 const REPO = "cosmetiqueparisien/cosmetiqueparisienne";
 
 let editMode = null;
@@ -876,7 +1124,7 @@ function editProduct(title, price, gender, path, sha, oldImgData) {
     document.getElementById('admin-name').value = title; 
     document.getElementById('admin-price').value = price;
     document.getElementById('admin-gender').value = gender; 
-    document.getElementById('admin-image').removeAttribute('required'); // Nnahiw required hna
+    document.getElementById('admin-image').removeAttribute('required');
     document.querySelector('#admin-add-product button').innerText = "Modifier ✏️";
     
     let oldImg = oldImgData ? JSON.parse(decodeURIComponent(oldImgData)) : '';
@@ -913,7 +1161,7 @@ document.getElementById('admin-add-product').addEventListener('submit', async fu
             }
             finalImage = imageUrls.length > 1 ? imageUrls : imageUrls[0];
         } else if (editMode && editMode.image) {
-            finalImage = editMode.image; // Nkhabou ts'wira l9dima
+            finalImage = editMode.image; 
         }
 
         const productData = { title: name, price: price, gender: gender, image: finalImage };
@@ -936,10 +1184,10 @@ document.getElementById('admin-add-product').addEventListener('submit', async fu
     btn.disabled = false;
 });
 
-/* === AFFICHER LES PRODUITS DANS LE TABLEAU ADMIN DEPUIS GITHUB (AVEC ANTICACHE) === */
+/* === AFFICHER LES PRODUITS DANS LE TABLEAU ADMIN DEPUIS GITHUB === */
 async function renderAddedProductsAdmin() {
     const list = document.getElementById('admin-products-list');
-    list.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--gold-light);">Chargement des produits depuis GitHub... ⏳</td></tr>`;
+    list.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--primary-color);">Chargement des produits depuis GitHub... ⏳</td></tr>`;
     
     try {
         const urlAdmin = `https://api.github.com/repos/${REPO}/contents/data/produits?t=` + Date.now();
@@ -961,11 +1209,10 @@ async function renderAddedProductsAdmin() {
                 let imgSrc = Array.isArray(p.image) ? p.image[0] : p.image;
                 if(imgSrc && imgSrc.startsWith('/')) imgSrc = '.' + imgSrc;
                 
-                // Zedna encodeURIComponent hna bch yssagb l'ktiba
                 html += `
                 <tr>
-                  <td><img src="${imgSrc}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 1px solid var(--gold-primary);"></td>
-                  <td><strong style="color:#fff;">${p.title}</strong></td>
+                  <td><img src="${imgSrc}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 1px solid #ddd;"></td>
+                  <td><strong>${p.title}</strong></td>
                   <td>${p.price} DA</td>
                   <td>${p.gender}</td>
                   <td>
@@ -1006,7 +1253,6 @@ async function deleteProductFromGitHub(path, sha, btnElement) {
         }
     }
 }
-
 </script>
 
 </body>
