@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ====== VARIABLES CSS (THÈME CLAIR) ====== */
+    /* ====== VARIABLES CSS ====== */
     :root {
       --bg-color: #f4f5f7; --card-bg: #ffffff; --text-color: #111111;
       --primary-color: #000000; --primary-light: #333333; 
@@ -76,7 +76,7 @@
     .product button { background: var(--primary-color); border: none; padding: 8px 10px; border-radius: 6px; color: #fff; font-weight: 600; font-size: 0.85rem; cursor: pointer; width: 100%; transition: var(--transition); }
     .product button:hover { background: var(--primary-light); }
 
-    /* ====== NEW ORDER FORM (RTL) ====== */
+    /* ====== NEW ORDER FORM ====== */
     #orderForm { max-width: 500px; margin: 40px auto 20px; padding: 25px; border-radius: 12px; background: #ffffff; border: 2px solid #ff0000; box-shadow: 0 10px 30px rgba(255, 0, 0, 0.1); display: none; animation: fadeUp 0.5s ease; direction: rtl; text-align: right; }
     #orderForm h2.form-title { text-align: center; color: #111; margin-bottom: 25px; font-size: 1.2rem; font-weight: 700; }
     .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
@@ -150,7 +150,7 @@
   <div class="container">
     <h2 class="section-title">Notre Collection</h2>
 
-      <div class="filters" id="filtres">
+    <div class="filters" id="filtres">
       <button class="filter-btn btn-tous active" onclick="filterGender('all', this)"><i class="fa-solid fa-border-all"></i> Tous</button>
       <button class="filter-btn btn-homme" onclick="filterGender('homme', this)"><i class="fa-solid fa-mars"></i> Homme</button>
       <button class="filter-btn btn-femme" onclick="filterGender('femme', this)"><i class="fa-solid fa-venus"></i> Femme</button>
@@ -159,7 +159,7 @@
     </div>
 
     <div class="products" id="productList">
-      <!-- GA3 LES PRODUITS LI KANOU F L'CODE LWEEL DYALEK -->
+      <!-- PRODUITS STATIQUES -->
       <div class="product" data-gender="homme"><img src="./box1.jpg" alt="Box Cadeau 1" loading="lazy"><h3>Box Cadeau 1</h3><p class="price">7000 DA</p><button onclick="openForm('Box Cadeau 1',7000)">تقديم الطلبية</button></div>
       <div class="product" data-gender="homme"><img src="./box2.jpg" alt="Box Cadeau 2" loading="lazy"><h3>Box Cadeau 2</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 2',8500)">تقديم الطلبية</button></div>
       <div class="product" data-gender="homme"><img src="./box3.jpg" alt="Box Cadeau 3" loading="lazy"><h3>Box Cadeau 3</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 3',4500)">تقديم الطلبية</button></div>
@@ -265,7 +265,7 @@
       </div>
     </div>
     
-    <!-- L'ESTIMARA JDIDA (RTL, STYLE IMAGE.PNG) -->
+    <!-- L'ESTIMARA -->
     <div class="form" id="orderForm" dir="rtl">
       <h2 class="form-title" id="productTitle">املأ الاستمارة للطلب</h2>
       
@@ -328,8 +328,6 @@
         </div>
       </div>
     </div>
-    <!-- FIN ESTIMARA JDIDA -->
-
   </div>
 
   <footer>
@@ -343,9 +341,7 @@
   </footer>
 </div> 
 
-<!-- ============================================== -->
 <!-- ADMIN PANEL -->
-<!-- ============================================== -->
 <div id="admin-panel">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
     <h2 class="section-title" style="margin: 0;">Panel Administrateur</h2>
@@ -367,17 +363,10 @@
       </div>
       <button type="submit" style="margin-top: 0; padding: 14px 20px; width: auto;">Ajouter le Filtre</button>
     </form>
-
     <div style="overflow-x: auto; margin-top: 20px;">
       <table class="admin-table">
-        <thead>
-          <tr>
-            <th>Filtres Ajoutés</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="admin-categories-list">
-        </tbody>
+        <thead><tr><th>Filtres Ajoutés</th><th>Action</th></tr></thead>
+        <tbody id="admin-categories-list"></tbody>
       </table>
     </div>
   </div>
@@ -404,7 +393,7 @@
       </div>
       <div>
         <input type="file" id="admin-image" accept="image/*" multiple required style="padding-left: 15px;">
-        <small style="color:#666; padding-left:15px; display:block; margin-top:5px;">* Vous pouvez sélectionner plusieurs photos pour créer un slider</small>
+        <small style="color:#666; padding-left:15px; display:block; margin-top:5px;">* Vous pouvez sélectionner plusieurs photos</small>
       </div>
       <button type="submit" style="grid-column: span 2;">Ajouter au Magasin</button>
     </form>
@@ -413,17 +402,8 @@
   <h2 style="color: var(--primary-color); font-family: 'Playfair Display', serif; margin-bottom: 15px; margin-top: 40px;">Mes Produits Ajoutés</h2>
   <div style="overflow-x: auto; margin-bottom: 40px;">
     <table class="admin-table">
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Nom</th>
-          <th>Prix</th>
-          <th>Catégorie</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody id="admin-products-list">
-      </tbody>
+      <thead><tr><th>Image</th><th>Nom</th><th>Prix</th><th>Catégorie</th><th>Action</th></tr></thead>
+      <tbody id="admin-products-list"></tbody>
     </table>
   </div>
 </div>
@@ -442,12 +422,10 @@
 <a href="https://wa.me/213792822978" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
 
 <script defer>
-/* ====== VARIABLES ====== */
 let basePrice = 0;
 let product = "";
 let currentDeliveryPrices = { domicile: null, bureau: null };
 
-/* ====== LIVRAISON MAYSTRO ====== */
 const livraisonMaystro = {
   "Adrar": { bureau: 850, domicile: 1200 }, "Chlef": { bureau: 500, domicile: 800 }, 
   "Laghouat": { bureau: 650, domicile: 900 }, "Oum El Bouaghi": { bureau: 500, domicile: 850 }, 
@@ -501,7 +479,6 @@ wilayaSelect.addEventListener("change", () => {
   calc();
 });
 
-/* ====== FILTRAGE CORRIGÉ ====== */
 function filterGender(gender, btnElement) {
   const buttons = document.querySelectorAll('.filter-btn');
   buttons.forEach(btn => btn.classList.remove('active'));
@@ -562,7 +539,6 @@ function openForm(p, price){
   setTimeout(() => { formElement.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
 }
 
-// JOUER AVEC LA QUANTITE + ET -
 function changeQty(amount) {
   let q = parseInt(document.getElementById("qty").value) || 1;
   q += amount;
@@ -571,7 +547,6 @@ function changeQty(amount) {
   calc();
 }
 
-// NOUVELLE FONCTION CALC POUR LES DETAILS DE PRIX
 function calc() {
   let q = parseInt(document.getElementById("qty").value) || 1;
   if (q < 1) { q = 1; document.getElementById("qty").value = 1; }
@@ -613,7 +588,6 @@ function checkFormAndPay(){
     alert("Veuillez remplir جميع المعلومات من فضلك !");
     return;
   }
-
   const modal = document.getElementById("paymentModal");
   modal.classList.add("show");
 }
@@ -632,28 +606,27 @@ function processOrder(paymentChoice){
   
   const isDomicile = document.getElementById("del_domicile").checked;
   const deliveryType = isDomicile ? "للمنزل 🏠" : "لمكتب التوصيل 📦";
-  
   const finalTotal = document.getElementById("total").innerText;
 
-  const text = `🌟 *Nouvelle Commande* 🌟
--------------------------
-🛍️ *Produit :* ${product}
-👤 *Nom :* ${name}
-📞 *Tél :* ${phone}
-📍 *Wilaya :* ${wilaya}
-🏠 *Commune :* ${commune}
-📦 *Quantité :* ${qty}
-🚚 *Livraison :* ${deliveryType}
-💳 *Paiement :* ${paymentChoice}
--------------------------
-💰 *${finalTotal}*`;
-
+  const text = `🌟 *Nouvelle Commande* 🌟\n-------------------------\n🛍️ *Produit :* ${product}\n👤 *Nom :* ${name}\n📞 *Tél :* ${phone}\n📍 *Wilaya :* ${wilaya}\n🏠 *Commune :* ${commune}\n📦 *Quantité :* ${qty}\n🚚 *Livraison :* ${deliveryType}\n💳 *Paiement :* ${paymentChoice}\n-------------------------\n💰 *${finalTotal}*`;
   closeModal();
-  const url = "https://wa.me/213792822978?text=" + encodeURIComponent(text);
-  window.open(url, '_blank');
+  window.open("https://wa.me/213792822978?text=" + encodeURIComponent(text), '_blank');
 }
 
-/* ====== جلب المنتجات أوتوماتيكياً من لوحة التحكم ====== */
+/* ====== LA FONCTION JDIDA BACH TRETTEB LES PRODUITS ====== */
+function sortProductsByCategory() {
+  const productList = document.getElementById('productList');
+  const products = Array.from(productList.querySelectorAll('.product'));
+  
+  products.sort((a, b) => {
+    let catA = a.getAttribute('data-gender') || '';
+    let catB = b.getAttribute('data-gender') || '';
+    return catA.localeCompare(catB);
+  });
+  
+  products.forEach(prod => productList.appendChild(prod));
+}
+
 async function loadCMSProducts() {
   try {
     const url = 'https://api.github.com/repos/cosmetiqueparisien/cosmetiqueparisienne/contents/data/produits?t=' + Date.now();
@@ -671,7 +644,10 @@ async function loadCMSProducts() {
         let imagesHTML = '';
         if (Array.isArray(prod.image) && prod.image.length > 1) {
             let slides = prod.image.map(img => `<img src="${img}" alt="${prod.title}" loading="lazy">`).join('');
-            imagesHTML = `<div class="slider-wrapper"><button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button><div class="image-slider">${slides}</div><button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button></div>`;
+            
+            /* LIGNE LONGUE DIVISÉE SUR 2 */
+            imagesHTML = `<div class="slider-wrapper"><button class="slide-btn left" onclick="slideImage(this, -1)">&#10094;</button>`;
+            imagesHTML += `<div class="image-slider">${slides}</div><button class="slide-btn right" onclick="slideImage(this, 1)">&#10095;</button></div>`;
         } else {
             let imgSrc = Array.isArray(prod.image) ? prod.image[0] : prod.image;
             if(imgSrc && imgSrc.startsWith('/')) imgSrc = '.' + imgSrc;
@@ -689,6 +665,10 @@ async function loadCMSProducts() {
         productList.insertAdjacentHTML('beforeend', productHTML); 
       }
     }
+    
+    // N3AYTOU L LA FONCTION BACH TRETTEB LES PRODUITS APRES L'AJOUT
+    sortProductsByCategory();
+    
   } catch (error) {
     console.log("Erreur chargement CMS:", error);
   }
@@ -698,10 +678,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadDynamicCategories(); 
     loadCMSProducts();
 });
-
-/* =================================================================== */
-/* LOGIQUE DE L'ADMINISTRATEUR AVEC MOT DE PASSE                       */
-/* =================================================================== */
 
 function toggleAdmin() {
     const mainSite = document.getElementById('main-site');
@@ -743,7 +719,11 @@ function renderAdminCategories() {
     let localCats = JSON.parse(localStorage.getItem('cosmo_categories')) || [];
     const list = document.getElementById('admin-categories-list');
     if (localCats.length === 0) { list.innerHTML = `<tr><td colspan="2" style="text-align:center; padding:20px; color:#aaa;">Aucun filtre personnalisé ajouté.</td></tr>`; return; }
-    list.innerHTML = localCats.map((cat, index) => `<tr><td><strong>${cat.emoji ? cat.emoji + ' ' : ''}${cat.name}</strong></td><td><button class="btn-delete" onclick="deleteCategory(${index})"><i class="fa-solid fa-trash"></i> Supprimer</button></td></tr>`).join('');
+    
+    /* LIGNE LONGUE DIVISÉE SUR 2 */
+    let html = localCats.map((cat, index) => `<tr><td><strong>${cat.emoji ? cat.emoji + ' ' : ''}${cat.name}</strong></td>`);
+    html = html.map((row, index) => row + `<td><button class="btn-delete" onclick="deleteCategory(${index})"><i class="fa-solid fa-trash"></i> Supprimer</button></td></tr>`).join('');
+    list.innerHTML = html;
 }
 
 function deleteCategory(index) {
@@ -832,8 +812,8 @@ document.getElementById('admin-add-product').addEventListener('submit', async fu
 
         const productData = { title: name, price: price, gender: gender, image: finalImage };
         const jsonBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(productData, null, 2))));
-        
         const finalPath = editMode ? editMode.path : `data/produits/prod_${id}.json`;
+        
         await uploadFileToGitHub(finalPath, jsonBase64, editMode ? editMode.sha : null);
         
         editMode = null;
@@ -865,7 +845,10 @@ async function renderAddedProductsAdmin() {
                 const p = await res.json();
                 let imgSrc = Array.isArray(p.image) ? p.image[0] : p.image;
                 if(imgSrc && imgSrc.startsWith('/')) imgSrc = '.' + imgSrc;
-                html += `<tr><td><img src="${imgSrc}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 1px solid #ddd;"></td><td><strong>${p.title}</strong></td><td>${p.price} DA</td><td>${p.gender}</td><td><button class="btn-delete" style="background:#4A90E2; margin-bottom:5px; width:100%;" onclick="editProduct('${p.title}', ${p.price}, '${p.gender}', '${file.path}', '${file.sha}', '${encodeURIComponent(JSON.stringify(p.image || ''))}')">Modifier ✏️</button><button class="btn-delete" style="width:100%;" onclick="deleteProductFromGitHub('${file.path}', '${file.sha}', this)"><i class="fa-solid fa-trash"></i> Supprimer</button></td></tr>`;
+                
+                /* LIGNE LONGUE DIVISÉE SUR 2 */
+                html += `<tr><td><img src="${imgSrc}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 1px solid #ddd;"></td>`;
+                html += `<td><strong>${p.title}</strong></td><td>${p.price} DA</td><td>${p.gender}</td><td><button class="btn-delete" style="background:#4A90E2; margin-bottom:5px; width:100%;" onclick="editProduct('${p.title}', ${p.price}, '${p.gender}', '${file.path}', '${file.sha}', '${encodeURIComponent(JSON.stringify(p.image || ''))}')">Modifier ✏️</button><button class="btn-delete" style="width:100%;" onclick="deleteProductFromGitHub('${file.path}', '${file.sha}', this)"><i class="fa-solid fa-trash"></i> Supprimer</button></td></tr>`;
             }
         }
         list.innerHTML = html || `<tr><td colspan="5" style="text-align:center; padding:20px; color:#aaa;">Aucun produit trouvé.</td></tr>`;
