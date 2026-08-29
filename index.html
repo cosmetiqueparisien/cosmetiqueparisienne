@@ -618,10 +618,17 @@ function sortProductsByCategory() {
   const productList = document.getElementById('productList');
   const products = Array.from(productList.querySelectorAll('.product'));
   
+  const customOrder = { "homme": 1, "femme": 2, "chocolat": 3, "دببة": 4 };
+  
   products.sort((a, b) => {
-    let catA = a.getAttribute('data-gender') || '';
-    let catB = b.getAttribute('data-gender') || '';
-    return catA.localeCompare(catB);
+    let catA = (a.getAttribute('data-gender') || '').trim().toLowerCase();
+    let catB = (b.getAttribute('data-gender') || '').trim().toLowerCase();
+    
+    /* LIGNE LONGUE DIVISÉE SUR 2 */
+    let weightA = customOrder[catA] || 99;
+    let weightB = customOrder[catB] || 99;
+    
+    return weightA - weightB;
   });
   
   products.forEach(prod => productList.appendChild(prod));
@@ -666,7 +673,7 @@ async function loadCMSProducts() {
       }
     }
     
-    // N3AYTOU L LA FONCTION BACH TRETTEB LES PRODUITS APRES L'AJOUT
+    /* N3AYTOU LA FONCTION TRETTEB LES PRODUITS APRES L'AJOUT */
     sortProductsByCategory();
     
   } catch (error) {
@@ -677,6 +684,9 @@ async function loadCMSProducts() {
 document.addEventListener("DOMContentLoaded", () => {
     loadDynamicCategories(); 
     loadCMSProducts();
+    
+    /* NZIDOUH HNA BACH YRETTEB LES STATIQUES AU DEMARRAGE */
+    sortProductsByCategory();
 });
 
 function toggleAdmin() {
