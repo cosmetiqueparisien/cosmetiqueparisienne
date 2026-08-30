@@ -1,0 +1,12 @@
+{
+  "title": "دببة 1 متر",
+  "price": "8500",
+  "gender": "دببة",
+  "image": [
+    "./data/produits/images/prod_1788054352889_0.jpg",
+    "./data/produits/images/prod_1788054352889_1.jpg",
+    "./data/produits/images/prod_1788054352889_2.jpg",
+    "./data/produits/images/prod_1788054352889_3.jpg",
+    "./data/produits/images/prod_1788054352889_4.jpg"
+  ]
+}
