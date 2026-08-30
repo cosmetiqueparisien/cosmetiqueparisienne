@@ -126,13 +126,46 @@
     .social-icons a:hover { color: var(--primary-color); transform: translateY(-3px); }
     footer p { color: #888; font-size: 0.9rem; margin-bottom: 10px; }
 
-    /* ====== ADMIN PANEL ====== */
-    #admin-panel { display: none; max-width: 1200px; margin: auto; padding: 40px 20px; }
-    .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid #eee; }
-    .admin-table th, .admin-table td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
-    .admin-table th { background: #f9f9f9; color: var(--primary-color); font-weight: 700; }
-    .admin-form-container { background: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 30px; }
-    .btn-delete { background: #ff4c4c; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-size: 0.85rem; }
+    /* ========================================================================= */
+    /* ====== NOUVEAU PANEL ADMIN (DESIGN PREMIUM) ====== */
+    /* ========================================================================= */
+    #admin-panel { display: none; background-color: #f0f2f5; min-height: 100vh; padding: 40px 20px; }
+    .admin-wrapper { max-width: 1200px; margin: auto; }
+    
+    /* Header Admin */
+    .admin-header { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 20px 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); margin-bottom: 30px; }
+    .admin-header h2 { margin: 0; font-size: 1.6rem; color: #111; display: flex; align-items: center; gap: 10px; }
+    .admin-header h2 i { color: #4A90E2; }
+    .btn-retour { background: #f4f5f7; color: #333; padding: 10px 20px; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid #ddd; transition: 0.3s; cursor: pointer; }
+    .btn-retour:hover { background: #e2e6ea; }
+
+    /* Cartes Admin (Cards) */
+    .admin-card { background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 5px 30px rgba(0,0,0,0.05); margin-bottom: 30px; }
+    .admin-card h3 { font-size: 1.3rem; color: #222; margin-bottom: 25px; border-bottom: 2px solid #f4f5f7; padding-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+
+    /* Tableaux Admin */
+    .admin-table-container { overflow-x: auto; border-radius: 12px; border: 1px solid #f0f2f5; }
+    .admin-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+    .admin-table th { background: #f8f9fa; color: #666; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; padding: 16px; text-align: left; border-bottom: 1px solid #eee; }
+    .admin-table td { padding: 16px; border-bottom: 1px solid #f4f5f7; vertical-align: middle; color: #444; font-weight: 500; }
+    .admin-table tr:hover { background-color: #fafbfc; }
+    .admin-table img { width: 55px; height: 55px; border-radius: 10px; object-fit: cover; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+
+    /* Inputs Admin */
+    .admin-input-group { margin-bottom: 20px; position: relative; }
+    .admin-input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #888; }
+    .admin-input-group input, .admin-input-group select { width: 100%; padding: 14px 14px 14px 45px; border-radius: 10px; border: 1px solid #e0e0e0; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; background: #fafbfc; transition: 0.3s; }
+    .admin-input-group input:focus, .admin-input-group select:focus { outline: none; border-color: #4A90E2; background: #fff; box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1); }
+    
+    /* Boutons Admin */
+    .btn-admin-primary { background: #111; color: #fff; border: none; padding: 14px 25px; border-radius: 10px; font-weight: 600; cursor: pointer; transition: 0.3s; width: 100%; font-size: 1rem; }
+    .btn-admin-primary:hover { background: #333; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    
+    .btn-action-edit { background: #f0f7ff; color: #4A90E2; border: 1px solid #cce4ff; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: 0.3s; width: 100%; margin-bottom: 8px; display: flex; justify-content: center; align-items: center; gap: 5px; }
+    .btn-action-edit:hover { background: #4A90E2; color: #fff; }
+    
+    .btn-action-delete { background: #fff0f0; color: #e63946; border: 1px solid #ffdcdc; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: 0.3s; width: 100%; display: flex; justify-content: center; align-items: center; gap: 5px; }
+    .btn-action-delete:hover { background: #e63946; color: #fff; }
   </style>
 </head>
 
@@ -341,72 +374,85 @@
   </footer>
 </div> 
 
-<!-- ADMIN PANEL -->
+<!-- ========================================================== -->
+<!-- NOUVEAU PANEL ADMINISTRATEUR (DESIGN PREMIUM DASHBOARD)    -->
+<!-- ========================================================== -->
 <div id="admin-panel">
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-    <h2 class="section-title" style="margin: 0;">Panel Administrateur</h2>
-    <button class="hero-btn" onclick="toggleAdmin()" style="padding: 10px 20px; font-size: 0.9rem;">
-      <i class="fa-solid fa-arrow-left"></i> Retour au Site
-    </button>
-  </div>
-
-  <div class="admin-form-container form" style="display: block; box-shadow: none; max-width: 100%;">
-    <h2 style="font-size: 1.5rem; text-align: left; margin-bottom: 20px;">Ajouter un Filtre (Catégorie)</h2>
-    <form id="admin-add-category" style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-      <div class="input-icon" style="flex: 1; margin-bottom: 0;">
-        <i class="fa-solid fa-tags"></i>
-        <input type="text" id="admin-cat-name" placeholder="Nom du filtre (ex: Saint Valentin, Enfants...)" required>
-      </div>
-      <div class="input-icon" style="flex: 0.5; margin-bottom: 0;">
-        <i class="fa-solid fa-face-smile"></i>
-        <input type="text" id="admin-cat-emoji" placeholder="Emoji (ex: 💖)">
-      </div>
-      <button type="submit" style="margin-top: 0; padding: 14px 20px; width: auto;">Ajouter le Filtre</button>
-    </form>
-    <div style="overflow-x: auto; margin-top: 20px;">
-      <table class="admin-table">
-        <thead><tr><th>Filtres Ajoutés</th><th>Action</th></tr></thead>
-        <tbody id="admin-categories-list"></tbody>
-      </table>
+  <div class="admin-wrapper">
+    
+    <div class="admin-header">
+      <h2><i class="fa-solid fa-gauge-high"></i> Dashboard Administrateur</h2>
+      <button class="btn-retour" onclick="toggleAdmin()">
+        <i class="fa-solid fa-arrow-left"></i> Retour au Site
+      </button>
     </div>
-  </div>
 
-  <div class="admin-form-container form" style="display: block; box-shadow: none; max-width: 100%; margin-top: 40px;">
-    <h2 style="font-size: 1.5rem; text-align: left; margin-bottom: 20px;">Ajouter un Nouveau Produit</h2>
-    <form id="admin-add-product" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-      <div class="input-icon">
-        <i class="fa-solid fa-box"></i>
-        <input type="text" id="admin-name" placeholder="Nom du Produit" required>
-      </div>
-      <div class="input-icon">
-        <i class="fa-solid fa-money-bill"></i>
-        <input type="number" id="admin-price" placeholder="Prix en DA" required>
-      </div>
-      <div class="input-icon">
-        <i class="fa-solid fa-venus-mars"></i>
-        <select id="admin-gender" required>
-          <option value="homme">Homme</option>
-          <option value="femme">Femme</option>
-          <option value="chocolat">Chocolat</option>
-          <option value="دببة">دببة</option>
-        </select>
-      </div>
-      <div>
-        <input type="file" id="admin-image" accept="image/*" multiple required style="padding-left: 15px;">
-        <small style="color:#666; padding-left:15px; display:block; margin-top:5px;">* Vous pouvez sélectionner plusieurs photos</small>
-      </div>
-      <button type="submit" style="grid-column: span 2;">Ajouter au Magasin</button>
-    </form>
-  </div>
+    <div class="admin-card">
+      <h3><i class="fa-solid fa-tags"></i> Ajouter un Filtre (Catégorie)</h3>
+      <form id="admin-add-category" style="display: grid; grid-template-columns: 2fr 1fr auto; gap: 15px; align-items: center;">
+        <div class="admin-input-group" style="margin: 0;">
+          <i class="fa-solid fa-font"></i>
+          <input type="text" id="admin-cat-name" placeholder="Nom du filtre (ex: Saint Valentin)" required>
+        </div>
+        <div class="admin-input-group" style="margin: 0;">
+          <i class="fa-solid fa-face-smile"></i>
+          <input type="text" id="admin-cat-emoji" placeholder="Emoji (ex: 💖)">
+        </div>
+        <button type="submit" class="btn-admin-primary" style="margin: 0;">Ajouter</button>
+      </form>
 
-  <h2 style="color: var(--primary-color); font-family: 'Playfair Display', serif; margin-bottom: 15px; margin-top: 40px;">Mes Produits Ajoutés</h2>
-  <div style="overflow-x: auto; margin-bottom: 40px;">
-    <table class="admin-table">
-      <thead><tr><th>Image</th><th>Nom</th><th>Prix</th><th>Catégorie</th><th>Action</th></tr></thead>
-      <tbody id="admin-products-list"></tbody>
-    </table>
+      <div class="admin-table-container" style="margin-top: 25px;">
+        <table class="admin-table">
+          <thead><tr><th>Filtres Ajoutés</th><th style="width: 150px; text-align: right;">Action</th></tr></thead>
+          <tbody id="admin-categories-list"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="admin-card">
+      <h3><i class="fa-solid fa-box-open"></i> Ajouter un Nouveau Produit</h3>
+      <form id="admin-add-product" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="admin-input-group">
+          <i class="fa-solid fa-box"></i>
+          <input type="text" id="admin-name" placeholder="Nom du Produit" required>
+        </div>
+        <div class="admin-input-group">
+          <i class="fa-solid fa-money-bill"></i>
+          <input type="number" id="admin-price" placeholder="Prix en DA" required>
+        </div>
+        <div class="admin-input-group">
+          <i class="fa-solid fa-list-ul"></i>
+          <select id="admin-gender" required>
+            <option value="homme">Homme</option>
+            <option value="femme">Femme</option>
+            <option value="chocolat">Chocolat</option>
+            <option value="دببة">دببة</option>
+          </select>
+        </div>
+        <div class="admin-input-group">
+          <i class="fa-regular fa-image"></i>
+          <input type="file" id="admin-image" accept="image/*" multiple required style="padding-left: 45px; background: #fff;">
+          <small style="color:#888; display:block; margin-top:8px; margin-left: 5px;">* Sélectionnez plusieurs photos pour créer un slider</small>
+        </div>
+        <button type="submit" class="btn-admin-primary" style="grid-column: span 2;">
+          <i class="fa-solid fa-cloud-arrow-up"></i> Ajouter le Produit
+        </button>
+      </form>
+    </div>
+
+    <div class="admin-card">
+      <h3><i class="fa-solid fa-boxes-stacked"></i> Mes Produits Ajoutés</h3>
+      <div class="admin-table-container">
+        <table class="admin-table">
+          <thead><tr><th>Image</th><th>Nom</th><th>Prix</th><th>Catégorie</th><th style="width: 150px;">Actions</th></tr></thead>
+          <tbody id="admin-products-list"></tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </div>
+<!-- FIN PANEL ADMIN -->
 
 <div id="paymentModal" class="modal">
   <div class="modal-content">
@@ -613,7 +659,7 @@ function processOrder(paymentChoice){
   window.open("https://wa.me/213792822978?text=" + encodeURIComponent(text), '_blank');
 }
 
-/* ====== LA FONCTION JDIDA BACH TRETTEB LES PRODUITS ====== */
+/* ====== TRETTEB LES PRODUITS ====== */
 function sortProductsByCategory() {
   const productList = document.getElementById('productList');
   const products = Array.from(productList.querySelectorAll('.product'));
@@ -624,10 +670,8 @@ function sortProductsByCategory() {
     let catA = (a.getAttribute('data-gender') || '').trim().toLowerCase();
     let catB = (b.getAttribute('data-gender') || '').trim().toLowerCase();
     
-    /* LIGNE LONGUE DIVISÉE SUR 2 */
     let weightA = customOrder[catA] || 99;
     let weightB = customOrder[catB] || 99;
-    
     return weightA - weightB;
   });
   
@@ -673,7 +717,6 @@ async function loadCMSProducts() {
       }
     }
     
-    /* N3AYTOU LA FONCTION TRETTEB LES PRODUITS APRES L'AJOUT */
     sortProductsByCategory();
     
   } catch (error) {
@@ -684,8 +727,6 @@ async function loadCMSProducts() {
 document.addEventListener("DOMContentLoaded", () => {
     loadDynamicCategories(); 
     loadCMSProducts();
-    
-    /* NZIDOUH HNA BACH YRETTEB LES STATIQUES AU DEMARRAGE */
     sortProductsByCategory();
 });
 
@@ -732,7 +773,7 @@ function renderAdminCategories() {
     
     /* LIGNE LONGUE DIVISÉE SUR 2 */
     let html = localCats.map((cat, index) => `<tr><td><strong>${cat.emoji ? cat.emoji + ' ' : ''}${cat.name}</strong></td>`);
-    html = html.map((row, index) => row + `<td><button class="btn-delete" onclick="deleteCategory(${index})"><i class="fa-solid fa-trash"></i> Supprimer</button></td></tr>`).join('');
+    html = html.map((row, index) => row + `<td style="text-align:right;"><button class="btn-action-delete" style="width: auto; display: inline-flex;" onclick="deleteCategory(${index})"><i class="fa-solid fa-trash"></i> Supprimer</button></td></tr>`).join('');
     list.innerHTML = html;
 }
 
@@ -782,7 +823,7 @@ function editProduct(title, price, gender, path, sha, oldImgData) {
     document.getElementById('admin-price').value = price;
     document.getElementById('admin-gender').value = gender; 
     document.getElementById('admin-image').removeAttribute('required');
-    document.querySelector('#admin-add-product button').innerText = "Modifier ✏️";
+    document.querySelector('#admin-add-product button').innerHTML = "<i class='fa-solid fa-pen'></i> Modifier le Produit";
     let oldImg = oldImgData ? JSON.parse(decodeURIComponent(oldImgData)) : '';
     editMode = { path, sha, image: oldImg }; 
     window.scrollTo(0, document.getElementById('admin-add-product').offsetTop - 20);
@@ -791,7 +832,7 @@ function editProduct(title, price, gender, path, sha, oldImgData) {
 document.getElementById('admin-add-product').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button');
-    btn.innerText = "Patientez, ajout en cours... ⏳";
+    btn.innerHTML = "<i class='fa-solid fa-spinner fa-spin'></i> Patientez...";
     btn.disabled = true;
 
     const name = document.getElementById('admin-name').value;
@@ -835,13 +876,13 @@ document.getElementById('admin-add-product').addEventListener('submit', async fu
         alert("Erreur f l'ajout! Vérifiez le Token.");
         console.error(error);
     }
-    btn.innerText = "Ajouter au Magasin";
+    btn.innerHTML = "<i class='fa-solid fa-cloud-arrow-up'></i> Ajouter le Produit";
     btn.disabled = false;
 });
 
 async function renderAddedProductsAdmin() {
     const list = document.getElementById('admin-products-list');
-    list.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--primary-color);">Chargement des produits depuis GitHub... ⏳</td></tr>`;
+    list.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--primary-color);"><i class="fa-solid fa-spinner fa-spin"></i> Chargement des produits...</td></tr>`;
     try {
         const urlAdmin = `https://api.github.com/repos/${REPO}/contents/data/produits?t=` + Date.now();
         const response = await fetch(urlAdmin);
@@ -857,8 +898,8 @@ async function renderAddedProductsAdmin() {
                 if(imgSrc && imgSrc.startsWith('/')) imgSrc = '.' + imgSrc;
                 
                 /* LIGNE LONGUE DIVISÉE SUR 2 */
-                html += `<tr><td><img src="${imgSrc}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 1px solid #ddd;"></td>`;
-                html += `<td><strong>${p.title}</strong></td><td>${p.price} DA</td><td>${p.gender}</td><td><button class="btn-delete" style="background:#4A90E2; margin-bottom:5px; width:100%;" onclick="editProduct('${p.title}', ${p.price}, '${p.gender}', '${file.path}', '${file.sha}', '${encodeURIComponent(JSON.stringify(p.image || ''))}')">Modifier ✏️</button><button class="btn-delete" style="width:100%;" onclick="deleteProductFromGitHub('${file.path}', '${file.sha}', this)"><i class="fa-solid fa-trash"></i> Supprimer</button></td></tr>`;
+                html += `<tr><td><img src="${imgSrc}"></td>`;
+                html += `<td><strong>${p.title}</strong></td><td>${p.price} DA</td><td>${p.gender}</td><td><button class="btn-action-edit" onclick="editProduct('${p.title}', ${p.price}, '${p.gender}', '${file.path}', '${file.sha}', '${encodeURIComponent(JSON.stringify(p.image || ''))}')"><i class="fa-solid fa-pen"></i> Modifier</button><button class="btn-action-delete" onclick="deleteProductFromGitHub('${file.path}', '${file.sha}', this)"><i class="fa-solid fa-trash"></i> Supprimer</button></td></tr>`;
             }
         }
         list.innerHTML = html || `<tr><td colspan="5" style="text-align:center; padding:20px; color:#aaa;">Aucun produit trouvé.</td></tr>`;
@@ -867,7 +908,7 @@ async function renderAddedProductsAdmin() {
 
 async function deleteProductFromGitHub(path, sha, btnElement) {
     if(confirm("Êtes-vous sûr de vouloir supprimer ce produit définitivement de la boutique ?")) {
-        btnElement.innerText = "⏳...";
+        btnElement.innerHTML = "<i class='fa-solid fa-spinner fa-spin'></i>";
         btnElement.disabled = true;
         try {
             await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, { method: 'DELETE', headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ message: "Produit supprimé via Admin Panel", sha: sha }) });
