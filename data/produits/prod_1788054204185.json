@@ -1,0 +1,9 @@
+{
+  "title": "Christian Dior",
+  "price": "2450",
+  "gender": "Portefeuille",
+  "image": [
+    "./data/produits/images/prod_1788054204185_0.jpg",
+    "./data/produits/images/prod_1788054204185_1.jpg"
+  ]
+}
