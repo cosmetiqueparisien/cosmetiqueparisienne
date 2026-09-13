@@ -1010,9 +1010,18 @@ async function deleteProductFromGitHub(path, sha, btnElement) {
       if (e.key === 'Escape') closeImageLightbox();
     });
     document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.product img').forEach(function(img) {
-        img.addEventListener('click', function() { openImageLightbox(this.src, this.alt); });
-      });
+      // Event delegation: fonctionne aussi pour les produits ajoutés dynamiquement depuis le Dashboard.
+      const productList = document.getElementById('productList');
+      if (productList) {
+        productList.addEventListener('click', function(e) {
+          const img = e.target.closest('.product img');
+          if (img) {
+            e.preventDefault();
+            e.stopPropagation();
+            openImageLightbox(img.currentSrc || img.src, img.alt);
+          }
+        });
+      }
     });
   </script>
 </body>
