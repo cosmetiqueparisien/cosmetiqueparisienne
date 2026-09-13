@@ -76,7 +76,7 @@
     .custom-price-input { width: 80%; padding: 8px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #ccc; background: #fafafa; color: #333; text-align: center; font-weight: bold; font-size: 0.9rem; }
     .product button { background: var(--primary-color); border: none; padding: 8px 10px; border-radius: 6px; color: #fff; font-weight: 600; font-size: 0.85rem; cursor: pointer; width: 100%; transition: var(--transition); }
     .product button:hover { background: #333; }
-    .product button .cart-icon { filter: grayscale(1) brightness(0) invert(1); display: inline-block; font-size: 1.05em; margin-right: 4px; }
+    .product button .cart-icon { filter: grayscale(1) brightness(0) invert(1); display: inline-block; font-size: 1.05em; margin-right: 4px; color: #fff; }
 
     /* ====== NEW ORDER FORM ====== */
     #orderForm { max-width: 500px; margin: 40px auto 20px; padding: 25px; border-radius: 12px; background: #ffffff; border: 2px solid #ff0000; box-shadow: 0 10px 30px rgba(255, 0, 0, 0.1); display: none; animation: fadeUp 0.5s ease; direction: rtl; text-align: right; }
@@ -215,6 +215,15 @@
       .filter-btn { font-size: .86rem; padding: 9px 10px; gap:6px; }
       .products { gap: 10px; }
     }
+
+    /* ===== IMAGE LIGHTBOX ===== */
+    #imageLightbox { position: fixed; inset: 0; background: rgba(0,0,0,.88); display: none; align-items: center; justify-content: center; z-index: 99999; padding: 20px; cursor: zoom-out; }
+    #imageLightbox.show { display: flex; animation: lbFade .2s ease; }
+    #imageLightbox img { max-width: 96vw; max-height: 92vh; width: auto; height: auto; object-fit: contain; border-radius: 14px; box-shadow: 0 15px 50px rgba(0,0,0,.45); cursor: default; }
+    #imageLightbox .lb-close { position: absolute; top: 16px; right: 18px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255,255,255,.14); color: #fff; font-size: 30px; line-height: 44px; cursor: pointer; }
+    #imageLightbox .lb-close:hover { background: rgba(255,255,255,.25); }
+    .product img { cursor: zoom-in; }
+    @keyframes lbFade { from { opacity: 0; } to { opacity: 1; } }
   </style>
 </head>
 
@@ -975,5 +984,36 @@ async function deleteProductFromGitHub(path, sha, btnElement) {
 }
 </script>
 
+
+  <div id="imageLightbox" onclick="closeImageLightbox(event)">
+    <button class="lb-close" type="button" aria-label="Fermer" onclick="closeImageLightbox(event)">×</button>
+    <img id="lightboxImage" src="" alt="Image du produit" onclick="event.stopPropagation()">
+  </div>
+
+  <script>
+    function openImageLightbox(src, alt) {
+      const box = document.getElementById('imageLightbox');
+      const img = document.getElementById('lightboxImage');
+      img.src = src;
+      img.alt = alt || 'Image du produit';
+      box.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeImageLightbox(e) {
+      if (e) e.stopPropagation();
+      const box = document.getElementById('imageLightbox');
+      box.classList.remove('show');
+      document.getElementById('lightboxImage').src = '';
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeImageLightbox();
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.product img').forEach(function(img) {
+        img.addEventListener('click', function() { openImageLightbox(this.src, this.alt); });
+      });
+    });
+  </script>
 </body>
 </html>
