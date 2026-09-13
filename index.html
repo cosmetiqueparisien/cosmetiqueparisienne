@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* ====== VARIABLES CSS ====== */
@@ -26,7 +26,7 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
+    body { font-family: 'Outfit', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
 
     /* ====== HERO SECTION ====== */
     .hero {
@@ -34,25 +34,26 @@
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(244, 245, 247, 1)), url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
       padding: 0 20px;
     }
-    .hero h1 { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--primary-color); margin-bottom: 20px; animation: elegantReveal 1.5s ease-out forwards; }
-    .hero p { font-size: 1.1rem; color: #444; max-width: 600px; margin-bottom: 40px; animation: fadeUp 1.5s ease-out 0.5s both; }
-    .hero-btn { background: var(--primary-color); color: #fff; border: none; padding: 15px 40px; font-size: 1rem; border-radius: 8px; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: var(--transition); animation: fadeUp 1.5s ease-out 1s both; display: inline-flex; align-items: center; gap: 10px; }
+    .hero h1 { font-family: 'Outfit', sans-serif; font-size: 3.9rem; line-height: 1.02; font-weight: 800; letter-spacing: -2.8px; color: var(--primary-color); margin-bottom: 22px; animation: elegantReveal 1.5s ease-out forwards; }
+    .hero p { font-size: 1.28rem; line-height: 1.65; font-weight: 400; color: #4a4a4a; max-width: 720px; margin-bottom: 42px; animation: fadeUp 1.5s ease-out 0.5s both; }
+    .hero-btn { background: var(--primary-color); color: #fff; border: none; padding: 17px 42px; font-size: 1.05rem; border-radius: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; cursor: pointer; transition: var(--transition); animation: fadeUp 1.5s ease-out 1s both; display: inline-flex; align-items: center; gap: 10px; }
     .hero-btn:hover { background: var(--primary-light); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
     @keyframes elegantReveal { 0% { opacity: 0; transform: translateY(-20px); } 100% { opacity: 1; transform: translateY(0); } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @media (max-width: 768px) { .hero { height: 50vh; } .hero h1 { font-size: 2.5rem; } }
+    @media (max-width: 768px) { .hero { height: 58vh; min-height: 560px; padding: 0 24px; } .hero h1 { font-size: 3rem; letter-spacing: -1.5px; } .hero p { font-size: 1.08rem; max-width: 680px; } .hero-btn { width: min(100%, 545px); justify-content: center; } .container { padding: 62px 14px; } .section-title { font-size: 2.5rem; margin-bottom: 38px; } .filters { gap: 10px; margin-bottom: 42px; } .filter-btn { min-height: 52px; padding: 11px 17px; font-size: 0.98rem; } }
+    @media (max-width: 480px) { .hero h1 { font-size: 2.65rem; } .hero p { font-size: 1.02rem; } .section-title { font-size: 2.25rem; } .filters { justify-content: center; } .filter-btn { flex: 0 0 auto; } }
 
     /* ====== CONTAINER & FILTERS ====== */
-    .container { max-width: 1200px; margin: auto; padding: 60px 10px; }
-    .section-title { text-align: center; font-size: 2rem; color: var(--primary-color); margin-bottom: 30px; font-weight: 700; text-transform: uppercase; }
-    .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
-    .filter-btn { background: #fff; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: var(--transition); border: 1px solid #ddd; color: #555; display: flex; align-items: center; gap: 6px; }
+    .container { max-width: 1200px; margin: auto; padding: 72px 22px; }
+    .section-title { text-align: center; font-size: 3.15rem; line-height: 1.05; color: var(--primary-color); margin-bottom: 48px; font-weight: 800; letter-spacing: -2px; text-transform: uppercase; }
+    .filters { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px; max-width: 850px; margin: 0 auto 52px; }
+    .filter-btn { background: #fff; min-height: 54px; padding: 12px 22px; border-radius: 15px; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1.02rem; letter-spacing: -0.35px; text-transform: uppercase; transition: all 0.25s ease; border: 2px solid #dedede; color: #5b5b5b; display: inline-flex; align-items: center; justify-content: center; gap: 9px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); white-space: nowrap; }
+    .filter-btn i { font-size: 1.05rem; }
+    .filter-btn:hover { transform: translateY(-2px); border-color: #bdbdbd; box-shadow: 0 5px 14px rgba(0,0,0,0.06); }
+    .filter-btn.active { transform: none; }
     .btn-tous.active { background: var(--primary-color); color: #fff; border-color: var(--primary-color); }
-    .btn-homme:hover, .btn-homme.active { background: var(--blue-homme); color: white; border-color: var(--blue-homme); }
-    .btn-femme:hover, .btn-femme.active { background: var(--pink-femme); color: white; border-color: var(--pink-femme); }
-    .btn-chocolat:hover, .btn-chocolat.active { background: var(--choco-color); color: white; border-color: var(--choco-color); }
-    .btn-dibaba:hover, .btn-dibaba.active { background: #d2691e; color: white; border-color: #d2691e; }
-    .btn-custom-cat:hover, .btn-custom-cat.active { background: #888; color: #fff; border-color: #888; }
+    .btn-homme.active, .btn-femme.active, .btn-chocolat.active, .btn-dibaba.active, .btn-custom-cat.active { background: #000; color: #fff; border-color: #000; }
+    .btn-homme:hover, .btn-femme:hover, .btn-chocolat:hover, .btn-dibaba:hover, .btn-custom-cat:hover { background: #f7f7f7; color: #333; border-color: #c8c8c8; }
 
     /* ====== PRODUCT GRID ====== */
     .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
@@ -74,7 +75,8 @@
     
     .custom-price-input { width: 80%; padding: 8px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #ccc; background: #fafafa; color: #333; text-align: center; font-weight: bold; font-size: 0.9rem; }
     .product button { background: var(--primary-color); border: none; padding: 8px 10px; border-radius: 6px; color: #fff; font-weight: 600; font-size: 0.85rem; cursor: pointer; width: 100%; transition: var(--transition); }
-    .product button:hover { background: var(--primary-light); }
+    .product button:hover { background: #333; }
+    .product button .cart-icon { filter: grayscale(1) brightness(0) invert(1); display: inline-block; font-size: 1.05em; margin-right: 4px; }
 
     /* ====== NEW ORDER FORM ====== */
     #orderForm { max-width: 500px; margin: 40px auto 20px; padding: 25px; border-radius: 12px; background: #ffffff; border: 2px solid #ff0000; box-shadow: 0 10px 30px rgba(255, 0, 0, 0.1); display: none; animation: fadeUp 0.5s ease; direction: rtl; text-align: right; }
@@ -83,7 +85,7 @@
     @media (max-width: 480px) { .input-grid { grid-template-columns: 1fr; } }
     .input-icon-rtl { position: relative; width: 100%; }
     .input-icon-rtl i { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: #666; font-size: 1rem; z-index: 2; pointer-events: none; }
-    .input-icon-rtl input, .input-icon-rtl select { width: 100%; padding: 12px 12px 12px 12px; padding-right: 35px; border-radius: 8px; border: 1px solid #ddd; background-color: #fff; color: #333; font-size: 0.9rem; font-family: 'Montserrat', sans-serif; appearance: none; }
+    .input-icon-rtl input, .input-icon-rtl select { width: 100%; padding: 12px 12px 12px 12px; padding-right: 35px; border-radius: 8px; border: 1px solid #ddd; background-color: #fff; color: #333; font-size: 0.9rem; font-family: 'Outfit', sans-serif; appearance: none; }
     .input-icon-rtl input:focus, .input-icon-rtl select:focus { outline: none; border-color: #ff0000; }
     .delivery-options { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
     .delivery-options p { font-weight: 600; color: #333; margin-bottom: 10px; font-size: 0.95rem; }
@@ -154,7 +156,7 @@
     /* Inputs Admin */
     .admin-input-group { margin-bottom: 20px; position: relative; }
     .admin-input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #888; }
-    .admin-input-group input, .admin-input-group select { width: 100%; padding: 14px 14px 14px 45px; border-radius: 10px; border: 1px solid #e0e0e0; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; background: #fafbfc; transition: 0.3s; }
+    .admin-input-group input, .admin-input-group select { width: 100%; padding: 14px 14px 14px 45px; border-radius: 10px; border: 1px solid #e0e0e0; font-family: 'Outfit', sans-serif; font-size: 0.95rem; background: #fafbfc; transition: 0.3s; }
     .admin-input-group input:focus, .admin-input-group select:focus { outline: none; border-color: #4A90E2; background: #fff; box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1); }
     
     /* Boutons Admin */
@@ -166,6 +168,53 @@
     
     .btn-action-delete { background: #fff0f0; color: #e63946; border: 1px solid #ffdcdc; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: 0.3s; width: 100%; display: flex; justify-content: center; align-items: center; gap: 5px; }
     .btn-action-delete:hover { background: #e63946; color: #fff; }
+
+    /* ====== PHOTO-INSPIRED MODERN MOBILE STYLE ====== */
+    .hero {
+      min-height: 650px; height: 68vh;
+      background: linear-gradient(to bottom, rgba(250,244,236,.72), rgba(248,249,250,.98)), url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .hero h1 { font-size: clamp(3.2rem, 8vw, 5.2rem); font-weight: 900; letter-spacing: -3.8px; max-width: 900px; }
+    .hero p { font-size: clamp(1.15rem, 2.4vw, 1.55rem); max-width: 820px; color:#444; }
+    .hero-btn { min-width: min(545px, 92vw); padding: 20px 28px; border-radius: 17px; font-size: 1.08rem; box-shadow: 0 10px 25px rgba(0,0,0,.12); }
+    .container { max-width: 1250px; padding: 82px 22px; }
+    .section-title { font-size: clamp(2.7rem, 6vw, 4rem); font-weight: 900; letter-spacing: -2.5px; margin-bottom: 54px; }
+    .filters { max-width: 920px; gap: 12px; }
+    .filter-btn { min-height: 58px; padding: 12px 24px; border-radius: 16px; font-size: 1.08rem; font-weight: 700; letter-spacing: .1px; border-width: 2px; }
+    .products { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+    .product { border-radius: 24px; padding: 12px; box-shadow: 0 5px 22px rgba(0,0,0,.055); border: 1px solid #ededed; align-items: stretch; text-align:left; }
+    .product img, .slider-wrapper { border-radius: 17px; }
+    .product h3 { font-size: 1.2rem; margin: 8px 4px 3px; font-weight: 800; }
+    .product p.price { font-size: 1.35rem; color:#111; margin: 4px 4px 12px; font-weight: 800; }
+    .product button { border-radius: 13px; padding: 13px 12px; font-size: .98rem; font-weight: 800; }
+    @media (max-width: 768px) {
+      .hero { height: 680px; min-height: 680px; padding: 0 18px; }
+      .hero h1 { font-size: 3.55rem; line-height: .98; letter-spacing:-3px; max-width: 390px; margin-bottom: 30px; }
+      .hero p { font-size: 1.2rem; line-height: 1.55; max-width: 390px; margin-bottom: 38px; }
+      .hero-btn { width: 92%; min-width:0; }
+      .container { padding: 74px 14px; }
+      .section-title { font-size: 2.7rem; margin-bottom: 46px; }
+      .filters { display:grid; grid-template-columns: repeat(6, auto); justify-content:center; gap:10px; max-width:100%; }
+      .filter-btn { min-height: 54px; padding: 10px 16px; font-size: .98rem; }
+      .filter-btn:nth-child(1) { grid-column: span 2; }
+      .filter-btn:nth-child(2) { grid-column: span 2; }
+      .filter-btn:nth-child(3) { grid-column: span 2; }
+      .filter-btn:nth-child(4) { grid-column: span 2; }
+      .filter-btn:nth-child(5) { grid-column: span 2; }
+      .filter-btn:nth-child(6) { grid-column: span 2; }
+      .products { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+      .product { border-radius: 20px; padding: 9px; }
+      .product h3 { font-size: .94rem; }
+      .product p.price { font-size: 1.05rem; }
+      .product button { font-size: .78rem; padding: 10px 6px; }
+    }
+    @media (max-width: 430px) {
+      .hero h1 { font-size: 3.15rem; }
+      .hero p { font-size: 1.08rem; }
+      .section-title { font-size: 2.35rem; }
+      .filter-btn { font-size: .86rem; padding: 9px 10px; gap:6px; }
+      .products { gap: 10px; }
+    }
   </style>
 </head>
 
@@ -176,7 +225,7 @@
     <h1>Cosmétique Parisienne</h1>
     <p>Offrez l'élégance à la Parisienne - Les meilleures Box Cadeaux en Algérie.</p>
     <button class="hero-btn" onclick="document.getElementById('filtres').scrollIntoView({ behavior: 'smooth' });">
-      Découvrir nos Box <i class="fa-solid fa-arrow-down"></i>
+      <i class="fa-solid fa-cart-shopping"></i> Découvrir nos Box <i class="fa-solid fa-arrow-right"></i>
     </button>
   </section>
 
@@ -189,45 +238,46 @@
       <button class="filter-btn btn-femme" onclick="filterGender('femme', this)"><i class="fa-solid fa-venus"></i> Femme</button>
       <button class="filter-btn btn-chocolat" onclick="filterGender('chocolat', this)">🍫 Chocolat</button>
       <button class="filter-btn btn-dibaba" onclick="filterGender('دببة', this)">🧸 دببة</button>
+      <button class="filter-btn btn-custom-cat" onclick="filterGender('portefeuille', this)">💼 Portefeuille</button>
     </div>
 
     <div class="products" id="productList">
       <!-- PRODUITS STATIQUES -->
-      <div class="product" data-gender="homme"><img src="./box1.jpg" alt="Box Cadeau 1" loading="lazy"><h3>Box Cadeau 1</h3><p class="price">7000 DA</p><button onclick="openForm('Box Cadeau 1',7000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box2.jpg" alt="Box Cadeau 2" loading="lazy"><h3>Box Cadeau 2</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 2',8500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box3.jpg" alt="Box Cadeau 3" loading="lazy"><h3>Box Cadeau 3</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 3',4500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box4.jpg" alt="Box Cadeau 4" loading="lazy"><h3>Box Cadeau 4</h3><p class="price">7500 DA</p><button onclick="openForm('Box Cadeau 4',7500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box5.jpg" alt="Box Cadeau 5" loading="lazy"><h3>Box Cadeau 5</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 5',9500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box6.jpg" alt="Box Cadeau 6" loading="lazy"><h3>Box Cadeau 6</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 6',4500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box7.jpg" alt="Box Cadeau 7" loading="lazy"><h3>Box Cadeau 7</h3><p class="price">10000 DA</p><button onclick="openForm('Box Cadeau 7',10000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box8.jpg" alt="Box Cadeau 8" loading="lazy"><h3>Box Cadeau 8</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 8',9500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box9.jpg" alt="Box Cadeau 9" loading="lazy"><h3>Box Cadeau 9</h3><p class="price">12500 DA</p><button onclick="openForm('Box Cadeau 9',12500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box10.jpg" alt="Box Cadeau 10" loading="lazy"><h3>Box Cadeau 10</h3><p class="price">11000 DA</p><button onclick="openForm('Box Cadeau 10',11000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box11.jpg" alt="Box Cadeau 11" loading="lazy"><h3>Box Cadeau 11</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 11',9500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box12.jpg" alt="Box Cadeau 12" loading="lazy"><h3>Box Cadeau 12</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 12',8500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box13.jpg" alt="Box Cadeau 13" loading="lazy"><h3>Box Cadeau 13</h3><p class="price">9000 DA</p><button onclick="openForm('Box Cadeau 13',9000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box14.jpg" alt="Box Cadeau 14" loading="lazy"><h3>Box Cadeau 14</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 14',8500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box15.jpg" alt="Box Cadeau 15" loading="lazy"><h3>Box Cadeau 15</h3><p class="price">3250 DA</p><button onclick="openForm('Box Cadeau 15',3250)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box16.jpg" alt="Box Cadeau 16" loading="lazy"><h3>Box Cadeau 16</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 16',4500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box17.jpg" alt="Box Cadeau 17" loading="lazy"><h3>Box Cadeau 17</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 17',5500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box18.jpg" alt="Box Cadeau 18" loading="lazy"><h3>Box Cadeau 18</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 18',5500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box19.jpg" alt="Box Cadeau 19" loading="lazy"><h3>Box Cadeau 19</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 19',5000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box20.jpg" alt="Box Cadeau 20" loading="lazy"><h3>Box Cadeau 20</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 20',5000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box21.jpg" alt="Box Cadeau 21" loading="lazy"><h3>Box Cadeau 21</h3><p class="price">7500 DA</p><button onclick="openForm('Box Cadeau 21',7500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box22.jpg" alt="Box Cadeau 22" loading="lazy"><h3>Box Cadeau 22</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 22',8500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box23.jpg" alt="Box Cadeau 23" loading="lazy"><h3>Box Cadeau 23</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 23',5000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box24.jpg" alt="Box Cadeau 24" loading="lazy"><h3>Box Cadeau 24</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 24',4500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box25.jpg" alt="Box Cadeau 25" loading="lazy"><h3>Box Cadeau 25</h3><p class="price">3500 DA</p><button onclick="openForm('Box Cadeau 25',3500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box26.jpg" alt="Box Cadeau 26" loading="lazy"><h3>Box Cadeau 26</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 26',8500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box27.jpg" alt="Box Cadeau 27" loading="lazy"><h3>Box Cadeau 27</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 27',9500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box28.jpg" alt="Box Cadeau 28" loading="lazy"><h3>Box Cadeau 28</h3><p class="price">11200 DA</p><button onclick="openForm('Box Cadeau 28',11200)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box29.jpg" alt="Box Cadeau 29" loading="lazy"><h3>Box Cadeau 29</h3><p class="price">7000 DA</p><button onclick="openForm('Box Cadeau 29',7000)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box30.jpg" alt="Box Cadeau 30" loading="lazy"><h3>Box Cadeau 30</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 30',8500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box31.jpg" alt="Box Cadeau 31" loading="lazy"><h3>Box Cadeau 31</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 31',5500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box32.jpg" alt="Box Cadeau 32" loading="lazy"><h3>Box Cadeau 32</h3><p class="price">12500 DA</p><button onclick="openForm('Box Cadeau 32',12500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box33.jpg" alt="Box Cadeau 33" loading="lazy"><h3>Box Cadeau 33</h3><p class="price">4750 DA</p><button onclick="openForm('Box Cadeau 33',4750)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="femme"><img src="./box34.jpg" alt="Box Cadeau 34" loading="lazy"><h3>Box Cadeau 34</h3><p class="price">6500 DA</p><button onclick="openForm('Box Cadeau 34',6500)">تقديم الطلبية</button></div>
-      <div class="product" data-gender="homme"><img src="./box35.jpg" alt="Box Cadeau 35" loading="lazy"><h3>Box Cadeau 35</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 35',9500)">تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box1.jpg" alt="Box Cadeau 1" loading="lazy"><h3>Box Cadeau 1</h3><p class="price">7000 DA</p><button onclick="openForm('Box Cadeau 1',7000)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box2.jpg" alt="Box Cadeau 2" loading="lazy"><h3>Box Cadeau 2</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 2',8500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box3.jpg" alt="Box Cadeau 3" loading="lazy"><h3>Box Cadeau 3</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 3',4500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box4.jpg" alt="Box Cadeau 4" loading="lazy"><h3>Box Cadeau 4</h3><p class="price">7500 DA</p><button onclick="openForm('Box Cadeau 4',7500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box5.jpg" alt="Box Cadeau 5" loading="lazy"><h3>Box Cadeau 5</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 5',9500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box6.jpg" alt="Box Cadeau 6" loading="lazy"><h3>Box Cadeau 6</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 6',4500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box7.jpg" alt="Box Cadeau 7" loading="lazy"><h3>Box Cadeau 7</h3><p class="price">10000 DA</p><button onclick="openForm('Box Cadeau 7',10000)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box8.jpg" alt="Box Cadeau 8" loading="lazy"><h3>Box Cadeau 8</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 8',9500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box9.jpg" alt="Box Cadeau 9" loading="lazy"><h3>Box Cadeau 9</h3><p class="price">12500 DA</p><button onclick="openForm('Box Cadeau 9',12500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box10.jpg" alt="Box Cadeau 10" loading="lazy"><h3>Box Cadeau 10</h3><p class="price">11000 DA</p><button onclick="openForm('Box Cadeau 10',11000)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box11.jpg" alt="Box Cadeau 11" loading="lazy"><h3>Box Cadeau 11</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 11',9500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box12.jpg" alt="Box Cadeau 12" loading="lazy"><h3>Box Cadeau 12</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 12',8500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box13.jpg" alt="Box Cadeau 13" loading="lazy"><h3>Box Cadeau 13</h3><p class="price">9000 DA</p><button onclick="openForm('Box Cadeau 13',9000)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box14.jpg" alt="Box Cadeau 14" loading="lazy"><h3>Box Cadeau 14</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 14',8500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box15.jpg" alt="Box Cadeau 15" loading="lazy"><h3>Box Cadeau 15</h3><p class="price">3250 DA</p><button onclick="openForm('Box Cadeau 15',3250)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box16.jpg" alt="Box Cadeau 16" loading="lazy"><h3>Box Cadeau 16</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 16',4500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box17.jpg" alt="Box Cadeau 17" loading="lazy"><h3>Box Cadeau 17</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 17',5500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box18.jpg" alt="Box Cadeau 18" loading="lazy"><h3>Box Cadeau 18</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 18',5500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box19.jpg" alt="Box Cadeau 19" loading="lazy"><h3>Box Cadeau 19</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 19',5000)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box20.jpg" alt="Box Cadeau 20" loading="lazy"><h3>Box Cadeau 20</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 20',5000)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box21.jpg" alt="Box Cadeau 21" loading="lazy"><h3>Box Cadeau 21</h3><p class="price">7500 DA</p><button onclick="openForm('Box Cadeau 21',7500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box22.jpg" alt="Box Cadeau 22" loading="lazy"><h3>Box Cadeau 22</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 22',8500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box23.jpg" alt="Box Cadeau 23" loading="lazy"><h3>Box Cadeau 23</h3><p class="price">5000 DA</p><button onclick="openForm('Box Cadeau 23',5000)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box24.jpg" alt="Box Cadeau 24" loading="lazy"><h3>Box Cadeau 24</h3><p class="price">4500 DA</p><button onclick="openForm('Box Cadeau 24',4500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box25.jpg" alt="Box Cadeau 25" loading="lazy"><h3>Box Cadeau 25</h3><p class="price">3500 DA</p><button onclick="openForm('Box Cadeau 25',3500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box26.jpg" alt="Box Cadeau 26" loading="lazy"><h3>Box Cadeau 26</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 26',8500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box27.jpg" alt="Box Cadeau 27" loading="lazy"><h3>Box Cadeau 27</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 27',9500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box28.jpg" alt="Box Cadeau 28" loading="lazy"><h3>Box Cadeau 28</h3><p class="price">11200 DA</p><button onclick="openForm('Box Cadeau 28',11200)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box29.jpg" alt="Box Cadeau 29" loading="lazy"><h3>Box Cadeau 29</h3><p class="price">7000 DA</p><button onclick="openForm('Box Cadeau 29',7000)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box30.jpg" alt="Box Cadeau 30" loading="lazy"><h3>Box Cadeau 30</h3><p class="price">8500 DA</p><button onclick="openForm('Box Cadeau 30',8500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box31.jpg" alt="Box Cadeau 31" loading="lazy"><h3>Box Cadeau 31</h3><p class="price">5500 DA</p><button onclick="openForm('Box Cadeau 31',5500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box32.jpg" alt="Box Cadeau 32" loading="lazy"><h3>Box Cadeau 32</h3><p class="price">12500 DA</p><button onclick="openForm('Box Cadeau 32',12500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box33.jpg" alt="Box Cadeau 33" loading="lazy"><h3>Box Cadeau 33</h3><p class="price">4750 DA</p><button onclick="openForm('Box Cadeau 33',4750)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="femme"><img src="./box34.jpg" alt="Box Cadeau 34" loading="lazy"><h3>Box Cadeau 34</h3><p class="price">6500 DA</p><button onclick="openForm('Box Cadeau 34',6500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
+      <div class="product" data-gender="homme"><img src="./box35.jpg" alt="Box Cadeau 35" loading="lazy"><h3>Box Cadeau 35</h3><p class="price">9500 DA</p><button onclick="openForm('Box Cadeau 35',9500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button></div>
     </div>
 
     <h2 id="chocoTitle" class="section-title" style="margin-top: 50px; font-size: 1.8rem;">تشكيلات الشوكولاطة 🍫</h2>
@@ -246,7 +296,7 @@
         <h3>Bombe de Chocolat</h3>
         <label style="color: #666; font-size: 0.8rem; margin-bottom: 5px;">الميزانية:</label>
         <input type="number" id="price_bombe" class="custom-price-input" min="7000" value="7000" step="500">
-        <button onclick="openCustomForm('Bombe de Chocolat', 'price_bombe', 7000)">تقديم الطلبية</button>
+        <button onclick="openCustomForm('Bombe de Chocolat', 'price_bombe', 7000)"><span class="cart-icon">🛒</span> تقديم الطلبية</button>
       </div>
 
       <div class="product" data-gender="chocolat">
@@ -262,7 +312,7 @@
         <h3>Bouquet de Chocolat</h3>
         <label style="color: #666; font-size: 0.8rem; margin-bottom: 5px;">الميزانية:</label>
         <input type="number" id="price_bouquet" class="custom-price-input" min="4000" value="4000" step="500">
-        <button onclick="openCustomForm('Bouquet de Chocolat', 'price_bouquet', 4000)">تقديم الطلبية</button>
+        <button onclick="openCustomForm('Bouquet de Chocolat', 'price_bouquet', 4000)"><span class="cart-icon">🛒</span> تقديم الطلبية</button>
       </div>
 
       <div class="product" data-gender="chocolat">
@@ -277,7 +327,7 @@
         <h3>Boîte de Chocolat</h3>
         <label style="color: #666; font-size: 0.8rem; margin-bottom: 5px;">الميزانية:</label>
         <input type="number" id="price_boite" class="custom-price-input" min="9000" value="9000" step="500">
-        <button onclick="openCustomForm('Boîte de Chocolat', 'price_boite', 9000)">تقديم الطلبية</button>
+        <button onclick="openCustomForm('Boîte de Chocolat', 'price_boite', 9000)"><span class="cart-icon">🛒</span> تقديم الطلبية</button>
       </div>
 
       <div class="product" data-gender="chocolat">
@@ -294,7 +344,7 @@
         <h3>Boîte Simple</h3>
         <label style="color: #666; font-size: 0.8rem; margin-bottom: 5px;">الميزانية:</label>
         <input type="number" id="price_boite_simple" class="custom-price-input" min="4500" value="4500" step="500">
-        <button onclick="openCustomForm('Boîte Chocolat Simple', 'price_boite_simple', 4500)">تقديم الطلبية</button>
+        <button onclick="openCustomForm('Boîte Chocolat Simple', 'price_boite_simple', 4500)"><span class="cart-icon">🛒</span> تقديم الطلبية</button>
       </div>
     </div>
     
@@ -427,6 +477,7 @@
             <option value="femme">Femme</option>
             <option value="chocolat">Chocolat</option>
             <option value="دببة">دببة</option>
+            <option value="portefeuille">Portefeuille</option>
           </select>
         </div>
         <div class="admin-input-group">
@@ -664,7 +715,7 @@ function sortProductsByCategory() {
   const productList = document.getElementById('productList');
   const products = Array.from(productList.querySelectorAll('.product'));
   
-  const customOrder = { "homme": 1, "femme": 2, "chocolat": 3, "دببة": 4 };
+  const customOrder = { "homme": 1, "femme": 2, "chocolat": 3, "دببة": 4, "portefeuille": 5 };
   
   products.sort((a, b) => {
     let catA = (a.getAttribute('data-gender') || '').trim().toLowerCase();
@@ -710,7 +761,7 @@ async function loadCMSProducts() {
             ${imagesHTML}
             <h3>${prod.title}</h3>
             <p class="price">${prod.price} DA</p>
-            <button onclick="openForm('${prod.title}', ${prod.price})">تقديم الطلبية</button>
+            <button onclick="openForm('${prod.title}', ${prod.price})"><span class="cart-icon">🛒</span> تقديم الطلبية</button>
           </div>
         `;
         productList.insertAdjacentHTML('beforeend', productHTML); 
